@@ -85,7 +85,7 @@ returns: -
 throws:
 - Feed.loadFromUrl(url)
   - on error: 
-    - write exception to batchimports_errors table
+    - write exception to batchimports_messages
     - increment batchimport error counter
     - abort
 - feed.save
@@ -101,7 +101,7 @@ returns: -
 throws:
 - feed.fetchUpdate().save
 - on error: 
-  - write exception to feeds_errors table
+  - write exception to feeds_messages
   - increment feed error counter
   - abort
 - reset feed error counter

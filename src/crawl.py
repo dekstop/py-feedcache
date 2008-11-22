@@ -15,7 +15,7 @@ import feedparser
 import storm.locals
 
 from feedcache.models.feeds import Batchimport, Feed
-from feedcache.models.error_log import BatchimportErrorLog, FeedErrorLog
+from feedcache.models.messages import BatchimportMessage, FeedMessage
 import feedcache.exceptions
 
 # ========
@@ -24,7 +24,7 @@ import feedcache.exceptions
 
 DSN = 'postgres://postgres:@localhost/feedcache'
 
-MIN_TIME_BETWEEN_RETRIES = datetime.timedelta(hours=1)
+MIN_TIME_BETWEEN_RETRIES = datetime.timedelta(minutes=0) # datetime.timedelta(hours=1)
 MIN_TIME_BETWEEN_UPDATES = datetime.timedelta(minutes=30)
 
 # from storm.tracer import debug
@@ -79,10 +79,10 @@ class CrawlerWorker(object):
 		except:
 			e = sys.exc_info()[1]			
 			#store.rollback()
-			b = BatchimportErrorLog.FromException(store, batchimport, e)
+			#batchimport.fail_count += 1
+			b = BatchimportMessage.FromException(store, batchimport, e)
 			print b
 			store.add(b)
-		finally:
 			store.commit()
 
 	def update(self, store, feed):
@@ -91,11 +91,10 @@ class CrawlerWorker(object):
 		except:
 			e = sys.exc_info()[0]
 			#store.rollback()
-			feed.fail_count += 1
-			f = FeedErrorLog.FromException(store, feed, e)
+			#feed.fail_count += 1
+			f = FeedMessage.FromException(store, feed, e)
 			print f
 			store.add(f)
-		finally:
 			store.commit()
 
 # ========

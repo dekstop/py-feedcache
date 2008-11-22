@@ -7,6 +7,21 @@ TODO:
 - users, user tags, ...
 - enclosures
 
+batchimports:
+- successful import
+  - fail count = 0
+  - last fetch date != null
+  - imported = true
+  - feed with that url exists
+- failed import
+  - fail count = 1
+  - last fetch date != null
+  - imported = false
+  - feed with that url does not exist
+
+messages:
+- ...?
+
  ======================
  = application logger =
  ======================
@@ -21,14 +36,6 @@ log session metrics to file:
   - ...
 - use syslog? how does apache log to /var/log/ with multiple processes?
 
- ===================
- = error log reorg =
- ===================
-
-- one log table
-- join table for batchimport, feeds
-  - errorlog_id unique
-  - batchimport/feed_id
 
  ==============
  = work queue =

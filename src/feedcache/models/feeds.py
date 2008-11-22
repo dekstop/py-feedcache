@@ -1,17 +1,16 @@
 # feeds.py
 #
-# This code doesn't commit, it only flushes; this allows you to wrap your use 
-# of this class in a transaction, and roll back changes in case of an exception
-# during feed import/update. 
+# This code does its own transaction handling for calls to Batchimport.import_feed() and 
+# Feed.update():
+# - it assumes that previous DB changes have been committed; otherwise they will be
+#   lost on failure.
+# - it commits on success
+# - it colls back on failure, increases fail_count, sets date_last_fetched, commits.
 #
-# The drawback is that you need to make sure to commit before your program 
-# finishes (or gets killed, or exits with an exception), because otherwise all 
-# changes are lost.
-#
-# Additionally, all causes for exceptions in this class are documented and 
-# in the parsing stage, which is finished by the time it starts writing to the 
-# database; any exceptions after that are bugs. (The only exception to this
-# are SQL constraint violations that may get thrown while writing data.)
+# All causes for exceptions in this class are documented and mostly in the parsing 
+# stage, which is finished by the time it starts writing to the database; any exceptions 
+# after that are probably design bugs. (The only exception to this are SQL constraint 
+# violations that may get thrown while writing data.)
 #
 # In other words, a failure to fetch or parse a feed will not result in
 # incomplete or orphaned database records.
@@ -276,9 +275,14 @@ class Batchimport(object):
 			feed = Feed.CreateFromUrl(store, self.feed_url)
 			self.imported = True
 			self.fail_count = 0
+			store.commit()
 			return feed
 		except:
+			t = self.date_last_fetched
+			store.rollback()
 			self.fail_count += 1
+			self.date_last_fetched = t
+			store.commit()
 			raise
 	
 	Queue = staticmethod(Queue)
@@ -355,12 +359,17 @@ class Feed(object):
 		Raises a FeedParseError if the returned document is in an unsupported format.
 		May raise an IntegrityError (constraint violation) if the feed URL is already known.
 		"""
-		d = fetch_feed(url)
-		feed = Feed()
-		store.add(feed)
-		feed.initial_url = transcode(url)
-		feed._update_redirect_url(feed.initial_url, d)
-		feed._apply_feed_document(store, d)
+		try:
+			d = fetch_feed(url)
+			feed = Feed()
+			store.add(feed)
+			feed.initial_url = transcode(url)
+			feed._update_redirect_url(feed.initial_url, d)
+			feed._apply_feed_document(store, d)
+			store.commit()
+		except:
+			store.rollback()
+			raise
 		
 		return feed
 	
@@ -393,7 +402,7 @@ class Feed(object):
 		Raises a FeedParseError if the returned document is in an unsupported format.
 		"""
 		url = self.initial_url
-		self._update_last_fetched()
+		self.date_last_fetched = datetime_now()
 		try:
 			d = fetch_feed(url, etag=self.http_etag, modified=from_datetime(self.http_last_modified))
 			self.fail_count = 0
@@ -402,12 +411,14 @@ class Feed(object):
 			else:
 				self._update_redirect_url(self.initial_url, d)
 				self._apply_feed_document(store, d)
+			store.commit()
 		except:
+			t = self.date_last_fetched
+			store.rollback()
 			self.fail_count += 1
+			self.date_last_fetched = t
+			store.commit()
 			raise
-	
-	def _update_last_fetched(self):
-		self.date_last_fetched = datetime_now()
 	
 	def _update_redirect_url(self, initial_url, d):
 		# TODO: properly handle redirects

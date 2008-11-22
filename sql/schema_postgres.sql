@@ -78,42 +78,49 @@ CREATE TABLE entries (
 );
 CREATE TRIGGER entries_update_lastmodified BEFORE UPDATE ON entries FOR EACH ROW EXECUTE PROCEDURE update_lastmodified_column();
 
--- ==========
--- = errors =
--- ==========
-CREATE TABLE error_types (
+-- ============
+-- = messages =
+-- ============
+CREATE TABLE message_types (
   id            SERIAL PRIMARY KEY,
   last_modified TIMESTAMP DEFAULT now(),
   
   name          VARCHAR(1024) UNIQUE NOT NULL,
   description   VARCHAR(2048)
 );
-CREATE TRIGGER error_types_update_lastmodified BEFORE UPDATE ON error_types FOR EACH ROW EXECUTE PROCEDURE update_lastmodified_column();
+CREATE TRIGGER message_types_update_lastmodified BEFORE UPDATE ON message_types FOR EACH ROW EXECUTE PROCEDURE update_lastmodified_column();
 
-INSERT INTO error_types(name, description) VALUES('FeedFetchError', 'Failed to request the feed document');
-INSERT INTO error_types(name, description) VALUES('FeedParseError', 'Failed to parse the feed document');
+INSERT INTO message_types(name, description) VALUES('FeedFetchError', 'Failed to request the feed document');
+INSERT INTO message_types(name, description) VALUES('FeedParseError', 'Failed to parse the feed document');
 
-CREATE TABLE batchimports_errors (
+CREATE TABLE messages (
   id            SERIAL PRIMARY KEY,
   last_modified TIMESTAMP DEFAULT now(),
   
-  batchimport_id INTEGER NOT NULL,
-  error_type_id INTEGER NOT NULL,
+  message_type_id INTEGER NOT NULL,
   message       VARCHAR(2048) NOT NULL,
   payload       TEXT
 );
-CREATE TRIGGER batchimports_errors_update_lastmodified BEFORE UPDATE ON batchimports_errors FOR EACH ROW EXECUTE PROCEDURE update_lastmodified_column();
+CREATE TRIGGER messages_lastmodified BEFORE UPDATE ON messages FOR EACH ROW EXECUTE PROCEDURE update_lastmodified_column();
 
-CREATE TABLE feeds_errors (
+CREATE TABLE batchimports_messages (
+  id            SERIAL PRIMARY KEY,
+  last_modified TIMESTAMP DEFAULT now(),
+  
+  batchimport_id       INTEGER NOT NULL,
+  message_id     INTEGER NOT NULL
+);
+CREATE TRIGGER batchimports_messages_update_lastmodified BEFORE UPDATE ON batchimports_messages FOR EACH ROW EXECUTE PROCEDURE update_lastmodified_column();
+
+CREATE TABLE feeds_messages (
   id            SERIAL PRIMARY KEY,
   last_modified TIMESTAMP DEFAULT now(),
   
   feed_id       INTEGER NOT NULL,
-  error_type_id INTEGER NOT NULL,
-  message       VARCHAR(2048) NOT NULL,
-  payload       TEXT
+  message_id     INTEGER NOT NULL
 );
-CREATE TRIGGER feeds_errors_update_lastmodified BEFORE UPDATE ON feeds_errors FOR EACH ROW EXECUTE PROCEDURE update_lastmodified_column();
+CREATE TRIGGER feeds_messages_update_lastmodified BEFORE UPDATE ON feeds_messages FOR EACH ROW EXECUTE PROCEDURE update_lastmodified_column();
+
 
 -- ===========
 -- = authors =

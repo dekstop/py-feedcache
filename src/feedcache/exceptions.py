@@ -12,8 +12,8 @@ __all__ = [
 
 class FeedcacheError(Exception):
 	"""
-	The get_error_type(), get_message() and get_payload() functions are used to
-	log subclasses of these exceptions to error tables.
+	The get_message_type(), get_message() and get_payload() functions are used to
+	log subclasses of these exceptions to the messages table.
 	"""
 	def __init__(self, feed_url, document, message, cause=None):
 		"""
@@ -30,7 +30,7 @@ class FeedcacheError(Exception):
 		else:
 			return "%s: %s" % (self.message, self.feed_url)
 	
-	def get_error_type(self):
+	def get_message_type(self):
 		return self.__class__.__name__
 	
 	def get_message(self):
