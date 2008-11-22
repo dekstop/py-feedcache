@@ -24,7 +24,7 @@ CREATE TABLE batchimports (
   semaphore_id  INTEGER DEFAULT NULL,
   semaphore_acquisition_date TIMESTAMP DEFAULT NULL,
   
-  feed_url      VARCHAR(4096) UNIQUE NOT NULL,
+  url           VARCHAR(4096) UNIQUE NOT NULL,
   imported      BOOLEAN NOT NULL DEFAULT FALSE,
 
   date_added    TIMESTAMP NOT NULL DEFAULT now(),
@@ -41,7 +41,7 @@ CREATE TABLE feeds (
   semaphore_acquisition_date TIMESTAMP DEFAULT NULL,
   
   active        BOOLEAN NOT NULL DEFAULT TRUE,
-  initial_url   VARCHAR(4096) UNIQUE NOT NULL,
+  url           VARCHAR(4096) UNIQUE NOT NULL,
   actual_url    VARCHAR(4096) NOT NULL,
   
   date_added    TIMESTAMP NOT NULL DEFAULT now(),

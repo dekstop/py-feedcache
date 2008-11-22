@@ -108,7 +108,7 @@ class BatchimportMessage(object):
 		return '%s: {message_type: "%s", url: "%s", message: "%s", payload: "%s"}' % (
 			type(self).__name__,
 			self.message.message_type.name, 
-			self.batchimport.feed_url, 
+			self.batchimport.url, 
 			self.message.message, 
 			self.message.payload)
 
@@ -134,7 +134,7 @@ class FeedMessage(object):
 		return '%s: {message_type: "%s", url: "%s", message: "%s", payload: "%s"}' % (
 			type(self).__name__,
 			self.message.message_type.name, 
-			self.feed.initial_url, 
+			self.feed.url, 
 			self.message.message, 
 			self.message.payload)
 

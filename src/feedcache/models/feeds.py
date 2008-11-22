@@ -38,15 +38,15 @@ class Batchimport(object):
 	__storm_table__ = 'batchimports'
 	id = storm.Int(primary=True)
 
-	feed_url = storm.Unicode()
+	url = storm.Unicode()
 	imported = storm.Bool()
 
 	date_added = storm.DateTime()
 	date_last_fetched = storm.DateTime()
 	fail_count = storm.Int()
 	
-	def __init__(self, feed_url):
-		self.feed_url = util.transcode(feed_url)
+	def __init__(self, url):
+		self.url = util.transcode(url)
 	
 	def GetOne(store, cutoff_time=util.datetime_now(), retry_cutoff_time=util.datetime_now()):
 		"""
@@ -68,31 +68,31 @@ class Batchimport(object):
 				)
 			)).any()
 	
-	def FindByUrl(store, feed_url):
+	def FindByUrl(store, url):
 		"""
 		Static method, returns a Batchimport intance, or None.
 		Note that the entry may or may not have been imported -- so check
 		its 'imported' property.
 		"""
-		return store.find(Batchimport, Batchimport.feed_url==feed_url).any()
+		return store.find(Batchimport, Batchimport.url==url).any()
 	
-	def CreateIfMissing(store, feed_url):
+	def CreateIfMissing(store, url):
 		"""
 		Returns a Batchimport instance.
 		Creates a new Batchimport entry if FindByUrl for this URL comes up empty,
 		then commits.
 		"""
-		b = Batchimport.FindByUrl(store, feed_url)
+		b = Batchimport.FindByUrl(store, url)
 		if b:
 			return b
-		b = Batchimport(feed_url)
+		b = Batchimport(url)
 		store.add(b)
 		store.commit()
 		return b
 	
 	def import_feed(self, store):
 		"""
-		Attempts to fetch and import feed_url, returns a Feed instance on success,
+		Attempts to fetch and import the feed, returns a Feed instance on success,
 		or throws an exception on failue. Always updates the date_last_fetched and fail_count 
 		properties, even on exceptions.
 		
@@ -102,7 +102,7 @@ class Batchimport(object):
 		fetch_date = util.datetime_now()
 		self.date_last_fetched = fetch_date
 		try:
-			feed = Feed.CreateFromUrl(store, self.feed_url)
+			feed = Feed.CreateFromUrl(store, self.url)
 			self.imported = True
 			self.fail_count = 0
 			store.commit()
@@ -127,7 +127,7 @@ class Feed(object):
 	id = storm.Int(primary=True)
 	
 	active = storm.Bool()
-	initial_url = storm.Unicode()
+	url = storm.Unicode()
 	actual_url = storm.Unicode()
 	
 	date_added = storm.DateTime()
@@ -163,18 +163,18 @@ class Feed(object):
 		"""
 		Static method, returns a Feed instance or None. Accesses the DB cache, does not
 		attempt to load the feed from its URL. Only matches against the feed's
-		'initial_url' property, which uniquely identifies a feed.
+		'url' property, which uniquely identifies a feed.
 		"""
-		return store.find(Feed, Feed.initial_url==url).any()
+		return store.find(Feed, Feed.url==url).any()
 	
 	def FindByAnyUrl(store, url):
 		"""
 		Static method, returns a ResultSet of zero or more Feed instances that
-		have 'feed_url' as their 'initial_url', 'actual_url' or 'link' property.
+		have 'url' as their 'url', 'actual_url' or 'link' property.
 		"""
 		return store.find(Feed, 
 			storm.Or(
-				Feed.initial_url==url, 
+				Feed.url==url, 
 				Feed.actual_url==url, 
 				Feed.link==url))
 
@@ -191,8 +191,8 @@ class Feed(object):
 			d = fputil.fetch_feed(url)
 			feed = Feed()
 			store.add(feed)
-			feed.initial_url = util.transcode(url)
-			feed._update_redirect_url(feed.initial_url, d)
+			feed.url = util.transcode(url)
+			feed._update_redirect_url(feed.url, d)
 			feed._apply_feed_document(store, d)
 			store.commit()
 		except:
@@ -229,16 +229,17 @@ class Feed(object):
 		Raises a FeedFetchError if the HTTP request fails.
 		Raises a FeedParseError if the returned document is in an unsupported format.
 		"""
-		url = self.initial_url
 		fetch_date = util.datetime_now()
 		self.date_last_fetched = fetch_date
 		try:
-			d = fputil.fetch_feed(url, etag=self.http_etag, modified=util.from_datetime(self.http_last_modified))
+			d = fputil.fetch_feed(self.url, 
+				etag=self.http_etag, 
+				modified=util.from_datetime(self.http_last_modified))
 			self.fail_count = 0
 			if fputil.http_status_not_modified(d):
 				pass
 			else:
-				self._update_redirect_url(self.initial_url, d)
+				self._update_redirect_url(self.url, d)
 				self._apply_feed_document(store, d)
 			store.commit()
 		except:
@@ -248,12 +249,12 @@ class Feed(object):
 			store.commit()
 			raise
 	
-	def _update_redirect_url(self, initial_url, d):
+	def _update_redirect_url(self, url, d):
 		# TODO: properly handle redirects
 		if fputil.http_status_permanent_redirect(d) and d.feed.has_key('href'):
 			self.actual_url = util.transcode(d.feed.href)
 		else:
-			self.actual_url = initial_url
+			self.actual_url = url
 	
 	def _apply_feed_document(self, store, d):
 		self._update_http_vars(d)

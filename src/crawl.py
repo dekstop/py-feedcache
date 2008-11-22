@@ -59,7 +59,7 @@ class Crawler(object):
 				cutoff_time, 
 				cutoff_time - MIN_TIME_BETWEEN_RETRIES)
 			if batchimport:
-				print '' % batchimport.feed_url
+				print 'import: %s' % batchimport.url
 				self.worker.add(store, batchimport)
 				keep_running = True
 
@@ -67,7 +67,7 @@ class Crawler(object):
 				cutoff_time - MIN_TIME_BETWEEN_UPDATES,
 				cutoff_time - MIN_TIME_BETWEEN_RETRIES)
 			if feed:
-				print feed
+				print 'update: %s' % feed.url
 				self.worker.update(store, feed)
 				keep_running = True
 

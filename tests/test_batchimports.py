@@ -19,7 +19,7 @@ class BatchimportTest(DBTestBase):
 		
 		b = Batchimport.FindByUrl(self.store, TEST.fixture(u'dekstop.de_weblog_index.xml'))
 		self.assertNotEquals(None, b)
-		self.assertNotEquals(None, b.feed_url)
+		self.assertNotEquals(None, b.url)
 		self.assertNotEquals(None, b.date_added)
 		self.assertEquals(None, b.date_last_fetched)
 		self.assertEquals(0, b.fail_count)
@@ -32,7 +32,7 @@ class BatchimportTest(DBTestBase):
 
 		b = Batchimport.FindByUrl(self.store, TEST.fixture(u'dekstop.de_weblog_index.xml'))
 		self.assertNotEquals(None, b)
-		self.assertNotEquals(None, b.feed_url)
+		self.assertNotEquals(None, b.url)
 		self.assertNotEquals(None, b.date_added)
 		self.assertNotEquals(None, b.date_last_fetched)
 		self.assertEquals(0, b.fail_count)

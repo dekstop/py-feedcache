@@ -15,20 +15,20 @@ class FeedcacheError(Exception):
 	The get_message_type(), get_message() and get_payload() functions are used to
 	log subclasses of these exceptions to the messages table.
 	"""
-	def __init__(self, feed_url, document, message, cause=None):
+	def __init__(self, url, document, message, cause=None):
 		"""
 		The 'cause' property can carry an exception.
 		"""
-		self.feed_url = feed_url
+		self.url = url
 		self.document = document
 		self.message = message
 		self.cause = cause
 	
 	def __str__(self):
 		if self.cause!=None:
-			return "%s: %s (caused by %s)" % (self.message, self.feed_url, self.cause)
+			return "%s: %s (caused by %s)" % (self.message, self.url, self.cause)
 		else:
-			return "%s: %s" % (self.message, self.feed_url)
+			return "%s: %s" % (self.message, self.url)
 	
 	def get_message_type(self):
 		return self.__class__.__name__
