@@ -1,0 +1,83 @@
+2008-10-12, 13:59:18
+
+ =========
+ = about =
+ =========
+
+multiple components:
+- feed fetcher (with parser + DB)
+- scheduler (manages update frequency per feed)
+- admin UI to add/remove/edit feed subscriptions
+- client UI to browse + organise feeds (tagging, bookmarking, ...)
+
+"To support the maximum number of character encodings (and be able to parse the maximum number of feeds), you should install cjkcodecs and iconv_codec. Both are available at http://cjkpython.i18n.org/." -- file:///Users/mongo/data/doc/python/feedparser-4.1/character-encoding.html
+
+ ========================
+ = initial feed fetcher =
+ ========================
+
+- respect post GUIDs/atom:ids to remove duplicates
+  - if not provided: 
+    - use hash(title, content, link) (may still break for some feeds)
+- storage layout
+  - document missing Atom features
+  - TODO: check if we want to additionally support features from other specs
+  - with fields for custom transformations
+    - title with all HTML stripped + whitespace collapsed
+    - description with all HTML stripped + whitespace collapsed
+  - with additional metadata
+    - 'last update' timestamp (only change when title or description have been modified)
+
+handle errors: log (feed, timestamp, error code, description, payload) in DB
+- "Connection Error"
+  - if DNS fails, host is down, there is a connection timeout, ...
+  - description: reason
+  - payload: ??
+- "HTTP request failed"
+  - if HTTP request != 200, 304
+  - description: HTTP status code
+  - payload: -
+- "Empty Document"
+  - if HTTP body is empty (note: can't determine this without writing our own HTTP client code instead of using feedparser's)
+  - description: -
+  - payload: -
+- "Unsupported document type"
+  - e.g. if document is HTML
+  - description: ??
+  - payload: first n KB of document
+- "Parse Error"
+  - e.g. character encoding exceptions
+  - description: d.bozo_exception.getMessage(), or exception.getMessage()
+  - payload: stack trace? or first n KB of document?
+- all local IO/DB errors are application errors and will not be logged in DB
+
+
+ ====================
+ = initial admin UI =
+ ====================
+
+- add feeds per OPML
+- no remove feature
+
+ =====================
+ = initial client UI =
+ =====================
+
+- index: list feeds and metadata
+  - per feed: title, feed url, title, homepage, last updated, number of entries, authors, ...
+
+- newsriver: 100 latest entries (later: paginated)
+  - global
+  - by feed
+  - by topic (feeds can be tagged)
+  - by keyword search
+
+ ===============
+ = opml import =
+ ===============
+
+- importing all outlines with type="rss"
+  - optionally parent outline 'text' attributes can be extracted and used as tags
+    - alternatively: OPML 2.0 category attribute http://www.opml.org/spec2#otherSpecialAttributes
+  - feed url is in 'xmlUrl' attribute
+  

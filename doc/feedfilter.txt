@@ -1,0 +1,80 @@
+2008-11-17, 00:31:00
+
+REST(?)-style feed aggregation query and presentation system.
+
+ ==============================
+ = feed selection: /id/<hash> =
+ ==============================
+
+prerequisites:
+- each feed has a generated hash as unique ID (a hash?)
+
+mechanism:
+- load a single feed by UID
+
+ ==============================
+ = feed selection: /url/<url> =
+ ==============================
+
+prerequisites:
+- elegant mechanism to provide url as path fragment (e.g. .../domain/path?parameters)
+- bookmarklet/form/web service/... to transform feed URL into feed address URL
+
+mechanism:
+- decode requested url
+- load feed by url (fetch it if it's not cached)
+- (optionally: redirect to /id/<hash>)
+
+ ===================================
+ = feed selection: /search/<query> =
+ ===================================
+
+prerequisites:
+- search engine, index
+
+mechanism:
+- search feeds in feedcache
+
+ ===========================================
+ = feed selection: /user/<user>/tag/<tags> =
+ ===========================================
+
+e.g. to build planet feeds
+
+prerequisite:
+- users tag feeds
+
+mechanism:
+- load feeds for tag
+
+ ============================
+ = feed generator: .../atom =
+ ============================
+
+presents result of feed selection in atom format.
+
+ ===============================
+ = feed generator: .../podcast =
+ ===============================
+
+prerequisites:
+- aggregate lots of music blogs (get hypem source list, maybe crawl it once a day to keep it updated)
+- feed selection mechanisms (e.g., search, usertags)
+- easy way to generate atom output
+  - with efficient method to provide if-modified-since support
+
+mechanism:
+- extract links to .mp3/other formats from entry text, enclosures
+- store result in dedicated tables
+  - infotext
+  - source feed+entry
+  - link to file
+  - mimetype and file size (from enclosure, or by crawling)
+- present as atom feed with enclosure
+
+ ===============================
+ = feed generator: .../adblock =
+ ===============================
+
+mechanism:
+- removes misc known tracker pixels (feedburner), inline ads (slashdot), web bugs, ...

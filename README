@@ -1,0 +1,8 @@
+2008-11-22, 12:31:32
+
+py-feedcache, a feed aggregator with DB storage back-end.
+
+Dependencies:
+- Mark Pilgrim's feedparser, http://feedparser.org/
+- Canonical's Storm ORM, http://storm.canonical.com/
+- a PostgreSQL database

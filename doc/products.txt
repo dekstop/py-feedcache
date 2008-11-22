@@ -1,0 +1,39 @@
+2008-11-17, 00:31:00
+
+ =========================
+ = simple visualisations =
+ =========================
+
+http://dekstop.de/weblog/2006/07/midnightbot_ii_no_errors/ :)
+
+
+for monitoring:
+- number of requests / day
+- error rate / day (absolute, as share of all requests)
+- share of feeds with etags/last-modified header / day
+- ...
+
+
+ ================================
+ = auto-generated podcast feeds =
+ ================================
+
+cf feedfilter.txt
+
+
+ ================
+ = memetrackers =
+ ================
+
+simple version:
+- tag a bunch of feeds (e.g. lots of del.icio.us accounts)
+- daily offline process:
+  - extract all links from every feed
+  - present ranked result as feed post
+- ranking options:
+  - by number of occurrences
+  - by number of feeds (reach); should probably be the default
+
+could be implemented as a web service client:
+  - get feed IDs for tag
+  - for each feed ID, get last 10+ entries

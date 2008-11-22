@@ -1,0 +1,108 @@
+
+2008-10-19, 11:54:56
+
+possible actions:
+- adding a new feed per system batch import (not triggering a fetch)
+- adding a new feed per user OPML/other user batch import (triggering an immediate fetch)
+- adding a new feed per web service call (triggering an immediate fetch)
+- updating a new (batch-imported) feed per cronjob
+- updating an existing feed per cronjob
+
+Feed class (ORM)
+# no public constructor; can only be instanciated via static factory methods
+# i.e., a Feed instance always contains enough data to be serialisable
+- private bool request(url):
+  last_fetched = now()
+  d = feedparser.parse(url)
+  initial_url=url
+  if d.status==410: active=false # permanently deleted
+  else if status==404,500, ...:
+    fail_count++
+  else
+    fail_count=0
+    if d.status==301: actual_url=d.href # permanent redirect
+    else actual_url=url
+    # update fields...
+- static Feed loadFromUrl(url)
+  Feed.new.request(url)
+- static Feed findById(id)
+- static Feed findByUrl(url)
+- fetchUpdate()
+  - request(actual_url)
+    - if failed: actual_url=initial_url, request(initial_url)
+- save()
+
+Batchimport class (ORM)
+- static Batchimport findByUrl
+- static Batchimport new(url)
+- save()
+
+Users class (ORM)
+- add_feed_tags(feed, tags)
+- add_entry_tags(entry, tags)
+
+ ====================
+ = system batch-add =
+ ====================
+
+parameters: feed URL
+returns: -
+throws: 
+- if (Feed.findByUrl(url) != null)
+  - make sure feed.active is true
+  -> abort (feed exists)
+- if (Batchimport.findByUrl(url) != null)
+  - make sure batchImport.import_successful is false
+  -> abort (feed is already scheduled for update)
+- Batchimport.new(url).save
+
+
+ ==============================
+ = user batch-add, with fetch =
+ ==============================
+ 
+(via OPML or web service call)
+parameters: user, feed URL, tags=[] (extracted from OPML)
+returns: feed object
+throws: 
+- if (Feed.findByUrl(url) != null)
+  - make sure feed.active is true
+  - skip to update_tags
+- else Feed.loadFromUrl(url)
+  - on error: 
+    - throw exception (don't log to error table)
+    - abort
+- feed.save
+- update_tags: user.add_feed_tags(feed, tags)
+
+
+ =======================
+ = first cronjob fetch =
+ =======================
+ 
+parameters: batchimport instance where import_successful==false
+returns: -
+throws:
+- Feed.loadFromUrl(url)
+  - on error: 
+    - write exception to batchimports_errors table
+    - increment batchimport error counter
+    - abort
+- feed.save
+- batchimport.import_successful=true
+
+
+ ========================
+ = cronjob update fetch =
+ ========================
+
+parameters: feed ID
+returns: -
+throws:
+- feed.fetchUpdate().save
+- on error: 
+  - write exception to feeds_errors table
+  - increment feed error counter
+  - abort
+- reset feed error counter
+- feed.save

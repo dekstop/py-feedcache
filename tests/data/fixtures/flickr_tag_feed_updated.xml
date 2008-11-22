@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<feed xmlns="http://www.w3.org/2005/Atom"
+      xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns:flickr="urn:flickr:" xmlns:media="http://search.yahoo.com/mrss/">
+
+	<title>Recent Uploads tagged hadoop</title>
+	<link rel="self" href="http://api.flickr.com/services/feeds/photos_public.gne?tags=hadoop" />
+	<link rel="alternate" type="text/html" href="http://www.flickr.com/photos/tags/hadoop/"/>
+	<id>tag:flickr.com,2005:/photos/public/tagged/all/hadoop</id>
+	<icon>http://l.yimg.com/g/images/buddyicon.jpg</icon>
+	<subtitle></subtitle>
+	<updated>2008-08-27T13:30:32Z</updated>
+	<generator uri="http://www.flickr.com/">Flickr</generator>
+    
+	<entry>
+		<title>KR_Hadoop 31</title>
+		<link rel="alternate" type="text/html" href="http://www.flickr.com/photos/phploveme/2802364045/"/>
+		<id>tag:flickr.com,2005:/photo/2802364045</id>
+		<published>2008-08-27T13:31:38Z</published>
+		<updated>2008-08-28T14:01:22Z</updated>
+                <dc:date.Taken>2008-08-27T20:18:27-08:00</dc:date.Taken>
+		<content type="html">&lt;p&gt;Me and an elephant.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.flickr.com/photos/phploveme/2802364045/&quot; title=&quot;KR_Hadoop 31&quot;&gt;&lt;img src=&quot;http://farm4.static.flickr.com/3101/2802364045_5e82fe3752_m.jpg&quot; width=&quot;160&quot; height=&quot;240&quot; alt=&quot;KR_Hadoop 31&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+</content>
+		<author>
+			<name>Jinho.Jung</name>
+			<uri>http://www.flickr.com/people/phploveme/</uri>
+					</author>
+		<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by/2.0/deed.en_GB" />
+        <link rel="enclosure" type="image/jpeg" href="http://farm4.static.flickr.com/3101/2802364045_f579710880_o.jpg" />
+
+		<category term="yahoo" scheme="http://www.flickr.com/photos/tags/" />
+		<category term="community" scheme="http://www.flickr.com/photos/tags/" />
+		<category term="korea" scheme="http://www.flickr.com/photos/tags/" />
+		<category term="nhn" scheme="http://www.flickr.com/photos/tags/" />
+		<category term="hadoop" scheme="http://www.flickr.com/photos/tags/" />
+		<category term="nexr" scheme="http://www.flickr.com/photos/tags/" />
+                	</entry>
+</feed>

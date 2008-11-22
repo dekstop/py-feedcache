@@ -1,0 +1,213 @@
+
+-- =========
+-- = feeds =
+-- =========
+
+CREATE TABLE batchimports (
+  id            INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  last_updated  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  
+  feed_url      VARCHAR(4096) UNIQUE NOT NULL,
+  imported      BOOLEAN NOT NULL DEFAULT FALSE,
+  fail_count    INTEGER NOT NULL DEFAULT 0
+) ENGINE = INNODB CHARACTER SET utf8;
+
+CREATE TABLE feeds (
+  id            INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  last_updated  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  
+  active        BOOLEAN NOT NULL DEFAULT TRUE,
+  initial_url   VARCHAR(4096) UNIQUE NOT NULL,
+  actual_url    VARCHAR(4096) NOT NULL,
+  
+  date_added    DATETIME NOT NULL DEFAULT now(),
+  date_last_fetched DATETIME,
+  fail_count    INTEGER NOT NULL DEFAULT 0,
+  
+  http_last_modified DATETIME,
+  http_etag     VARCHAR(2048),
+  
+  title         VARCHAR(4096) NOT NULL,
+  description   VARCHAR(4096),
+  link          VARCHAR(4096) NOT NULL,
+  unique_id     VARCHAR(4096),
+  ttl           INTEGER,
+  date_updated  DATETIME NOT NULL
+) ENGINE = INNODB CHARACTER SET utf8;
+
+CREATE TABLE entries (
+  id            INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  last_updated  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  
+  feed_id       INTEGER NOT NULL,
+  date_added    DATETIME NOT NULL DEFAULT now(),
+  unique_id     VARCHAR(4096) NOT NULL,
+
+  title         VARCHAR(4096) NOT NULL,
+  content       MEDIUMTEXT,
+  summary       MEDIUMTEXT,
+  link          VARCHAR(4096) NOT NULL,
+  date_published DATETIME NOT NULL,
+  date_updated  DATETIME NOT NULL,
+  
+  CONSTRAINT UNIQUE INDEX(feed_id, unique_id)
+) ENGINE = INNODB CHARACTER SET utf8;
+
+-- ==========
+-- = errors =
+-- ==========
+
+CREATE TABLE error_types (
+  id            INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  last_updated  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  
+  name          VARCHAR(1024) UNIQUE NOT NULL,
+  description   VARCHAR(2048)
+) ENGINE = INNODB CHARACTER SET utf8;
+
+CREATE TABLE batchimports_errors (
+  id            INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  last_updated  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  
+  batchimport_id INTEGER NOT NULL,
+  error_type_id INTEGER NOT NULL,
+  message       VARCHAR(2048) NOT NULL,
+  payload       VARCHAR(8192)
+) ENGINE = INNODB CHARACTER SET utf8;
+
+CREATE TABLE feeds_errors (
+  id            INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  last_updated  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  
+  feed_id INTEGER NOT NULL,
+  error_type_id INTEGER NOT NULL,
+  message       VARCHAR(2048) NOT NULL,
+  payload       VARCHAR(8192)
+) ENGINE = INNODB CHARACTER SET utf8;
+
+-- ===========
+-- = authors =
+-- ===========
+
+CREATE TABLE authors (
+  id            INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  last_updated  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  
+  name          VARCHAR(100) NOT NULL,
+  email         VARCHAR(320),
+  link          VARCHAR(4096),
+  
+  CONSTRAINT UNIQUE INDEX(name, email, link)
+) ENGINE = INNODB CHARACTER SET utf8;
+
+CREATE TABLE feeds_authors (
+  id            INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  last_updated  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  
+  feed_id       INTEGER NOT NULL,
+  author_id     INTEGER NOT NULL,
+  
+  CONSTRAINT UNIQUE INDEX(feed_id, author_id)
+) ENGINE = INNODB CHARACTER SET utf8;
+
+CREATE TABLE entries_authors (
+  id            INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  last_updated  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  
+  entry_id      INTEGER NOT NULL,
+  author_id     INTEGER NOT NULL,
+  
+  CONSTRAINT UNIQUE INDEX(entry_id, author_id)
+) ENGINE = INNODB CHARACTER SET utf8;
+
+-- ==============
+-- = categories =
+-- ==============
+
+CREATE TABLE categories (
+  id            INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  last_updated  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  
+  term          VARCHAR(1024) NOT NULL,
+  scheme        VARCHAR(4096),
+  label         VARCHAR(1024),
+  
+  CONSTRAINT UNIQUE INDEX(term, scheme, label)
+) ENGINE = INNODB CHARACTER SET utf8;
+
+CREATE TABLE feeds_categories (
+  id            INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  last_updated  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  
+  feed_id       INTEGER NOT NULL,
+  category_id     INTEGER NOT NULL,
+  
+  CONSTRAINT UNIQUE INDEX(feed_id, category_id)
+) ENGINE = INNODB CHARACTER SET utf8;
+
+CREATE TABLE entries_categories (
+  id            INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  last_updated  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  
+  entry_id      INTEGER NOT NULL,
+  category_id     INTEGER NOT NULL,
+  
+  CONSTRAINT UNIQUE INDEX(entry_id, category_id)
+) ENGINE = INNODB CHARACTER SET utf8;
+
+-- =========
+-- = users =
+-- =========
+
+CREATE TABLE users(
+  id            INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  last_updated  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+  name          VARCHAR(100) UNIQUE NOT NULL,
+  password      CHAR(16) NOT NULL,
+  email         VARCHAR(320),
+  type          ENUM('user', 'admin') NOT NULL DEFAULT 'user'
+) ENGINE = INNODB CHARACTER SET utf8;
+
+CREATE TABLE feeds_users (
+  id            INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  last_updated  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  
+  user_id       INTEGER NOT NULL,
+  feed_id       INTEGER NOT NULL,
+  
+  CONSTRAINT UNIQUE INDEX (user_id, feed_id)
+) ENGINE = INNODB CHARACTER SET utf8;
+
+-- ========
+-- = tags =
+-- ========
+
+CREATE TABLE tags (
+  id            INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  last_updated  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  
+  name          VARCHAR(2048) UNIQUE NOT NULL
+) ENGINE = INNODB CHARACTER SET utf8;
+
+CREATE TABLE feeds_tags (
+  id            INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  last_updated  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  
+  user_id       INTEGER NOT NULL,
+  feed_id       INTEGER NOT NULL,
+  tag_id        INTEGER NOT NULL,
+  
+  CONSTRAINT UNIQUE INDEX(user_id, feed_id, tag_id)
+) ENGINE = INNODB CHARACTER SET utf8;
+
+CREATE TABLE entries_tags (
+  id            INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  last_updated  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  
+  user_id       INTEGER NOT NULL,
+  entry_id       INTEGER NOT NULL,
+  tag_id        INTEGER NOT NULL,
+  
+  CONSTRAINT UNIQUE INDEX(user_id, entry_id, tag_id)
+) ENGINE = INNODB CHARACTER SET utf8;

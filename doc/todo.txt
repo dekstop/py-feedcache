@@ -1,0 +1,212 @@
+2008-11-01, 16:25:05
+
+check out http://sourceforge.net/projects/senews
+
+TODO: 
+- tests for batchimports, error logs
+- users, user tags, ...
+- enclosures
+
+ ======================
+ = application logger =
+ ======================
+
+log session metrics to file:
+- feed update:
+  - feed id
+  - network time
+  - serialisation time
+  - entries added
+  - entries updated
+  - ...
+- use syslog? how does apache log to /var/log/ with multiple processes?
+
+ ===================
+ = error log reorg =
+ ===================
+
+- one log table
+- join table for batchimport, feeds
+  - errorlog_id unique
+  - batchimport/feed_id
+
+ ==============
+ = work queue =
+ ==============
+
+worker lock mechanism
+- batchimport, feed tables have a locking flag (e.g. 2 columns: lock owner, lock start date)
+- worker acquires lock by:
+  - acquire lock: update rows...
+    - that are ready to process (batchimport: not imported; feeds: date_last_fetch is stale)
+    - that aren't locked (have no lock owner) OR have lock_start_date < now() - lock_timeout
+    - set lock_owner = me
+  - select rows where lock_owner == me
+    - if empty: no rows to process
+  - operate on rows
+  - release lock by setting lock_owner to NULL
+- crucial: 
+  - lock_timeout needs to be long enough that locks can never time out in normal operation (even with very long jobs)
+    - e.g.: timeout of several hours/days?
+    - for monitoring: add trigger that logs lock timeouts to error log tables
+  - need to make sure that workers properly release locks, even when they fail (get interrupted by an exception) -> that way it's ok if lock timeout is really REALLY long, because then timeouts are only a 'worst case/should never happen' measure
+
+semaphore UIDs: 
+- base64.b32encode(hashlib.sha1(str(datetime.datetime.now())).digest())
+- base64.urlsafe_b64encode(hashlib.sha1(str(datetime.datetime.now())).digest())
+
+ ==================
+ = code structure =
+ ==================
+
+separate models and logic
+- goal: feed class (and others) are just models
+- all code that currently resides in these models gets refactored into:
+  - model classes (that internally depend on storm, but that can easily be replaced by other implementations; e.g. mocks)
+  - an application logic module that incorporates models and feedparser and glues them together
+  - library/utility modules
+
+ORM: find nicer way to model shared object relationships ("traits")
+- authors for feeds and entries
+- categories for feeds and entries
+
+
+ ========
+ = http =
+ ========
+
+feedparser does not automatically escape characters in URLs (e.g. spaces) -> will get 404s if an unescaped URL is added
+
+tests:
+- make sure requests for URLs with unescaped characters (e.g. spaces) succeed
+- test different content-types in HTTP header
+  - misc appropriate xml/feed ones
+  - misc popular wrong ones: text/html, text-plain
+  - completely wrong ones: ...?
+- test different encodings in HTTP header
+  - no encoding (may not need dedicated test)
+  - same encoding as in document
+  - different encoding as in document
+  - broken/unsupported encoding
+
+ ============
+ = encoding =
+ ============
+
+- not even sure if we store UTF8 atm; and if so, where it's transcoded (Storm seems to manage generic Unicode, but encode to UTF-8 before executing statements; note that this is implemented in the DB drivers, i.e., may not be supported for all engines)
+
+tests:
+- provide with non-utf input, ensure stored data gets converted to valid utf-8
+- provide broken utf-8 input, ensure that this is handled correctly
+  - either by "recovering" (cf iconv //IGNORE)
+  - or with an exception
+  -> tbd
+
+ =================
+ = malformed xml =
+ =================
+
+cf 'encoding'
+
+ ===============
+ = concurrency =
+ ===============
+
+- is the code threadsafe?
+  - multiple threads updating the same feed
+  - level of atomicity for updates (per feed? per entry?)
+
+tests:
+- ensure that multiple threads updating the same feed don't interfere with each other (e.g.: feed has multiple entries with same GUID but no timestamps, so the physical entry gets overwritten multiple times on every crawl)
+
+
+ =======
+ = sql =
+ =======
+
+- spinn3r: "Key is truncate(SHA1(resource+secret))" for primary keys/identity
+  - deterministic
+  - allows for sharding later; routable, etc
+- use INSERT … ON DUPLICATE KEY UPDATE where possible (may be non-ANSI MySQL feature; -> check storm's support for that)
+- manually gzip-compress post content? (check postgres options; may do that automatically anyway. otherwise do it explicitly and store in bytea column)
+
+
+ ==========
+ = schema =
+ ==========
+
+- entries: separate table for infrequently used large fields (description, text)? may result in faster table scans when it gets huge and we only want to display lists of summaries
+
+- HTTP last modified should really be stored as string, but feedparser only gives us the parsed version... (RFC 2616: "To get best results when sending an If-Modified-Since header field for cache validation, clients are advised to use the exact date string received in a previous Last-Modified header field whenever possible.")
+
+ =============
+ = timezones =
+ =============
+
+- atm we ignore them. we simply hand over what feedparser produces to mktime, then to storm. this should be improved, probably by converting all dates to utc first. (atm our date conversion is affected by the local TZ!)
+- check out storm's tz modeule
+
+tests:
+- ensure that timestamps from different timezones get converted to the correct UTC timestamp
+  - while building the feed object (loaded from XML)
+  - when storing + loading a feed from cache (loaded from DB)
+- ensure that timestamps without explicit timezone get treated as if they were in the UTC timezone (even if this will be incorrect most of the time)
+
+
+ ==============
+ = categories =
+ ==============
+
+- del.icio.us RDF (aka RSS 1.0) provides tags in two ways:
+  - taxo namespace (not parsed by feedparser)
+  - as dc:subject, with all tags in space-separated list
+    - this will be treated as one category! (e.g. "design webdesign portfolio visualization")
+    - splitting on spaces may be impossible, since other feeds will do it properly, but provide category names with spaces in them...
+  -> ??? tbd (most likely outcome: display categories as is; for analysis purposes some preprocessing will be necessary)
+  - note: del.icio.us RSS2 does it properly! -> maybe make sure not to subscribe to RDF format?
+
+
+ ===========================
+ = feedparser, entry GUIDs =
+ ===========================
+
+- feedparser treats rdf:about attributes as a substitute for atom:id and rss:guid
+- BUT: del.icious sets rdf:about to the link URL, and may have multiple entries with the same URL in the same feed
+-> multiple entries in same feed may have same unique identifier
+
+analysis
+- atom spec does not seem to require atom:id to be unique across multiple entries in same feed
+-> we may have to manually resolve this when parsing the feed
+- e.g., only keep the most recent/latest entry 
+
+tests: feed identity:
+- ensure that two feeds with same feed id get stored as separate objects, and their entries won't get mixed
+  - even if they have the same feed GUID
+
+tests: entry identity:
+- ensure that entries without GUID get assigned one
+  - and that this is repeatable
+  - and sufficiently unique (do it four a couple, check for collisions)
+- ensure entries of two feeds with same feed+entity ids get stored as separate objects, and their entries won't get mixed
+- ensure that items in the same feed with the same identity overwrite each other, in order of timestamps (new overwrites old)
+  - even if feed entries are not provided in reverse chronologic order
+- ensure that only changes in specific fields (title, content, ...) affect a change in GUID, not others
+- (tbd) ensure that entries without GUID but with an rdf:about tag don't use rdf:about as identity, but get a generated one
+
+
+ ==============
+ = db engines =
+ ==============
+
+- support for multiple engines? (sqlite, ...)
+  -> requires schemas
+
+tests:
+- allow to run all tests on multiple engines -> default to sqlite
+
+ ===============
+ = url aliases =
+ ===============
+
+- provide URL aliases, e.g. for feedburner feed/entry links
+  - determined by keeping track of redirects while fetching a feed

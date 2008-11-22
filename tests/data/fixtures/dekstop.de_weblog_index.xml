@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:wfw="http://wellformedweb.org/CommentAPI/">
+  <channel>
+    <title>dekstop weblog</title>
+    <link>http://dekstop.de/weblog/</link>
+    <description>On the dekstop weblog: Products and habits (pop culture), things I stopped using, reading, watching or listening to (drop culture), technology, software and resources (tools), and all the rest (stuff). And occasional site updates.</description>
+    <dc:language>en-us</dc:language>
+    <dc:rights>Copyright 2008 Martin Dittus</dc:rights>
+    <lastBuildDate>Thu, 11 Sep 2008 01:28:08 GMT</lastBuildDate>
+    <generator>MicroLinks 5.6 (dekstop.de)</generator>
+    <managingEditor>public&#64;dekstop&#46;de</managingEditor>
+    <webMaster>public&#64;dekstop&#46;de</webMaster>
+
+    <item>
+      <title>Google News Almost Bankrupts Multinational</title>
+      <link>http://dekstop.de/weblog/2008/09/google_news_almost_bankrupts_multinational/</link> 
+      <description><![CDATA[<p>This is mind-boggling. Think of the possibilities. Bringing down companies with a bit of crowdsourcing? Check.</p>
+
+<blockquote>
+<p>The Wall Street Journal reports that Google News crawled an obscure reprint of an article from 2002 when United Airlines was on the brink of bankruptcy. United Airlines has since recovered but due to a missing dateline, Google News ran the story as today's news. The story was then picked up by other news aggregators and eventually headlined as a news flash on Bloomberg. This triggered automated trading programs to dump UAL, cratering the stock from $12 to $3 and evaporating 1.14 billion dollars (nearly United's total market cap today) in shareholder wealth. The stock recovered within the day to $10 and is now trading at $9.62, a market cap of $300M less than before Google ran the story.</p>
+
+<p>
+The article makes clear that Google's news bot only noticed the old story because it has been voted up in popularity on the site of the South Florida Sun-Sentinel newspaper. The original thought was that stock manipulation may have been behind the incident, but this suspicion seems to be fading.</p>
+</blockquote >
+
+<p>Source: Slashdot, "<a href="http://tech.slashdot.org/article.pl?sid=08/09/10/203233">Automated News Crawling Evaporates $1.14B</a></p>]]></description>
+      <dc:creator>Martin Dittus</dc:creator>
+      <category>a new world</category>
+      
+      <wfw:commentRss>http://dekstop.de/weblog/2008/09/google_news_almost_bankrupts_multinational/index.xml</wfw:commentRss>
+      <guid isPermaLink="true">http://dekstop.de/weblog/2008/09/google_news_almost_bankrupts_multinational/</guid>
+      <pubDate>Thu, 11 Sep 2008 01:28:08 GMT</pubDate>
+    </item>
+    <item>
+      <title>Pool Radio: An Aggregator of Mediators</title>
+      <link>http://dekstop.de/weblog/2008/05/pool_radio/</link> 
+      <description><![CDATA[<p>Over the past extended weekend I created <a href="http://www.poolradio.org/">Pool Radio</a>, a tool that provides access to hopefully interesting Last.fm radio stations. See also the <a href="http://www.last.fm/group/Subscribers+and+their+tag+radio+stations/forum/59223/_/407616">announcement</a> in the <em>Subscribers and their tag radio stations</em> group forum, with some great comments by <a href="http://www.last.fm/user/Nectar_Card/">Nectar_Card</a>.</p>
+
+<p>I'm aware that not a lot of people will find this site very useful, but people with an appreciation for the random and obscure can definitely benefit from it. Here are a couple of great user tag stations I've enjoyed over the last week: <a href="http://www.last.fm/user/raw_u">raw_u</a>'s <a href="lastfm://usertags/raw_u/etiopia">etiopia</a> tag radio (<a href="http://www.last.fm/user/raw_u/tags/etiopia">tag page</a>), <a href="http://www.last.fm/user/jirkanne/">jirkanne</a>'s <a href="lastfm://usertags/jirkanne/lllllllllllllll">lllllllllllllll</a> tag radio (<a href="http://www.last.fm/user/jirkanne/tags/lllllllllllllll">tag page</a>), <a href="http://www.last.fm/user/JessiCoplin">JessiCoplin</a>'s <a href="lastfm://usertags/JessiCoplin/scott+storch">scott storch</a> tag radio (<a href="http://www.last.fm/user/JessiCoplin/tags/scott+storch">tag page</a>), <a href="http://www.last.fm/user/mathman_mr_t">mathman_mr_t</a>'s <a href="lastfm://usertags/mathman_mr_t/ab-ex+minimalism">ab-ex minimalism</a> tag radio (<a href="http://www.last.fm/user/mathman_mr_t/tags/ab-ex+minimalism">tag page</a>), ...</p>
+
+<table class="imagetable" border="0" width="500">
+<tr>
+    <td align="left">
+        <a href="http://www.poolradio.org/"><img src="http://farm3.static.flickr.com/2150/2480468486_a89ee2d1c0.jpg" width="500" height="353" alt="pool radio, as of 2008-05-10" /></a></td>
+</tr>
+</table>
+
+
+<h3>Yeah k, But Why?</h3>
+
+<p>I've become blatantly lazy when it comes to finding new music. On top of that I'm interested in a lot of random stuff, across the entire spectrum from popular music to more obscure things, and often the things that catch my interest don't necessarily bear any relation with what I've been listening to in the past. </p>
+
+<p>So while Last.fm recommendations are useful to a lot of people, in most cases I'm not really interested, mainly because they are directly influenced by my past listening profile, and that's not what I'm personally looking for. They're not designed to show you random new stuff, they won't result in anything close to what a knowledgeable mediator can curate. They're a great way to navigate an abundance of music, but they're no replacement for John Peel.</p>
+
+<p>Instead I'm more interested in finding mediators: people or groups who spend a lot of time finding stuff, and then publishing it. Doing what used to be done by music magazines or radio stations, but with contemporary means. Because now music geeks publish their findings online; and arguably the largest source of those is the Last.fm community. We should make use of them!</p>
+
+<p>Unfortunately atm Last.fm itself makes finding those mediators rather hard, we simply don't have a lot of focus on this aspect of the music attention economy. While Last.fm is great for "six degrees of separation"-type social discovery (finding stuff by looking at user profiles, their groups, their friends, etc) we lack more explicit mechanisms that provide exposure to those mediators (users, groups, ...); that allow other users to reward mediators for creating interesting collections. Our tag editors aren't that great (I think everybody inside the company can agree on that.) Also, you can't even bookmark radio stations, or conveniently recommend them.</p>
+
+<p>As a result, often people create their own mechanisms for these processes, which is a testament on the great usefulness of our basic architecture. People start groups that are centered around the fascination of finding and sharing stuff. Here are a couple of great ones: </p>
+
+<ul>
+    <li><a href="http://www.last.fm/group/Music+Advice+Center">Music Advice Center</a>, probably the most active group for good old music discussion geek-outs.</li>
+    <li><a href="http://www.last.fm/group/Thursday+Night+Party+Hat+Party">Thursday Night Party Hat Party</a>, an awesome social sharing experiment across timezones and genres.</li>
+    <li><a href="http://www.last.fm/group/The+1+Percenters">The 1 Percenters</a>, an attempt to shape a "varied and non-mainstream" group radio by requiring its members' profiles to fulfil two simple criteria (not to be confused with the <a href="http://www.last.fm/group/1%25">1%</a> group, who are just elitists.)</li>
+    <li><a href="http://www.last.fm/group/Obscure+Music+Recommendations">Obscure Music Recommendations</a>, "dedicated to discovering fantastic bands and giving them the appreciation they deserve."</li>
+    <li>And of course the aforementioned <a href="http://www.last.fm/group/Subscribers+and+their+tag+radio+stations">Subscribers and their tag radio stations</a>.</li>
+</ul>
+
+<p>So for the future I'd love to see more mechanisms that explicitly encourage and channel this kind of behaviour. It's admittedly hard to design those (simple, yet immediately useful) systems, but I think in the end people are the best filters, which is also why imho Last.fm's collaborative filtering creates a much more interesting collection of music bundles than systems purely based on feature extraction.</p>
+
+<p>(Disclaimer: I'm a software developer at Last.fm, but I'm not part of any product development team. I have no influence on these matters, aside from having the benefit of access to people who do.)</p>
+
+]]></description>
+      <dc:creator>Martin Dittus</dc:creator>
+      <category>code</category>
+      <category>konsum</category>
+      <category>pop culture</category>
+      <category>recommendation engines</category>
+      <category>tools</category>
+      
+      <wfw:commentRss>http://dekstop.de/weblog/2008/05/pool_radio/index.xml</wfw:commentRss>
+      <guid isPermaLink="true">http://dekstop.de/weblog/2008/05/pool_radio/</guid>
+      <pubDate>Sat, 10 May 2008 13:58:36 GMT</pubDate>
+    </item>
+    <item>
+      <title>Hadoop Summit 2008</title>
+      <link>http://dekstop.de/weblog/2008/03/hadoop_summit_2008/</link> 
+      <description><![CDATA[<table class="imagetable" border="0" width="500">
+<tr>
+    <td align="left">
+        <a href="http://www.flickr.com/photos/dekstop/2367685101/" title="CIMG2989.JPG by dekstop, on Flickr"><img src="http://farm4.static.flickr.com/3116/2367685101_89c2d5e151.jpg" width="500" height="375" alt="CIMG2989.JPG" /></a></td>
+</tr>
+</table>
+
+<p><a href="http://last.fm/user/skr">Johan</a> and I were overjoyed: last week Last.fm sent us to the <a href="http://developer.yahoo.com/hadoop/summit/">Hadoop Summit 2008</a> in Santa Clara, California. Under Johan's wings Last.fm became one of the earliest adopters of Doug Cutting's <a href="http://hadoop.apache.org/core/">Hadoop</a>, and I'm a frequent user myself.</p>
+
+<p>And we had an excellent time. The conference was great as expected, we had lots of interesting conversations with people from all kinds of backgrounds. Additionally we spent the rest of our trip meeting people from other companies (Facebook, Powerset, and others), discussing technology (we're currently really interested in <a href="http://hadoop.apache.org/hbase/">HBase</a>), the various issues that arise from having to cope with increasingly large data sets, etc.</p>
+
+<p>It was very apparent that we're witnessing the emergence of a new culture of data teams at Internet startups and corporations that manage larger and larger data sets and want better mechanisms for storage, offline processing and analysis. Many are unhappy with existing solutions; because they solve the wrong problems, are based on ancient  storage/processing models, are too expensive, or based on unsuitable infrastructure designs. The ideal computing model in this context is a distributed architecture: if your current system is at its limits you can just add more machines.</p>
+
+<p>One current trend within the Hadoop community is the emergence of processing models on a higher level of abstraction; these usually incorporate a unified model to manage schemas/data structures, and data flow query languages that often bear a striking resemblance to SQL. But they're not trying to imitate relational databases -- e.g. nobody is interested in transactions or low latency. These are offline processing systems.</p>
+
+<p>My personal favourite among these is Facebook's Hive, which could be described as their approach to a data warehousing model on top of MapReduce; it may see an open source release this year (but you never know with these projects.) Then there's Pig, Jaql, and others.</p>
+
+<p>Microsoft has a research project along those lines called Dryad (I think we saw Michael present at one of last year's Google Open Source Jams in London), and I'm quite impressed by their approach. Since they can rely on an existing well-integrated infrastructure they can concentrate on solving the core issues; Dryad implements a execution engine for arbitrary distributed processing systems that self-optimises by transforming a data flow graph and that integrates with their embedded query language Linq. Programs then load data from arbitrary sources (SQL server, file stores, ...). </p>
+
+<p>So Microsoft is already working on much higher levels of abstraction whereas everybody else has to start by first building up some basic infrastructure. It's quite clear that the lack of integration between many of the open source projects in this field results in a duplication of efforts; but there also was a clear aversion among the attendees towards such proprietary systems. (Maybe not surprising at a conference for an open source project.)</p>
+
+<p>I also didn't realise that Yahoo played such a big part in Hadoop development. They obviously regard it a core component of their infrastructure roadmap. Doug Cutting was employed by Yahoo when the project was in its infancy, and 80% of the project's commits are by Yahoo employees. In other words, the biggest beneficiary of Google's publication of the <a href="http://labs.google.com/papers/mapreduce.html">MapReduce paper</a> turned out to be their largest competitor.</p>
+
+<p>Another issue that came up in conversations was the impact a Microsoft/Yahoo merger may have on Yahoo's open source projects -- apparently there is a good chance that MS may decide to switch Yahoo over to their own distributed processing and search infrastructures. (And I wouldn't judge them for it, cf. above.)</p>
+
+<p><strong>Update:</strong> Ah, I almost forgot: Last.fm is hiring people to <a href="http://www.last.fm/about/jobs/#job_Data+Warehouse+Developer">build data warehouses</a> and stuff! :)</p>]]></description>
+      <dc:creator>Martin Dittus</dc:creator>
+      <category>a new world</category>
+      <category>conferences</category>
+      <category>data mining</category>
+      <category>software</category>
+      
+      <wfw:commentRss>http://dekstop.de/weblog/2008/03/hadoop_summit_2008/index.xml</wfw:commentRss>
+      <guid isPermaLink="true">http://dekstop.de/weblog/2008/03/hadoop_summit_2008/</guid>
+      <pubDate>Sun, 30 Mar 2008 16:09:28 GMT</pubDate>
+    </item>
+    <item>
+      <title>Brave. New. Etc</title>
+      <link>http://dekstop.de/weblog/2008/01/happy_new_year_1984/</link> 
+      <description><![CDATA[<table class="imagetable" border="0" width="500">
+<tr>
+    <td align="left">
+        <a href="http://www.flickr.com/photos/mlcastle/2149272655/" title="Guten Rutsch ins Jahr 1984"><img src="http://farm3.static.flickr.com/2369/2149272655_c168882af8.jpg" width="500" height="375" alt="Guten Rutsch ins Jahr 1984" /></a></td>
+</tr>
+<tr>
+    <td align="left">Photo by <a href="http://www.flickr.com/photos/mlcastle/">mlcastle</a>, taken at 24c3.</td>
+</tr>
+</table>]]></description>
+      <dc:creator>Martin Dittus</dc:creator>
+      <category>a new world</category>
+      <category>conferences</category>
+      <category>data mining</category>
+      <category>drop culture</category>
+      <category>intellectual property</category>
+      <category>privacy</category>
+      
+      <wfw:commentRss>http://dekstop.de/weblog/2008/01/happy_new_year_1984/index.xml</wfw:commentRss>
+      <guid isPermaLink="true">http://dekstop.de/weblog/2008/01/happy_new_year_1984/</guid>
+      <pubDate>Tue, 01 Jan 2008 03:02:22 GMT</pubDate>
+    </item>
+    <item>
+      <title>Creatures Demo Sketch</title>
+      <link>http://dekstop.de/weblog/2007/12/creatures_demo/</link> 
+      <description><![CDATA[<a href="http://mardoen.textdriven.com/creatures/" title="run, forrest, run!"><img src="http://farm3.static.flickr.com/2213/2121005791_bb8db76269_o.png" width="477" height="325" alt="creatures_screenshots" /></a>
+
+<p>... needs Java. Might post a description later.</p>
+
+<p><strong>Update 2007-12-21</strong> I spent a bit of time making swarming actually work, and tweaked some other things. Much nicer already.</p>]]></description>
+      <dc:creator>Martin Dittus</dc:creator>
+      <category>code</category>
+      
+      <wfw:commentRss>http://dekstop.de/weblog/2007/12/creatures_demo/index.xml</wfw:commentRss>
+      <guid isPermaLink="true">http://dekstop.de/weblog/2007/12/creatures_demo/</guid>
+      <pubDate>Wed, 19 Dec 2007 02:06:10 GMT</pubDate>
+    </item>
+    <item>
+      <title>/me dreams of being an analyst</title>
+      <link>http://dekstop.de/weblog/2007/12/png_blogging/</link> 
+      <description><![CDATA[<a href="http://www.flickr.com/photos/dekstop/2112892679/" title="png-blogging by dekstop, on Flickr"><img src="http://farm3.static.flickr.com/2250/2112892679_d5976e2fb3.jpg" width="500" height="155" alt="png-blogging" /></a>]]></description>
+      <dc:creator>Martin Dittus</dc:creator>
+      <category>commentary</category>
+      
+      <wfw:commentRss>http://dekstop.de/weblog/2007/12/png_blogging/index.xml</wfw:commentRss>
+      <guid isPermaLink="true">http://dekstop.de/weblog/2007/12/png_blogging/</guid>
+      <pubDate>Sat, 15 Dec 2007 22:06:33 GMT</pubDate>
+    </item>
+    <item>
+      <title>Yahoo Login Being a Snob</title>
+      <link>http://dekstop.de/weblog/2007/11/yahoo_login_wuaaaaaa_painface/</link> 
+      <description><![CDATA[<pre>
+[13:28] • martind is trying to create yet another yahoo account
+[13:28] martind: and it fails to do so, in both browsers, without explanation.
+[13:28] martind: ("Looks like there was some trouble creating your account. 
+Please take a moment to review your answers.")
+[13:28] martind: WHICH ONES FUCKASS?
+[13:28] martind: the sad thing about it: I'm sure it's a bug in their code, and 
+I'd be willing to take the time to send an email, but I'm quite confident
+that it would just be ignored.
+</pre>
+
+<p>The Yahoo login system seems to be a great predictor of the upcoming breakdown of civilisation. Creating an account requires filling in a big form, lots of mandatory fields; not even the "Security Question" is optional. It guides you with helpful popups -- entering an invalid birthdate (in my case: 32 Feb 1931) invokes a "Your full birthday is required" message. Add the well-discussed issue of forcing people to guess an unused unique identifier in their overly crowded @yahoo.com namespace (just give me a random one already!)</p>
+
+<p>And after I've done all that it won't even let me create the account; no idea what's wrong now.</p>
+
+<p>I guess instead of using Pipes I'll revert to doing it myself with a plain old script... (Only thing I wanted to do is create a podcast feed for the <a href="http://rinsefm.blogspot.com/">Rinse FM</a> feed that actually uses enclosures. Beats me why people stiff create "podcast" feeds where you have to click on links to listen.)</p>]]></description>
+      <dc:creator>Martin Dittus</dc:creator>
+      <category>drop culture</category>
+      
+      <wfw:commentRss>http://dekstop.de/weblog/2007/11/yahoo_login_wuaaaaaa_painface/index.xml</wfw:commentRss>
+      <guid isPermaLink="true">http://dekstop.de/weblog/2007/11/yahoo_login_wuaaaaaa_painface/</guid>
+      <pubDate>Sat, 24 Nov 2007 15:00:10 GMT</pubDate>
+    </item>
+    <item>
+      <title>Podcasts, Mixtapes, and Post-Apocalyptic Lover&apos;s Rock</title>
+      <link>http://dekstop.de/weblog/2007/08/postapocalyptic_lovers_rock/</link> 
+      <description><![CDATA[<p>Over the last couple of weeks I finally revived the old habit of scouting for interesting bits of pop culture produce, and after overcoming work-induced inertia it paid off well. Feels good to be somewhat back on track... I'll start off with some music-related findings.</p>
+
+<p>If you're not listening to anything else atm I invite you to set the mood first by tuning in to my Last.fm station of the week: <a href="http://www.last.fm/listen/artist/The%2520Bug/similarartists" title="The Bug’s Similar Artists &ndash; Last.fm">The Bug's similar artists</a> (<a href="lastfm://artist/The+Bug/similarartists">radio URL</a>) [Btw: <a href="http://www.last.fm/user/E1i45/">Elias</a> is already <a href="http://blog.last.fm/2007/08/24/thank-you-taggers">working hard</a> on improving our playlist tuning algorithms, you can expect some huge improvements in our radio experience over the coming weeks and months.]</p>
+
+<style type="text/css">table.lfmWidget20070825193716 td {margin:0 !important;padding:0 !important;border:0 !important;}table.lfmWidget20070825193716 tr.lfmHead a:hover {background:url(http://cdn.last.fm/widgets/images/en/header/radio/regular_black.png) no-repeat 0 0 !important;}table.lfmWidget20070825193716 tr.lfmEmbed object {float:left;}table.lfmWidget20070825193716 tr.lfmFoot td.lfmConfig a:hover {background:url(http://cdn.last.fm/widgets/images/en/footer/black.png) no-repeat 0px 0 !important;;}table.lfmWidget20070825193716 tr.lfmFoot td.lfmView a:hover {background:url(http://cdn.last.fm/widgets/images/en/footer/black.png) no-repeat -85px 0 !important;}table.lfmWidget20070825193716 tr.lfmFoot td.lfmPopup a:hover {background:url(http://cdn.last.fm/widgets/images/en/footer/black.png) no-repeat -159px 0 !important;}</style>
+<table class="lfmWidget20070825193716" cellpadding="0" cellspacing="0" border="0" style="width:184px;"><tr class="lfmHead"><td><a title="Music like The Bug" href="http://www.last.fm/listen/artist/The%2520Bug/similarartists" target="_blank" style="display:block;overflow:hidden;height:20px;width:184px;background:url(http://cdn.last.fm/widgets/images/en/header/radio/regular_black.png) no-repeat 0 -20px;text-decoration:none;"></a></td></tr><tr class="lfmEmbed"><td><object width="184" height="140" style="float:left;" data="http://cdn.last.fm/widgets/radio/14.swf" type="application/x-shockwave-flash" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0"> <param name="movie" value="http://cdn.last.fm/widgets/radio/14.swf" /> <param name="flashvars" value="lfmMode=radio&amp;radioURL=artist%2FThe%2520Bug%2Fsimilarartists&amp;title=Music+like+The+Bug&amp;theme=black&amp;autostart=&amp;lang=en" /> <param name="bgcolor" value="#000000" /> <param name="quality" value="high" /> <param name="allowScriptAccess" value="sameDomain" /> <param name="allowNetworking" value="all" /> <embed src="http://cdn.last.fm/widgets/radio/14.swf" flashvars="lfmMode=radio&amp;radioURL=artist%2FThe%2520Bug%2Fsimilarartists&amp;title=Music+like+The+Bug&amp;theme=black&amp;autostart=&amp;lang=en" bgcolor="#000000" width="184" height="140" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" quality="high" allowScriptAccess="sameDomain" allowNetworking="all"> </embed> </object></td></tr><tr class="lfmFoot"><td style="background:url(http://cdn.last.fm/widgets/images/footer_bg/black.png) repeat-x 0 0;text-align:right;"><table cellspacing="0" cellpadding="0" border="0" style="width:184px;"><tr><td class="lfmConfig"><a href="http://www.last.fm/widgets/?url=artist%2FThe%2520Bug%2Fsimilarartists&amp;colour=black&amp;size=regular&amp;autostart=&amp;from=code&amp;widget=radio" title="Get your own widget" target="_blank" style="display:block;overflow:hidden;width:85px;height:20px;float:right;background:url(http://cdn.last.fm/widgets/images/en/footer/black.png) no-repeat 0px -20px;text-decoration:none;"></a></td><td class="lfmView" style="width:74px;"><a href="http://www.last.fm/user/martind/" title="View martind's profile" target="_blank" style="display:block;overflow:hidden;width:74px;height:20px;background:url(http://cdn.last.fm/widgets/images/en/footer/black.png) no-repeat -85px -20px;text-decoration:none;"></a></td><td class="lfmPopup"style="width:25px;"><a href="http://www.last.fm/widgets/popup/?url=artist%2FThe%2520Bug%2Fsimilarartists&amp;colour=black&amp;size=regular&amp;autostart=&amp;from=code&amp;widget=radio&amp;resize=1" title="Load this radio in a pop up" target="_blank" style="display:block;overflow:hidden;width:25px;height:20px;background:url(http://cdn.last.fm/widgets/images/en/footer/black.png) no-repeat -159px -20px;text-decoration:none;" onclick="window.open(this.href + '&amp;resize=0','lfm_popup','height=240,width=234,resizable=yes,scrollbars=yes'); return false;"></a></td></tr></table></td></tr></table>
+
+
+<p>Among other things I recently spent some time on expanding my podcast subscriptions. Beside Steve Gillmor's grand new Bad Sinatra, which surely attracts only a very limited crowd (it's insider entertainment alright, yet "<a href="http://www.badsinatra.com/wp/?p=6#comment-96">highly rewarding</a>"), the most interesting podcast by far I found to be <a href="http://mixtapeshow.net/">the mixtape show</a>. Great music selection (Dex focuses on what he calls "rap/soultronica"), and some of the funniest, inventive, stimulating skits around.</p>
+
+<p>The mixtape show also brought <a href="http://www.last.fm/music/Sa-Ra">Sa-Ra</a> to my attention, an interesting laid-back blend of "new soul" and hip hop with an André 3000-esque approach to pop music. Their latest album is a tad homogenic for my taste, and I still have to check out their older output, but it seems they bring the right mix to deservedly become a serious pop phenomenon, or at least produce some major club hits.</p>
+
+<p>Another mixtape show gem was the <a href="http://mixtapeshow.net/0807/mixtape-82-jay-electronica/">Jay Electronica episode</a>, which consisted entirely of an EP by Jay composed of looped fragments of the Eternal Sunshine of the Spotless Mind soundtrack (my most favourite soundtrack ever), and some great lyrics. You can also download the EP at <a href="http://myspace.com/jayelectronica">myspace.com/jayelectronica</a>. Jay Electronics is the first artist to be signed to Erykah Badu's Control FreaQ label, and we can expect a proper album "soon". weapons of mass distraction <a href="http://wmdeez.wordpress.com/2007/08/19/jay-electronica/">links</a> to some additional downloads.</p>
+
+<p>Speaking of interesting mixtures: At Rough Trade today I grabbed a FACT mag, which includes a teaser for an upcoming release that sounds promising indeed. Apparently The Bug's Kevin Martin started a new project with Roger Robinson, <a href="http://www.myspace.com/kingmidassound">King Midas Sound</a>. Subtle, deep, dubby electronics, low-key falsetto vocals. Much less upfront than The Bug. In his own words: "we strived to create a fresh sound, like a post-apocalyptic lover's rock, where hip hop rhythms would sound smacked-out or dubstep would implode." The album will be called "Super Heavy", no idea about the release date. (And you can expect a lot of the reviews for this one to draw parallels to Tricky's Maxinquaye. Listen to the demo tracks to see why this is a fairly obvious comparison.)</p>
+
+<p>Also at Rough Trade I bought <a href="http://www.last.fm/music/Triosk">Triosk</a>'s 2006 release The Headlight Serenade, and have to admit I was a little disappointed. The one time I saw them play live with Jan Jelinek some years ago their energy blew me away, especially their wild nutter of a drummer who was piling one seemingly impossible rhythm onto the next. Compared to that this recording is fairly tame, almost staid.</p>]]></description>
+      <dc:creator>Martin Dittus</dc:creator>
+      <category>pop culture</category>
+      
+      <wfw:commentRss>http://dekstop.de/weblog/2007/08/postapocalyptic_lovers_rock/index.xml</wfw:commentRss>
+      <guid isPermaLink="true">http://dekstop.de/weblog/2007/08/postapocalyptic_lovers_rock/</guid>
+      <pubDate>Sat, 25 Aug 2007 22:10:21 GMT</pubDate>
+    </item>
+    <item>
+      <title>Prepaid MasterCards: the Missing Link in Financial Privacy</title>
+      <link>http://dekstop.de/weblog/2007/08/prepaid_mastercards/</link> 
+      <description><![CDATA[<table class="imagetable" border="0" width="500">
+<tr>
+    <td align="left">
+        <a href="http://www.flickr.com/photos/dekstop/1231431250/" title="prepaid MasterCard"><img src="http://farm2.static.flickr.com/1259/1231431250_243fb207d1.jpg" width="500" height="375" alt="prepaid MasterCard" /></a></td>
+</tr>
+</table>
+
+<p>Yesterday on the tube to Brixton I saw an ad for a really exciting product: a prepaid MasterCard. The promise was the possibility to take part in financial transactions that require cards (phone/Internet shops) without having a bank account. </p>
+
+<p>Which is a huge fucking deal. For me personally there are already two use cases that make it worth the fees:</p>
+<ul>
+	<li>Having lots of cash but no bank account. Happens to drug traders and women traffickers, but also to people who move to a foreign country for a job. Especially when that country happens to have strict banking laws that make it notoriously hard to get an account.</li>
+	<li>But more importantly (as I now have my account :), this solves privacy issues that used to be insurmountable. You can pay with your card without leaving traces that can be linked back to you. Most people don't worry about such things, but the few who do tend to be fanatics. I'm personally quite happy to pay in cash most of the time. Especially when I buy tracking devices such as the <a href="http://www.tfl.gov.uk/tfl/fares-tickets/oyster/general.asp">Oyster card</a>...</li>
+</ul>
+
+<p>Turns out my local off-license shop sells the card. So I bought one with £50 balance, plus £3 fee. Will now try it out in various situations.</p>
+
+<h3>Fees and Limitations</h3>
+
+<p>You pay £3 fee for getting a card, plus the amount of money you want to charge it with. The maximum charge is £100. You can't charge it again, instead you'll need to buy a new card. (Which means you might loose some money with each card you 'almost' discharged.)</p>
+
+<p>There is a transaction fee of 2%, with a minimum of 50p and a maximum of £1.</p>
+
+<p>But for me there are two limitations that bother me more than these fees. The first is that you first need to activate it via an 0800 number, which I have yet to do (I'm going to use a public phone), and which is an inconvenience.</p>
+
+<p>The second is that according to their Terms & Conditions Internet and phone shopping will only work after registering the card (presumably because every MasterCard needs a card holder.) Registering happens either via the Internet or for a fee via the phone. I have yet to try this out.</p>
+
+<p>Other than that it's imo the best thing that happened in the financial sector since we invented those little plastic cards. Looking forward to see this develop as competition evolves.</p>
+
+<p>(I briefly mentioned this on the internal Last.fm IRC channel. RJ's comment: "ah yeah, kids are using them to buy online porn apparently..")</p>]]></description>
+      <dc:creator>Martin Dittus</dc:creator>
+      <category>a new world</category>
+      <category>konsum</category>
+      <category>privacy</category>
+      
+      <wfw:commentRss>http://dekstop.de/weblog/2007/08/prepaid_mastercards/index.xml</wfw:commentRss>
+      <guid isPermaLink="true">http://dekstop.de/weblog/2007/08/prepaid_mastercards/</guid>
+      <pubDate>Sat, 25 Aug 2007 14:40:47 GMT</pubDate>
+    </item>
+    <item>
+      <title>Rough Trade East: Gorgeous</title>
+      <link>http://dekstop.de/weblog/2007/08/rough_trade_east_is_gorgeous/</link> 
+      <description><![CDATA[<table class="imagetable" border="0" width="500">
+<tr>
+    <td align="left">
+        <a href="http://www.flickr.com/photos/dekstop/1161312272/" title="Rough Trade East"><img src="http://farm2.static.flickr.com/1287/1161312272_95f979f21f.jpg" width="500" height="375" alt="Rough Trade East" /></a></td>
+</tr>
+</table>
+
+<p>Oh boy. The new Rough Trade store (inside the Old Truman Brewery, just off Brick Lane) is the bomb. Seriously. Lots of space, great music selection (with a slant towards post-punk, but also lots of stuff between German minimal, Independent Hip Hop, Americana, ...). Most artefacts decorated with brief one-sentence descriptions. Great personnel. An entrance area with lots of seats, a bar for coffee, drinks and snacks. Open wifi, which I used to rip the CDs I just bought so I could listen to them on my way with all metadata in place. </p>
+
+<p>Beautiful interior, somewhere between bleak Berlinian Hard Wax factory floor aesthetic, slaughterhouse neon lights reminiscent of Munich's Ultraschall, and a Starbucks-esque level of professionalism without the soulless corporate mentality that usually accompanies it.</p>
+
+<p>And they seem to be very successful -- lots of people browsing and buying. I guess it helps that they're pretty much the only record store of this sort in East London...</p>
+
+<p>Was here yesterday for the first time, bought a CD and ordered two; came back again today and bought two more.</p>
+
+<p>I defy you to browse around and not buy anything.</p>]]></description>
+      <dc:creator>Martin Dittus</dc:creator>
+      <category>konsum</category>
+      <category>pop culture</category>
+      
+      <wfw:commentRss>http://dekstop.de/weblog/2007/08/rough_trade_east_is_gorgeous/index.xml</wfw:commentRss>
+      <guid isPermaLink="true">http://dekstop.de/weblog/2007/08/rough_trade_east_is_gorgeous/</guid>
+      <pubDate>Sat, 18 Aug 2007 18:32:11 GMT</pubDate>
+    </item>
+    <item>
+      <title>MovableType 4: New License</title>
+      <link>http://dekstop.de/weblog/2007/08/mt4_license/</link> 
+      <description><![CDATA[<pre>
+Your use of the Software is limited to a fixed 
+number of users and weblogs, as defined below 
+and enumerated in Exhibit A of this agreement.
+
+[...]
+
+EXHIBIT A
+=========
+Unlimited Free Version
+Term: Perpetual
+Number of Servers: 1
+Number of Authors: Unlimited
+Number of Weblogs: Unlimited
+Support Level: none included or purchasable
+Updates and Upgrades: free Updates
+Maintenance Fee: None
+</pre>
+
+<p>Am now seriously considering to update (from 2.64). Since I'm not planning to ever make any kind of money from this (including ads) all my previous reservations are moot.</p>
+
+<p><strong>Edit:</strong> Hah. Turns out they're about to GPL the MT core. Not sure yet which features that will contain.</p>]]></description>
+      <dc:creator>Martin Dittus</dc:creator>
+      <category>tools</category>
+      
+      <wfw:commentRss>http://dekstop.de/weblog/2007/08/mt4_license/index.xml</wfw:commentRss>
+      <guid isPermaLink="true">http://dekstop.de/weblog/2007/08/mt4_license/</guid>
+      <pubDate>Wed, 15 Aug 2007 21:26:33 GMT</pubDate>
+    </item>
+    <item>
+      <title>JRuby as Interactive Java Shell</title>
+      <link>http://dekstop.de/weblog/2007/07/jruby_java_shell/</link> 
+      <description><![CDATA[<p>Get the <a href="http://jruby.codehaus.org/Running+the+JRuby+Console+(graphical+IRB)">JRuby Console</a>, and then <a href="http://www.headius.com/jrubywiki/index.php/Calling_Java_from_JRuby">do</a> stuff like this:</p>
+
+<pre>
+irb(main):001:0> require 'java'
+=> true
+irb(main):002:0> p = java.util.regex.Pattern.compile("/music/[^/]+/\\+images/[^/?]+?(?:\\?.*)?")
+=> #<#<Class:01xad0dd8>:0x5efe34 @java_object=/music/[^/]+/\+images/[^/?]+?(?:\?.*)?>
+irb(main):003:0> p.matcher("/music/Christopher+Willits/+images/?").matches
+=> false
+irb(main):004:0> p.matcher("/music/Christopher+Willits/+images?").matches
+=> false
+irb(main):005:0> p.matcher("/music/Christopher+Willits/+images/").matches
+=> false
+irb(main):006:0> p.matcher("/music/Christopher+Willits/+images/34523").matches
+=> true
+</pre>
+
+<p>Awesome! I've been waiting years for a convenient interactive Java shell -- and not to run the language, but to interactively test behaviour of library features under certain conditions. Don't want to write &amp; compile a new class just because I want to check something out.</p>]]></description>
+      <dc:creator>Martin Dittus</dc:creator>
+      <category>tools</category>
+      
+      <wfw:commentRss>http://dekstop.de/weblog/2007/07/jruby_java_shell/index.xml</wfw:commentRss>
+      <guid isPermaLink="true">http://dekstop.de/weblog/2007/07/jruby_java_shell/</guid>
+      <pubDate>Fri, 06 Jul 2007 11:09:23 GMT</pubDate>
+    </item>
+    <item>
+      <title>internet publishing software still sucks.</title>
+      <link>http://dekstop.de/weblog/2007/06/index_html_is_optional/</link> 
+      <description><![CDATA[<table class="imagetable" border="0" width="500">
+<tr>
+    <td align="left">
+        <a href="http://www.flickr.com/photos/dekstop/557383008/" title="?? ??"><img src="http://farm2.static.flickr.com/1361/557383008_c98cecd57a.jpg" width="500" height="375" alt="internet publishing software still sucks." /></a></td>
+</tr>
+</table>
+
+<p>Interesting how they managed to make a simple URL much more cryptic. I imagine the author simply pasted this into an email, and the editor had no clue about web resource addressing schemes. Why should he. (Someone at least knew that you can omit the http:// protocol prefix.) </p>
+
+<p>Homework for today: write a 1-page essay on the effect of popular digital resource addressing scheme implementations and how well they they transcend media boundaries. (For extra points: address the ephemeral character of such schemes, and how search engines fit into all this.)</p>]]></description>
+      <dc:creator>Martin Dittus</dc:creator>
+      <category>drop culture</category>
+      
+      <wfw:commentRss>http://dekstop.de/weblog/2007/06/index_html_is_optional/index.xml</wfw:commentRss>
+      <guid isPermaLink="true">http://dekstop.de/weblog/2007/06/index_html_is_optional/</guid>
+      <pubDate>Sat, 16 Jun 2007 19:52:44 GMT</pubDate>
+    </item>
+    <item>
+      <title>new wallet £5</title>
+      <link>http://dekstop.de/weblog/2007/06/tape_wallet/</link> 
+      <description><![CDATA[<table class="imagetable" border="0" width="500">
+<tr>
+    <td align="left">
+        <a href="http://flickr.com/photos/dekstop/tags/tapewallet/" title="tape wallet"><img src="http://farm2.static.flickr.com/1398/537149826_afbba871c2.jpg" width="500" height="375" alt="new wallet £5" /></a></td>
+</tr>
+</table>
+
+<p>Unfortunately the stationers was out of black tape. I like the simplicity of this model, it's even more reduced than the old one. Less movable parts. The <a href="http://flickr.com/photos/dekstop/537143328/">old one</a> was a large piece with small bits glued on -- this one basically consists of two large pieces and some tape to close the sides. Four pockets inside, one <a href="http://flickr.com/photos/dekstop/537267183/">outside</a> for bills. Am now considering cutting the continuous flap in half, to create one flap for each side.</p>]]></description>
+      <dc:creator>Martin Dittus</dc:creator>
+      <category>konsum</category>
+      
+      <wfw:commentRss>http://dekstop.de/weblog/2007/06/tape_wallet/index.xml</wfw:commentRss>
+      <guid isPermaLink="true">http://dekstop.de/weblog/2007/06/tape_wallet/</guid>
+      <pubDate>Sun, 10 Jun 2007 01:01:41 GMT</pubDate>
+    </item>
+    <item>
+      <title>Teaser: Offline Feed Reader for Your iPod</title>
+      <link>http://dekstop.de/weblog/2007/05/ipod_offline_feed_reader/</link> 
+      <description><![CDATA[<table class="imagetable" border="0" width="500">
+<tr>
+    <td align="left">
+        <a href="http://www.flickr.com/photos/dekstop/516644102/" title="Photo Sharing"><img src="http://farm1.static.flickr.com/224/516644102_571bdac15d_m.jpg" width="240" height="180" alt="feed index" /></a></td>
+    <td align="left">
+        <a href="http://www.flickr.com/photos/dekstop/516644116/" title="Photo Sharing"><img src="http://farm1.static.flickr.com/211/516644116_02324de582_m.jpg" width="240" height="180" alt="article" /></a></td>
+</tr>
+</table>
+
+<p>As <a href="http://dekstop.de/weblog/2007/05/ipod_rot13_tag/">recently mentioned</a> I was looking for useful hacks for the iPod Notes feature, and as Google didn't turn up much of interest I started writing one myself. The obvious first application: an offline feed reader.</p>
+
+<p>Turns out it's remarkably easy to do this. The Notes file format is basically text with some HTML markup, and even allows for links between individual documents. I.e., converting a feed into a series of notes and an index is pretty straightforward.</p>
+
+<p>The harder part is the syncing mechanism. My requirements were: syncing has to work on a default OS X installation, it should be able to sync with my 2nd gen nano, and it shouldn't touch any other removable drives or iPods when you plug them in. <tt>launchd</tt> makes it easy to get notified when any new drive gets plugged in. But how do you make sure it's the right one?</p>
+
+
+<h3>Uniquely Identifying Removable Drives</h3>
+
+<p>It took me a while to figure out a way to uniquely identify the iPod -- there are a number of options with varying trade-offs. In the end I decided on a method that should work for many other removable drives, not just iPods. Took a while to get there though...</p>
+
+<p>The most obvious identifier, the drive name, never seemed like a good option. Drive names aren't unique, and they can change. I don't want to reconfigure my sync software just because I decided to rename my iPod.</p>
+
+<p>Next option: older iPod models had a hidden file <tt>/iPod_Control/Device/SysInfo</tt> that contained an iPod serial number, but since late 2006 that's no longer the case. Instead the iPod serial is now stored inside a hidden plist that you can <a href="http://www.thismuchiknow.co.uk/?p=28">request</a> with a SCSI INQUIRY command -- which involves too much code for my taste, and seems a little brittle. People put a lot of work into reverse-engineering iPod internals, but it's still a game of cat and mouse.</p>
+
+<p>Another option is to determine the pod's hard drive model and serial number, but I haven't found a way to do this with only standard OS X tools. <tt>smartctl -i</tt> can do it, but smartmontools aren't shipped with OS X. I'm suspecting there is a device file with that information somewhere, but couldn't find one. Add a comment when you know more.</p>
+
+<p>Instead I ultimately decided on using Volume <a href="http://en.wikipedia.org/wiki/UUID">UUIDs</a> -- they're sufficiently unique, they identify a specific partition, and they seem work for all kinds of removable drives (unfortunately not for my old MP3 player and memory stick.)</p>
+
+<p>So if you combine this identifier with <tt>launchd</tt> (to get informed of volume changes) and <tt>rsync</tt> (to do the copying) and some Ruby glue you have a pretty decent syncing mechanism. And it's not even iPod-specific -- you could also use it to do auto-backups when you plug in a specific drive, and do other fun stuff with removable devices.</p>
+
+
+<h3>Current State</h3>
+
+<table class="imagetable" border="0" width="500">
+<tr>
+    <td align="left">
+        <a href="http://www.flickr.com/photos/dekstop/516644096/" title="Photo Sharing"><img src="http://farm1.static.flickr.com/251/516644096_fbd7c70dff_m.jpg" width="240" height="180" alt="main menu" /></a></td>
+    <td align="left">
+        <a href="http://www.flickr.com/photos/dekstop/516644120/" title="Photo Sharing"><img src="http://farm1.static.flickr.com/193/516644120_4fdfcc162c_m.jpg" width="240" height="180" alt="article" /></a></td>
+</tr>
+</table>
+
+<p>At the moment this application isn't much more than a collection of Ruby scripts and a launchd plist, not very user-friendly. I'm toying with the thought of creating a simple UI to configure sync options, and a basic plugin mechanism to allow to sync more than just feeds, but haven't yet come up with a method of creating an appealing interface that doesn't involve a lot of work... maybe you have some ideas. I basically want to be able to do it in an afternoon and be done with it. (Although I've written some Objective C and Cocoa code I'm not much of an expert.)</p>
+
+<p>There also is no public SVN for this yet, but I'll create one when I'm sufficiently happy with the state of this.</p>
+
+<p>I'm now testing this offline aggregator on the road -- seems like an excellent way to read news bits during my daily bus routine. (But it's actually not that easy to find sources that still work when you lose links &amp; images...)</p>]]></description>
+      <dc:creator>Martin Dittus</dc:creator>
+      <category>konsum</category>
+      <category>pop culture</category>
+      <category>tools</category>
+      
+      <wfw:commentRss>http://dekstop.de/weblog/2007/05/ipod_offline_feed_reader/index.xml</wfw:commentRss>
+      <guid isPermaLink="true">http://dekstop.de/weblog/2007/05/ipod_offline_feed_reader/</guid>
+      <pubDate>Sun, 27 May 2007 22:47:55 GMT</pubDate>
+    </item>
+
+  </channel>
+</rss>

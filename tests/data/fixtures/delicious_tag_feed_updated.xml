@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns="http://purl.org/rss/1.0/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:taxo="http://purl.org/rss/1.0/modules/taxonomy/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://web.resource.org/cc/" xmlns:syn="http://purl.org/rss/1.0/modules/syndication/" xmlns:admin="http://webns.net/mvcb/">
+  <channel rdf:about="http://feeds.delicious.com">
+    <title>Delicious/tag/sqlite</title>
+    <link>http://delicious.com/tag/sqlite</link>
+    <description>recent bookmarks tagged sqlite</description>
+    <items>
+      <rdf:Seq>
+        <rdf:li rdf:resource="http://www.sitepoint.com/print/learn-adobe-air-part-2/"/>
+      </rdf:Seq>
+    </items>
+  </channel>
+  <item rdf:about="http://www.sitepoint.com/print/learn-adobe-air-part-2/">
+    <title>Learn Adobe AIR, Part II: Build a Customer Management App</title>
+    <dc:date>2008-11-12T21:14:00Z</dc:date>
+    <link>http://www.sitepoint.com/print/learn-adobe-air-part-2/</link>
+    <dc:creator>ugauga</dc:creator>
+    <description>In this tutorial, we’re going to explore the UI features of the AIR platform by building a simple Customer Relationship Management (CRM) application. We’ll use those same technologies, as well as a local SQLite database.</description>
+    <dc:subject>SQLite AIR Tutorial HTML CSS UK</dc:subject>
+    <taxo:topics>
+      <rdf:Bag>
+        <rdf:li rdf:resource="http://delicious.com/tag/SQLite"/>
+        <rdf:li rdf:resource="http://delicious.com/tag/AIR"/>
+        <rdf:li rdf:resource="http://delicious.com/tag/Tutorial"/>
+        <rdf:li rdf:resource="http://delicious.com/tag/HTML"/>
+        <rdf:li rdf:resource="http://delicious.com/tag/CSS"/>
+        <rdf:li rdf:resource="http://delicious.com/tag/UK"/>
+      </rdf:Bag>
+    </taxo:topics>
+  </item>
+</rdf:RDF>

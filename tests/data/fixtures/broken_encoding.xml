@@ -1,0 +1,2722 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<title>core-user@hadoop.apache.org Archives</title>
+<link rel="self" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/?format=atom"/>
+<link href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/"/>
+<id>http://mail-archives.apache.org/mod_mbox/hadoop-core-user/</id>
+<updated>2008-10-11T13:26:59Z</updated>
+<entry>
+<title>Re: Newbie doubt: Where are the files/directories?</title>
+<author><name>&quot;Amit k. Saha&quot; &lt;amitsaha.in@gmail.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c547db2260810110255i2fc7d305s85e475ca735352ba@mail.gmail.com%3e"/>
+<id>urn:uuid:%3c547db2260810110255i2fc7d305s85e475ca735352ba@mail-gmail-com%3e</id>
+<updated>2008-10-11T09:55:35Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+On Sat, Oct 11, 2008 at 3:14 PM, Miles Osborne &lt;miles@inf.ed.ac.uk&gt; wrote:
+&gt; data under Hadoop is stored as blocks and is not visible using normal
+&gt; Unix commands such as "ls" etc.  to see your files, use
+&gt;
+&gt; hadoop dfs -ls
+
+Thanks, That does it!
+
+&gt;
+&gt; your files will actually be stored as follows:
+&gt;&gt;
+&gt; Specify directories for dfs.name.dir and dfs.data.dir in
+&gt; conf/hadoop-site.xml. These are used to hold distributed filesystem
+&gt; data on the master node and slave nodes respectively. Note that
+&gt; dfs.data.dir may contain a space- or comma-separated list of directory
+&gt; names, so that data may be stored on multiple devices.
+
+Thanks
+Amit
+
+-- 
+Amit Kumar Saha
+http://blogs.sun.com/amitsaha/
+http://amitsaha.in.googlepages.com/
+Skype: amitkumarsaha
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Re: Newbie doubt: Where are the files/directories?</title>
+<author><name>&quot;Miles Osborne&quot; &lt;miles@inf.ed.ac.uk&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c73e5a5310810110244m118b8e74h8fab102a036bfb93@mail.gmail.com%3e"/>
+<id>urn:uuid:%3c73e5a5310810110244m118b8e74h8fab102a036bfb93@mail-gmail-com%3e</id>
+<updated>2008-10-11T09:44:35Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+data under Hadoop is stored as blocks and is not visible using normal
+Unix commands such as "ls" etc.  to see your files, use
+
+hadoop dfs -ls
+
+your files will actually be stored as follows:
+&gt;
+Specify directories for dfs.name.dir and dfs.data.dir in
+conf/hadoop-site.xml. These are used to hold distributed filesystem
+data on the master node and slave nodes respectively. Note that
+dfs.data.dir may contain a space- or comma-separated list of directory
+names, so that data may be stored on multiple devices.
+&gt;
+
+Miles
+
+2008/10/11 Amit k. Saha &lt;amitsaha.in@gmail.com&gt;:
+&gt; Hi!
+&gt;
+&gt; I am just getting started with Hadoop in 'pseudo-distributed' mode. My
+&gt; FS is formatted on /tmp/hadoop-amit/
+&gt;
+&gt; I have started the daemons and have created a 'input' directory using
+&gt; the DFS shell. Now my question is: where does it 'physically' live?
+&gt;
+&gt; My initial guess was that it would be in /tmp/hadoop-amit/dfs/data/.
+&gt; But I don't see it.
+&gt;
+&gt; The web-based filesystem browser shows the following directories: tmp
+&gt; and /user/amit/input.
+&gt;
+&gt; Where do they physically live?
+&gt;
+&gt; Thanks a ton.
+&gt;
+&gt; Best,
+&gt; Amit
+&gt;
+&gt;
+&gt; --
+&gt; Amit Kumar Saha
+&gt; http://blogs.sun.com/amitsaha/
+&gt; http://amitsaha.in.googlepages.com/
+&gt; Skype: amitkumarsaha
+&gt;
+
+
+
+-- 
+The University of Edinburgh is a charitable body, registered in
+Scotland, with registration number SC005336.
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Newbie doubt: Where are the files/directories?</title>
+<author><name>&quot;Amit k. Saha&quot; &lt;amitsaha.in@gmail.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c547db2260810110219r1a76da4cnd882a2840522e92a@mail.gmail.com%3e"/>
+<id>urn:uuid:%3c547db2260810110219r1a76da4cnd882a2840522e92a@mail-gmail-com%3e</id>
+<updated>2008-10-11T09:19:41Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+Hi!
+
+I am just getting started with Hadoop in 'pseudo-distributed' mode. My
+FS is formatted on /tmp/hadoop-amit/
+
+I have started the daemons and have created a 'input' directory using
+the DFS shell. Now my question is: where does it 'physically' live?
+
+My initial guess was that it would be in /tmp/hadoop-amit/dfs/data/.
+But I don't see it.
+
+The web-based filesystem browser shows the following directories: tmp
+and /user/amit/input.
+
+Where do they physically live?
+
+Thanks a ton.
+
+Best,
+Amit
+
+
+-- 
+Amit Kumar Saha
+http://blogs.sun.com/amitsaha/
+http://amitsaha.in.googlepages.com/
+Skype: amitkumarsaha
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>dfs.DFSClient: Exception while reading from blk, java.io.IOException: Premeture EOF from inputStream</title>
+<author><name>Frank Singleton &lt;b17flyboy@gmail.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c48F024A5.9010109@gmail.com%3e"/>
+<id>urn:uuid:%3c48F024A5-9010109@gmail-com%3e</id>
+<updated>2008-10-11T03:59:33Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Hi,
+
+Often I get entries like the following (see below)
+on HMR jobs using streaming. The job does appear to complete successfully
+without any failed/killed tasks .
+
+All the streaming job's mappers are reading there portion of the lines from the same inputfile
+(shown as zzzzz.txt)
+
+Q0. Is this a problem  ?
+
+Q1. Is this load/resource/timer related?
+
+Q2. How do I go about resolving this ?
+
+Q3. Does WARNING level indicate the dfs.DFSClient retried later and was ok or did it give
+up?
+
+I might see this appear once in each of the  of 20 task logs for a job.
+The jobs typically run for about 1.5 hours or so.
+
+fedora9 / hadoop -0.18.1 / quad x86_64 nodes / Java HotSpot(TM) 64-Bit Server VM (build 10.0-b23,
+mixed mode)
+
+I have mangled the mapper input filenames and IP addresses to protect the innocent ;-)
+
+Also, fsck reports HEALTHY with no corrupt blocks.
+
+
+Task Logs: 'attempt_200810091743_0056_m_000003_0'
+
+[...]
+
+2008-10-10 19:30:45,209 INFO org.apache.hadoop.streaming.PipeMapRed: Records R/W=741/255
+2008-10-10 19:31:08,519 INFO org.apache.hadoop.streaming.PipeMapRed: Records R/W=741/269
+2008-10-10 19:31:34,019 INFO org.apache.hadoop.streaming.PipeMapRed: Records R/W=741/282
+2008-10-10 19:31:56,993 INFO org.apache.hadoop.streaming.PipeMapRed: Records R/W=741/296
+2008-10-10 19:32:21,454 INFO org.apache.hadoop.streaming.PipeMapRed: Records R/W=741/309
+2008-10-10 19:32:25,014 INFO org.apache.hadoop.streaming.PipeMapRed: R/W/S=1000/322/0 in:1=1000/574
+[rec/s] out:0=322/574 [rec/s]
+2008-10-10 19:32:25,019 WARN org.apache.hadoop.dfs.DFSClient: Exception while reading from
+blk_-7569426963881254639_886155 of /home/frank/XXXXX/YYYYY/zzzzz.txt from AAA.BBB.CCC.DDD:50010:
+java.io.IOException: Premeture EOF from inputStream
+	at org.apache.hadoop.io.IOUtils.readFully(IOUtils.java:102)
+	at org.apache.hadoop.dfs.DFSClient$BlockReader.readChunk(DFSClient.java:996)
+	at org.apache.hadoop.fs.FSInputChecker.readChecksumChunk(FSInputChecker.java:236)
+	at org.apache.hadoop.fs.FSInputChecker.fill(FSInputChecker.java:178)
+	at org.apache.hadoop.fs.FSInputChecker.read1(FSInputChecker.java:195)
+	at org.apache.hadoop.fs.FSInputChecker.read(FSInputChecker.java:159)
+	at org.apache.hadoop.dfs.DFSClient$BlockReader.read(DFSClient.java:858)
+	at org.apache.hadoop.dfs.DFSClient$DFSInputStream.readBuffer(DFSClient.java:1384)
+	at org.apache.hadoop.dfs.DFSClient$DFSInputStream.read(DFSClient.java:1420)
+	at java.io.DataInputStream.read(DataInputStream.java:83)
+	at org.apache.hadoop.mapred.LineRecordReader$LineReader.backfill(LineRecordReader.java:94)
+	at org.apache.hadoop.mapred.LineRecordReader$LineReader.readLine(LineRecordReader.java:124)
+	at org.apache.hadoop.mapred.LineRecordReader.next(LineRecordReader.java:266)
+	at org.apache.hadoop.mapred.LineRecordReader.next(LineRecordReader.java:39)
+	at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.next(MapTask.java:165)
+	at org.apache.hadoop.mapred.MapRunner.run(MapRunner.java:45)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:227)
+	at org.apache.hadoop.mapred.TaskTracker$Child.main(TaskTracker.java:2207)
+
+2008-10-10 19:32:47,014 INFO org.apache.hadoop.streaming.PipeMapRed: Records R/W=1499/323
+2008-10-10 19:33:11,672 INFO org.apache.hadoop.streaming.PipeMapRed: Records R/W=1499/337
+2008-10-10 19:33:36,251 INFO org.apache.hadoop.streaming.PipeMapRed: Records R/W=1499/351
+2008-10-10 19:34:00,808 INFO org.apache.hadoop.streaming.PipeMapRed: Records R/W=1499/365
+2008-10-10 19:34:23,775 INFO org.apache.hadoop.streaming.PipeMapRed: Records R/W=1499/379
+2008-10-10 19:34:48,990 INFO org.apache.hadoop.streaming.PipeMapRed: Records R/W=1499/392
+2008-10-10 19:35:13,504 INFO org.apache.hadoop.streaming.PipeMapRed: Records R/W=1499/406
+2008-10-10 19:35:38,090 INFO org.apache.hadoop.streaming.PipeMapRed: Records R/W=1499/420
+
+[...]
+
+
+
+Cheers / Frank
+
+
+
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.9 (GNU/Linux)
+Comment: Using GnuPG with Fedora - http://enigmail.mozdev.org
+
+iEYEARECAAYFAkjwJKEACgkQpZzN+MMic6fNVwCfTZql9CxHzRjVUmDHgTb8zjR+
+QfgAnii6Fv5NSApiXlD5/vVCW83MZsNS
+=UE3S
+-----END PGP SIGNATURE-----
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Re: How to make LZO work?</title>
+<author><name>Songting Chen &lt;ken_cst1998@yahoo.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c46355.77591.qm@web81806.mail.mud.yahoo.com%3e"/>
+<id>urn:uuid:%3c46355-77591-qm@web81806-mail-mud-yahoo-com%3e</id>
+<updated>2008-10-10T19:46:11Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+I switched to lzo-2.02 package. This time liblzo2.so was built.
+
+Now everything worked.
+
+Thanks,
+-Songting
+
+
+--- On Fri, 10/10/08, Songting Chen &lt;ken_cst1998@yahoo.com&gt; wrote:
+
+&gt; From: Songting Chen &lt;ken_cst1998@yahoo.com&gt;
+&gt; Subject: Re: How to make LZO work?
+&gt; To: core-user@hadoop.apache.org
+&gt; Date: Friday, October 10, 2008, 11:14 AM
+&gt; Thanks, Allen.
+&gt; 
+&gt; I checked the INSTALL doc in lzo-2.03 package. 
+&gt; 
+&gt; It's said to use './configure --enable-shared'
+&gt; command to build shared library. I followed that instruction
+&gt; and recompile / install the package.
+&gt; 
+&gt; But after that, still only .a, .la appear in
+&gt; /usr/local/lib.
+&gt; 
+&gt; -rw-r--r-- 1 root root   855742 Oct 10 10:50 liblzo2.a
+&gt; -rwxr-xr-x 1 root root      740 Oct 10 10:50 liblzo2.la
+&gt; 
+&gt; How do I generate the liblzo2.so file?
+&gt; 
+&gt; --- On Fri, 10/10/08, Allen Wittenauer
+&gt; &lt;aw@yahoo-inc.com&gt; wrote:
+&gt; 
+&gt; &gt; From: Allen Wittenauer &lt;aw@yahoo-inc.com&gt;
+&gt; &gt; Subject: Re: How to make LZO work?
+&gt; &gt; To: core-user@hadoop.apache.org
+&gt; &gt; Date: Friday, October 10, 2008, 7:44 AM
+&gt; &gt; On 10/9/08 6:46 PM, "Songting Chen"
+&gt; &gt; &lt;ken_cst1998@yahoo.com&gt; wrote:
+&gt; &gt; &gt; Does that mean I have to rebuild the native
+&gt; library?
+&gt; &gt; &gt; 
+&gt; &gt; &gt; Also, the LZO installation puts liblzo2.a and
+&gt; &gt; liblzo2.la under /usr/local/lib.
+&gt; &gt; &gt; There is no liblzo2.so there. Do I need to rename
+&gt; them
+&gt; &gt; to liblzo2.so somehow?
+&gt; &gt; 
+&gt; &gt; 
+&gt; &gt;     You need to compile and install lzo2 as a shared
+&gt; &gt; library.  IIRC, this is
+&gt; &gt; not the default.
+&gt; &gt;    
+&gt; &gt; 
+&gt; &gt;     Also, the shared version (.so) will need to be
+&gt; part of
+&gt; &gt; your link path
+&gt; &gt; (LD_LIBRARY_PATH env var, /etc/ld.so.conf on Linux,
+&gt; runtime
+&gt; &gt; option (usually
+&gt; &gt; -R) to ld, ...) when you fire up the JVM so that Java
+&gt; can
+&gt; &gt; locate it when it
+&gt; &gt; needs it.
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Re: Hadoop Profiling!</title>
+<author><name>&quot;Ariel Rabkin&quot; &lt;asrabkin@gmail.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c39b0afc00810101122m5c5cc765ma76d116638ae5f47@mail.gmail.com%3e"/>
+<id>urn:uuid:%3c39b0afc00810101122m5c5cc765ma76d116638ae5f47@mail-gmail-com%3e</id>
+<updated>2008-10-10T18:22:15Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+That code is in, unfortunately it doesn't quite solve the problem;
+you'd need to do some more work.  You'd have to write subclasses that
+spit out the statistics you want.  Then set the appropriate options in
+hadoop-site, so that those classes get loaded.
+
+On Wed, Oct 8, 2008 at 12:30 PM, George Porter &lt;George.Porter@sun.com&gt; wrote:
+&gt; Hi Ashish,
+&gt;
+&gt; I believe that Ari committed two instrumentation classes,
+&gt; TaskTrackerInstrumentation and JobTrackerInstrumentation, (both in
+&gt; src/mapred/org/apache/hadoop/mapred) that can give you information on when
+&gt; components of your M/R jobs start and stop.  I'm in the process of writing
+&gt; some additional instrumentation APIs that collect timing information about
+&gt; the RPC and HDFS layers, and will hopefully be able to submit a patch in a
+&gt; few weeks.
+&gt;
+&gt; Thanks,
+&gt; George
+&gt;
+&gt; Ashish Venugopal wrote:
+&gt;&gt;
+&gt;&gt; Are you interested in simply profiling your own code (in which case you
+&gt;&gt; can
+&gt;&gt; clearly use what ever java profiler you want), or your construction of the
+&gt;&gt; MapReduce job, ie  how much time is being spent in the Map vs the sort vs
+&gt;&gt; the shuffle vs the Reduce. I am not aware of a good solution to the second
+&gt;&gt; problem, can anyone comment?
+&gt;&gt;
+&gt;&gt; Ashish
+&gt;&gt;
+&gt;&gt; On Wed, Oct 8, 2008 at 12:06 PM, Stefan Groschupf &lt;sg@101tec.com&gt; wrote:
+&gt;&gt;
+&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt; Just run your map reduce job local and connect your profiler. I use
+&gt;&gt;&gt; yourkit.
+&gt;&gt;&gt; Works great!
+&gt;&gt;&gt; You can profile your map reduce job running the job in local mode as ant
+&gt;&gt;&gt; other java app as well.
+&gt;&gt;&gt; However we also profiled in a grid. You just need to install the yourkit
+&gt;&gt;&gt; agent into the jvm of the node you want to profile and than you connect
+&gt;&gt;&gt; to
+&gt;&gt;&gt; the node when the job runs.
+&gt;&gt;&gt; However you need to time things well, since the task jvm is shutdown as
+&gt;&gt;&gt; soon your job is done.
+&gt;&gt;&gt; Stefan
+&gt;&gt;&gt;
+&gt;&gt;&gt; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+&gt;&gt;&gt; 101tec Inc., Menlo Park, California
+&gt;&gt;&gt; web:  http://www.101tec.com
+&gt;&gt;&gt; blog: http://www.find23.net
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt; On Oct 8, 2008, at 11:27 AM, Gerardo Velez wrote:
+&gt;&gt;&gt;
+&gt;&gt;&gt;  Hi!
+&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; I've developed a Map/Reduce algorithm to analyze some logs from web
+&gt;&gt;&gt;&gt; application.
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; So basically, we are ready to start QA test phase, so now, I would like
+&gt;&gt;&gt;&gt; to
+&gt;&gt;&gt;&gt; now how efficient is my application
+&gt;&gt;&gt;&gt; from performance point of view.
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; So is there any procedure I could use to do some profiling?
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; Basically I need basi data, like time excecution or code bottlenecks.
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; Thanks in advance.
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; -- Gerardo Velez
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;
+&gt;&gt;
+&gt;
+&gt; --
+&gt; George Porter, Sun Labs/CTO
+&gt; Sun Microsystems - San Diego, Calif.
+&gt; george.porter@sun.com 1.858.526.9328
+&gt;
+&gt;
+
+
+
+-- 
+Ari Rabkin asrabkin@gmail.com
+UC Berkeley Computer Science Department
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Re: How to make LZO work?</title>
+<author><name>Songting Chen &lt;ken_cst1998@yahoo.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c295858.80931.qm@web81807.mail.mud.yahoo.com%3e"/>
+<id>urn:uuid:%3c295858-80931-qm@web81807-mail-mud-yahoo-com%3e</id>
+<updated>2008-10-10T18:14:12Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+Thanks, Allen.
+
+I checked the INSTALL doc in lzo-2.03 package. 
+
+It's said to use './configure --enable-shared' command to build shared library. I followed
+that instruction and recompile / install the package.
+
+But after that, still only .a, .la appear in /usr/local/lib.
+
+-rw-r--r-- 1 root root   855742 Oct 10 10:50 liblzo2.a
+-rwxr-xr-x 1 root root      740 Oct 10 10:50 liblzo2.la
+
+How do I generate the liblzo2.so file?
+
+--- On Fri, 10/10/08, Allen Wittenauer &lt;aw@yahoo-inc.com&gt; wrote:
+
+&gt; From: Allen Wittenauer &lt;aw@yahoo-inc.com&gt;
+&gt; Subject: Re: How to make LZO work?
+&gt; To: core-user@hadoop.apache.org
+&gt; Date: Friday, October 10, 2008, 7:44 AM
+&gt; On 10/9/08 6:46 PM, "Songting Chen"
+&gt; &lt;ken_cst1998@yahoo.com&gt; wrote:
+&gt; &gt; Does that mean I have to rebuild the native library?
+&gt; &gt; 
+&gt; &gt; Also, the LZO installation puts liblzo2.a and
+&gt; liblzo2.la under /usr/local/lib.
+&gt; &gt; There is no liblzo2.so there. Do I need to rename them
+&gt; to liblzo2.so somehow?
+&gt; 
+&gt; 
+&gt;     You need to compile and install lzo2 as a shared
+&gt; library.  IIRC, this is
+&gt; not the default.
+&gt;    
+&gt; 
+&gt;     Also, the shared version (.so) will need to be part of
+&gt; your link path
+&gt; (LD_LIBRARY_PATH env var, /etc/ld.so.conf on Linux, runtime
+&gt; option (usually
+&gt; -R) to ld, ...) when you fire up the JVM so that Java can
+&gt; locate it when it
+&gt; needs it.
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Fwd: Hive Web-UI</title>
+<author><name>&quot;Jeff Hammerbacher&quot; &lt;jeff.hammerbacher@gmail.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3caa24041b0810101102l2ef43657w804c8482c7f1ea2e@mail.gmail.com%3e"/>
+<id>urn:uuid:%3caa24041b0810101102l2ef43657w804c8482c7f1ea2e@mail-gmail-com%3e</id>
+<updated>2008-10-10T18:02:20Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+Hey Edward,
+
+The UI mentioned in those slides leverages many internal display
+libraries from Facebook. If you wanted to make a UI that leverages the
+metastore's thrift interface but only uses open source display
+libraries, I think it would definitely be appreciated by Hive users.
+
+Thanks,
+Jeff
+
+
+---------- Forwarded message ----------
+From: Edward Capriolo &lt;edlinuxguru@gmail.com&gt;
+Date: Fri, Oct 10, 2008 at 10:13 AM
+Subject: Hive Web-UI
+To: core-user@hadoop.apache.org
+
+
+I was checking out this slide show.
+http://www.slideshare.net/jhammerb/2008-ur-tech-talk-zshao-presentation/
+in the diagram a Web-UI exists. This was the first I have heard of
+this. Is this part of or planned to be a part of contrib/hive? I think
+a web interface for showing table schema and executing jobs would be
+very interesting. Is anyone working on something like this? If not, I
+have a few ideas.
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Re: Hadoop chokes on file names with &quot;:&quot; in them</title>
+<author><name>Doug Cutting &lt;cutting@apache.org&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c48EF9091.7000603@apache.org%3e"/>
+<id>urn:uuid:%3c48EF9091-7000603@apache-org%3e</id>
+<updated>2008-10-10T17:27:45Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+The safest thing is to restrict your Hadoop file names to a 
+common-denominator set of characters that are well supported by Unix, 
+Windows, and URIs.  Colon is a special character on both Windows and in 
+URIs.  Quoting is in theory possible, but it's hard to get it right 
+everywhere in practice.  One can devise heuristics that determine 
+whether a colon is intende to be part of a name in a relative path 
+rather than indicating a URI scheme or a Windows device, but making sure 
+that all components observe that heuristic (Java's URI handler, Windows 
+FS, etc.) is impossible and this leads to inconsistent behavior.  HDFS 
+prohibits colons in filenames for this reason.
+
+Doug
+
+Brian Bockelman wrote:
+&gt; Hey all,
+&gt; 
+&gt; Hadoop tries to parse file names with ":" in them as a relative URL:
+&gt; 
+&gt; [brian@red ~]$ hadoop fs -put /tmp/test 
+&gt; /user/brian/StageOutTest-24328-Fri-Oct-10-07:58:44-2008
+&gt; put: Pathname /user/brian/StageOutTest-24328-Fri-Oct-10-07:58:44-2008 
+&gt; from /user/brian/StageOutTest-24328-Fri-Oct-10-07:58:44-2008 is not a 
+&gt; valid DFS filename.
+&gt; Usage: java FsShell [-put &lt;localsrc&gt; ... &lt;dst&gt;]
+&gt; 
+&gt; Our users do timestamps like that *a lot*.  It appears that Hadoop tries 
+&gt; to interpret the ":" as a sign that you are trying to use a relative URL.
+&gt; 
+&gt; Is there any reason to not support the ":" character in file names?
+&gt; 
+&gt; Brian
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Hive Web-UI</title>
+<author><name>&quot;Edward Capriolo&quot; &lt;edlinuxguru@gmail.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3ccbbf4b570810101013u61c4e8c6rd90e1ff80d8f2466@mail.gmail.com%3e"/>
+<id>urn:uuid:%3ccbbf4b570810101013u61c4e8c6rd90e1ff80d8f2466@mail-gmail-com%3e</id>
+<updated>2008-10-10T17:13:23Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+I was checking out this slide show.
+http://www.slideshare.net/jhammerb/2008-ur-tech-talk-zshao-presentation/
+in the diagram a Web-UI exists. This was the first I have heard of
+this. Is this part of or planned to be a part of contrib/hive? I think
+a web interface for showing table schema and executing jobs would be
+very interesting. Is anyone working on something like this? If not, I
+have a few ideas.
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>About the lock</title>
+<author><name>&quot;He Chen&quot; &lt;airbot@gmail.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3cbd0e4dee0810100920y8d81d5aqccdff52028fd1d6c@mail.gmail.com%3e"/>
+<id>urn:uuid:%3cbd0e4dee0810100920y8d81d5aqccdff52028fd1d6c@mail-gmail-com%3e</id>
+<updated>2008-10-10T16:20:31Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+hey every one
+
+I use the hadoop-0.17.2.1. the slaves file in conf directory file is:
+
+rack02
+rack03
+rack07
+rack05
+rack12
+rack14
+
+But When I use "start-all.sh", all the datanodes have started. But I use
+"hadoop dfsadmin -report", there is only 2 datanodes:
+
+Datanodes available: 2
+Name: 192.168.0.22:50010
+State          : In Service
+Total raw bytes: 331046674432 (308.31 GB)
+Remaining raw bytes: 278575118269(259.44 GB)
+Used raw bytes: 24576 (24 KB)
+% used: 0%
+Last contact: Fri Oct 10 11:16:41 CDT 2008
+
+Name: 192.168.0.31:50010
+State          : In Service
+Total raw bytes: 331046674432 (308.31 GB)
+Remaining raw bytes: 278575134325(259.44 GB)
+Used raw bytes: 24576 (24 KB)
+% used: 0%
+Last contact: Fri Oct 10 11:17:14 CDT 2008
+I refer to the log file, it shows that:
+
+2008-10-10 10:31:18,180 INFO org.apache.hadoop.dfs.Storage: Cannot lock
+storage /opt/che/hadoop-0.17.2.1/tmp/dfs/data. The directory is already
+locked.
+2008-10-10 10:31:18,290 ERROR org.apache.hadoop.dfs.DataNode:
+java.io.IOException: Cannot lock storage
+/opt/che/hadoop-0.17.2.1/tmp/dfs/data. The directory is already locked.
+        at
+org.apache.hadoop.dfs.Storage$StorageDirectory.lock(Storage.java:404)
+        at
+org.apache.hadoop.dfs.Storage$StorageDirectory.analyzeStorage(Storage.java:278)
+        at
+org.apache.hadoop.dfs.DataStorage.recoverTransitionRead(DataStorage.java:103)
+        at org.apache.hadoop.dfs.DataNode.startDataNode(DataNode.java:258)
+        at org.apache.hadoop.dfs.DataNode.&lt;init&gt;(DataNode.java:176)
+        at org.apache.hadoop.dfs.DataNode.makeInstance(DataNode.java:2795)
+        at
+org.apache.hadoop.dfs.DataNode.instantiateDataNode(DataNode.java:2750)
+        at org.apache.hadoop.dfs.DataNode.createDataNode(DataNode.java:2758)
+        at org.apache.hadoop.dfs.DataNode.main(DataNode.java:2880)
+2008-10-10 10:31:18,291 INFO org.apache.hadoop.dfs.DataNode: SHUTDOWN_MSG:
+What is the matter??? I am sure to keep the slaves and master file
+coherently.
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Re: How to make LZO work?</title>
+<author><name>Allen Wittenauer &lt;aw@yahoo-inc.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3cC514B875.1B456%25aw@yahoo-inc.com%3e"/>
+<id>urn:uuid:%3cC514B875-1B456%25aw@yahoo-inc-com%3e</id>
+<updated>2008-10-10T14:44:53Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+On 10/9/08 6:46 PM, "Songting Chen" &lt;ken_cst1998@yahoo.com&gt; wrote:
+&gt; Does that mean I have to rebuild the native library?
+&gt; 
+&gt; Also, the LZO installation puts liblzo2.a and liblzo2.la under /usr/local/lib.
+&gt; There is no liblzo2.so there. Do I need to rename them to liblzo2.so somehow?
+
+
+    You need to compile and install lzo2 as a shared library.  IIRC, this is
+not the default.
+   
+
+    Also, the shared version (.so) will need to be part of your link path
+(LD_LIBRARY_PATH env var, /etc/ld.so.conf on Linux, runtime option (usually
+-R) to ld, ...) when you fire up the JVM so that Java can locate it when it
+needs it.
+
+
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Hadoop .16 : Task failures</title>
+<author><name>Sagar Naik &lt;snaik@attributor.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c48EF5A19.8010408@attributor.com%3e"/>
+<id>urn:uuid:%3c48EF5A19-8010408@attributor-com%3e</id>
+<updated>2008-10-10T13:35:21Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+Hi,
+
+We are using Hadoop 0.16 and on our heavy IO job we are seeing lot of these exceptions.
+We are seeing lot of task failures more than 50% :(. They are two reasons from log:
+        a) Task task_200810092310_0003_m_000020_0 failed to report status for 600 seconds.
+Killing! 	- 
+	b) java.io.IOException: Could not get block locations. Aborting... at
+		org.apache.hadoop.dfs.DFSClient$DFSOutputStream.processDatanodeError(DFSClient.java:1824)
+		at
+		org.apache.hadoop.dfs.DFSClient$DFSOutputStream.access$1100(DFSClient.java:1479)
+		at
+		org.apache.hadoop.dfs.DFSClient$DFSOutputStream$DataStreamer.run(DFSClient.java:1571)
+
+
+
+/Tasktracker log:
+
+/Exception in createBlockOutputStream java.net.SocketTimeoutException: Read timed out
+2008-10-10 05:50:10,485 INFO org.apache.hadoop.fs.DFSClient: Abandoning block blk_-5660296346325180487
+.
+..
+.
+Parent Died.
+
+/Datanode log /
+2008-10-10 00:00:23,066 INFO org.apache.hadoop.dfs.DataNode: PacketResponder blk_6562287961399683551
+1 Exception java.net.SocketException: Broken pipe
+        at java.net.SocketOutputStream.socketWrite0(Native Method)
+        at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:92)
+        at java.net.SocketOutputStream.write(SocketOutputStream.java:136)
+        at java.io.DataOutputStream.writeLong(DataOutputStream.java:207)
+        at org.apache.hadoop.dfs.DataNode$PacketResponder.run(DataNode.java:1823)
+        at java.lang.Thread.run(Thread.java:619)
+
+2008-10-10 00:00:23,067 ERROR org.apache.hadoop.dfs.DataNode: /&lt;localhost ip &gt;/:50010:DataXceiver:
+java.io.EOFException
+        at java.io.DataInputStream.readInt(DataInputStream.java:375)
+        at org.apache.hadoop.dfs.DataNode$BlockReceiver.receiveBlock(DataNode.java:2263)
+        at org.apache.hadoop.dfs.DataNode$DataXceiver.writeBlock(DataNode.java:1150)
+        at org.apache.hadoop.dfs.DataNode$DataXceiver.run(DataNode.java:938)
+        at java.lang.Thread.run(Thread.java:619)
+
+
+2008-10-10 00:53:53,790 INFO org.apache.hadoop.dfs.DataNode: Exception in receiveBlock for
+block blk_-3482274249842371655 java.net.SocketException: Connection reset
+2008-10-10 00:53:53,791 INFO org.apache.hadoop.dfs.DataNode: writeBlock blk_-3482274249842371655
+received exception java.net.SocketException: Connection reset
+2008-10-10 00:53:53,791 ERROR org.apache.hadoop.dfs.DataNode: /&lt;localhost ip&gt;/:50010:DataXceiver:
+java.net.SocketException: Connection reset
+        at java.net.SocketInputStream.read(SocketInputStream.java:168)
+        at java.io.BufferedInputStream.fill(BufferedInputStream.java:218)
+        at java.io.BufferedInputStream.read(BufferedInputStream.java:237)
+        at java.io.DataInputStream.readInt(DataInputStream.java:370)
+        at org.apache.hadoop.dfs.DataNode$BlockReceiver.receiveBlock(DataNode.java:2263)
+        at org.apache.hadoop.dfs.DataNode$DataXceiver.writeBlock(DataNode.java:1150)
+        at org.apache.hadoop.dfs.DataNode$DataXceiver.run(DataNode.java:938)
+        at java.lang.Thread.run(Thread.java:619)
+
+
+
+Any pointer would help us a lot
+
+-Sagar
+
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Hadoop chokes on file names with &quot;:&quot; in them</title>
+<author><name>Brian Bockelman &lt;bbockelm@cse.unl.edu&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c5F3F3CEE-2BA7-46A6-B686-95531D45E467@cse.unl.edu%3e"/>
+<id>urn:uuid:%3c5F3F3CEE-2BA7-46A6-B686-95531D45E467@cse-unl-edu%3e</id>
+<updated>2008-10-10T13:24:33Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+Hey all,
+
+Hadoop tries to parse file names with ":" in them as a relative URL:
+
+[brian@red ~]$ hadoop fs -put /tmp/test /user/brian/StageOutTest-24328- 
+Fri-Oct-10-07:58:44-2008
+put: Pathname /user/brian/StageOutTest-24328-Fri-Oct-10-07:58:44-2008  
+from /user/brian/StageOutTest-24328-Fri-Oct-10-07:58:44-2008 is not a  
+valid DFS filename.
+Usage: java FsShell [-put &lt;localsrc&gt; ... &lt;dst&gt;]
+
+Our users do timestamps like that *a lot*.  It appears that Hadoop  
+tries to interpret the ":" as a sign that you are trying to use a  
+relative URL.
+
+Is there any reason to not support the ":" character in file names?
+
+Brian
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Re: save mp3 file Using Hadoop</title>
+<author><name>Yi-Kai Tsai &lt;yikai@yahoo-inc.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c48EF26B1.7030509@yahoo-inc.com%3e"/>
+<id>urn:uuid:%3c48EF26B1-7030509@yahoo-inc-com%3e</id>
+<updated>2008-10-10T09:56:01Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+hi
+
+Hadoop implement MapReduce by using HDFS,
+yes, you could store things on HDFS
+but I don't think you get any benefit on this use-case if you are not 
+planing to "process" those data on top of hadoop/mapreduce.
+
+&gt; i am a beginner,i want to save a lot of Mp3 files into Hadoop and
+&gt; using Tomcat to service this files.
+&gt; 1.i want to using org.apache.hadoop.io.MapFile, key is mp3  name's
+&gt; MD5,value is Mp3 stream data. mp3 's filesize is nearly 3M. i split
+&gt; 20G per one MapFile.There are 30~50 MapFile.
+&gt; 2. i put these MapFile into  x linux server.
+&gt; 3. my user send Mp3' name request to Tomcat ,Tomcat using Mp3 name 's
+&gt; MD5 to find Mp3 file in one linux server .
+&gt;
+&gt; question:
+&gt; 1&gt; is it right way to use hadoop?
+&gt;
+&gt; 2&gt; if 20 user access one linux server in one time,maybe 20 Mp3 files
+&gt; load in memory,20* 3M memory is being eat? is it right? how to solve
+&gt; this problem ?
+&gt;   
+
+
+-- 
+Yi-Kai Tsai (cuma) &lt;yikai@yahoo-inc.com&gt;
+
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Re: Re: hadoop index org/apache/lucene/store/Directory NoClassDefFoundError</title>
+<author><name>&quot;chenlbspace&quot; &lt;chenlbspace@sina.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c200810101750011562786@sina.com%3e"/>
+<id>urn:uuid:%3c200810101750011562786@sina-com%3e</id>
+<updated>2008-10-10T09:50:04Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+hi, imcaptor 
+
+I try to cp lucene-core-2.3.1.jar to lib, but error also at map task.
+
+-------------------lib-----------------
+[chenlb@master hadoop]$ pwd
+/home/chenlb/hadoop
+[chenlb@master hadoop]$ ls lib
+commons-cli-2.0-SNAPSHOT.jar  commons-logging-1.0.4.jar      jetty-5.1.4.jar          junit-3.8.1.jar
+         kfs-0.1.LICENSE.txt    native
+commons-codec-1.3.jar         commons-logging-api-1.0.4.jar  jetty-5.1.4.LICENSE.txt  junit-3.8.1.LICENSE.txt
+ log4j-1.2.13.jar       servlet-api.jar
+commons-httpclient-3.0.1.jar  jets3t-0.5.0.jar               jetty-ext                kfs-0.1.jar
+             lucene-core-2.3.1.jar  xmlenc-0.52.jar
+
+-------------------hadoop-site.xml---------------------------------
+&lt;?xml version="1.0"?&gt;
+&lt;?xml-stylesheet type="text/xsl" href="configuration.xsl"?&gt;
+&lt;!-- Put site-specific property overrides in this file. --&gt;
+&lt;configuration&gt;
+&lt;property&gt;
+        &lt;name&gt;fs.default.name&lt;/name&gt;
+        &lt;value&gt;hdfs://master:9000/&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+        &lt;name&gt;mapred.job.tracker&lt;/name&gt;
+        &lt;value&gt;hdfs://master:9001/&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+        &lt;name&gt;dfs.replication&lt;/name&gt;
+        &lt;value&gt;1&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+        &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;
+        &lt;value&gt;/home/chenlb/hadoop/tmp/&lt;/value&gt;
+&lt;/property&gt;
+&lt;/configuration&gt;
+----------------------------
+
+Thinks!
+
+=====================error=======================
+[chenlb@master hadoop]$ bin/hadoop jar hadoop-0.17.1-index.jar -inputPaths data-in -outputPath
+index-msg-out -indexPath index -conf index-config.xml
+08/10/09 22:33:36 INFO main.UpdateIndex: inputPaths = data-in
+08/10/09 22:33:36 INFO main.UpdateIndex: outputPath = index-msg-out
+08/10/09 22:33:36 INFO main.UpdateIndex: shards     = null
+08/10/09 22:33:36 INFO main.UpdateIndex: indexPath  = index
+08/10/09 22:33:36 INFO main.UpdateIndex: numShards  = -1
+08/10/09 22:33:36 INFO main.UpdateIndex: numMapTasks= -1
+08/10/09 22:33:36 INFO main.UpdateIndex: confPath   = index-config.xml
+08/10/09 22:33:37 INFO main.UpdateIndex: sea.index.updater = org.apache.hadoop.contrib.index.mapred.IndexUpdater
+08/10/09 22:33:37 INFO mapred.IndexUpdater: mapred.input.dir = hdfs://master:9000/user/chenlb/data-in
+08/10/09 22:33:37 INFO mapred.IndexUpdater: mapred.output.dir = hdfs://master:9000/user/chenlb/index-msg-out
+08/10/09 22:33:37 INFO mapred.IndexUpdater: mapred.map.tasks = 2
+08/10/09 22:33:37 INFO mapred.IndexUpdater: mapred.reduce.tasks = 1
+08/10/09 22:33:37 INFO mapred.IndexUpdater: 1 shards = -1@index/00000@-1
+08/10/09 22:33:37 INFO mapred.IndexUpdater: mapred.input.format.class = org.apache.hadoop.contrib.index.example.LineDocInputFormat
+08/10/09 22:33:38 INFO mapred.FileInputFormat: Total input paths to process : 2
+08/10/09 22:33:39 INFO mapred.JobClient: Running job: job_200810092201_0010
+08/10/09 22:33:40 INFO mapred.JobClient:  map 0% reduce 0%
+08/10/09 22:33:48 INFO mapred.JobClient: Task Id : task_200810092201_0010_m_000000_0, Status
+: FAILED
+java.lang.NoClassDefFoundError: org/apache/lucene/store/Directory
+        at java.lang.Class.forName0(Native Method)
+        at java.lang.Class.forName(Class.java:247)
+        at org.apache.hadoop.conf.Configuration.getClassByName(Configuration.java:581)
+        at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:599)
+        at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:625)
+        at org.apache.hadoop.mapred.JobConf.getMapOutputValueClass(JobConf.java:552)
+        at org.apache.hadoop.mapred.MapTask$MapOutputBuffer.&lt;init&gt;(MapTask.java:369)
+        at org.apache.hadoop.mapred.MapTask.run(MapTask.java:185)
+        at org.apache.hadoop.mapred.TaskTracker$Child.main(TaskTracker.java:2124)
+Caused by: java.lang.ClassNotFoundException: org.apache.lucene.store.Directory
+        at java.net.URLClassLoader$1.run(URLClassLoader.java:200)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at java.net.URLClassLoader.findClass(URLClassLoader.java:188)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+        at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:276)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+        at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:319)
+        ... 9 more
+08/10/09 22:33:50 INFO mapred.JobClient: Task Id : task_200810092201_0010_m_000001_0, Status
+: FAILED
+java.lang.NoClassDefFoundError: org/apache/lucene/store/Directory
+        at java.lang.Class.forName0(Native Method)
+        at java.lang.Class.forName(Class.java:247)
+        at org.apache.hadoop.conf.Configuration.getClassByName(Configuration.java:581)
+        at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:599)
+        at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:625)
+        at org.apache.hadoop.mapred.JobConf.getMapOutputValueClass(JobConf.java:552)
+        at org.apache.hadoop.mapred.MapTask$MapOutputBuffer.&lt;init&gt;(MapTask.java:369)
+        at org.apache.hadoop.mapred.MapTask.run(MapTask.java:185)
+        at org.apache.hadoop.mapred.TaskTracker$Child.main(TaskTracker.java:2124)
+Caused by: java.lang.ClassNotFoundException: org.apache.lucene.store.Directory
+        at java.net.URLClassLoader$1.run(URLClassLoader.java:200)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at java.net.URLClassLoader.findClass(URLClassLoader.java:188)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+        at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:276)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+        at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:319)
+        ... 9 more
+08/10/09 22:33:55 INFO mapred.JobClient: Task Id : task_200810092201_0010_r_000000_0, Status
+: FAILED
+java.lang.NoClassDefFoundError: org/apache/lucene/store/Directory
+        at java.lang.Class.forName0(Native Method)
+        at java.lang.Class.forName(Class.java:247)
+        at org.apache.hadoop.conf.Configuration.getClassByName(Configuration.java:581)
+        at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:599)
+        at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:625)
+        at org.apache.hadoop.mapred.JobConf.getMapOutputValueClass(JobConf.java:552)
+        at org.apache.hadoop.mapred.ReduceTask$ReduceCopier.&lt;init&gt;(ReduceTask.java:964)
+        at org.apache.hadoop.mapred.ReduceTask.run(ReduceTask.java:327)
+        at org.apache.hadoop.mapred.TaskTracker$Child.main(TaskTracker.java:2124)
+Caused by: java.lang.ClassNotFoundException: org.apache.lucene.store.Directory
+        at java.net.URLClassLoader$1.run(URLClassLoader.java:200)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at java.net.URLClassLoader.findClass(URLClassLoader.java:188)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+        at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:276)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+        at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:319)
+        ... 9 more
+08/10/09 22:33:56 INFO mapred.JobClient: Task Id : task_200810092201_0010_m_000000_1, Status
+: FAILED
+java.lang.NoClassDefFoundError: org/apache/lucene/store/Directory
+        at java.lang.Class.forName0(Native Method)
+        at java.lang.Class.forName(Class.java:247)
+        at org.apache.hadoop.conf.Configuration.getClassByName(Configuration.java:581)
+        at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:599)
+        at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:625)
+        at org.apache.hadoop.mapred.JobConf.getMapOutputValueClass(JobConf.java:552)
+        at org.apache.hadoop.mapred.MapTask$MapOutputBuffer.&lt;init&gt;(MapTask.java:369)
+        at org.apache.hadoop.mapred.MapTask.run(MapTask.java:185)
+        at org.apache.hadoop.mapred.TaskTracker$Child.main(TaskTracker.java:2124)
+Caused by: java.lang.ClassNotFoundException: org.apache.lucene.store.Directory
+        at java.net.URLClassLoader$1.run(URLClassLoader.java:200)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at java.net.URLClassLoader.findClass(URLClassLoader.java:188)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+        at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:276)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+        at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:319)
+        ... 9 more
+08/10/09 22:33:59 INFO mapred.JobClient: Task Id : task_200810092201_0010_m_000001_1, Status
+: FAILED
+java.lang.NoClassDefFoundError: org/apache/lucene/store/Directory
+        at java.lang.Class.forName0(Native Method)
+        at java.lang.Class.forName(Class.java:247)
+        at org.apache.hadoop.conf.Configuration.getClassByName(Configuration.java:581)
+        at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:599)
+        at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:625)
+        at org.apache.hadoop.mapred.JobConf.getMapOutputValueClass(JobConf.java:552)
+        at org.apache.hadoop.mapred.MapTask$MapOutputBuffer.&lt;init&gt;(MapTask.java:369)
+        at org.apache.hadoop.mapred.MapTask.run(MapTask.java:185)
+        at org.apache.hadoop.mapred.TaskTracker$Child.main(TaskTracker.java:2124)
+Caused by: java.lang.ClassNotFoundException: org.apache.lucene.store.Directory
+        at java.net.URLClassLoader$1.run(URLClassLoader.java:200)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at java.net.URLClassLoader.findClass(URLClassLoader.java:188)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+        at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:276)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+        at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:319)
+        ... 9 more
+08/10/09 22:34:03 INFO mapred.JobClient: Task Id : task_200810092201_0010_r_000000_1, Status
+: FAILED
+java.lang.NoClassDefFoundError: org/apache/lucene/store/Directory
+        at java.lang.Class.forName0(Native Method)
+        at java.lang.Class.forName(Class.java:247)
+        at org.apache.hadoop.conf.Configuration.getClassByName(Configuration.java:581)
+        at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:599)
+        at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:625)
+        at org.apache.hadoop.mapred.JobConf.getMapOutputValueClass(JobConf.java:552)
+        at org.apache.hadoop.mapred.ReduceTask$ReduceCopier.&lt;init&gt;(ReduceTask.java:964)
+        at org.apache.hadoop.mapred.ReduceTask.run(ReduceTask.java:327)
+        at org.apache.hadoop.mapred.TaskTracker$Child.main(TaskTracker.java:2124)
+Caused by: java.lang.ClassNotFoundException: org.apache.lucene.store.Directory
+        at java.net.URLClassLoader$1.run(URLClassLoader.java:200)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at java.net.URLClassLoader.findClass(URLClassLoader.java:188)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+        at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:276)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+        at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:319)
+        ... 9 more
+08/10/09 22:34:05 INFO mapred.JobClient: Task Id : task_200810092201_0010_m_000000_2, Status
+: FAILED
+java.lang.NoClassDefFoundError: org/apache/lucene/store/Directory
+        at java.lang.Class.forName0(Native Method)
+        at java.lang.Class.forName(Class.java:247)
+        at org.apache.hadoop.conf.Configuration.getClassByName(Configuration.java:581)
+        at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:599)
+        at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:625)
+        at org.apache.hadoop.mapred.JobConf.getMapOutputValueClass(JobConf.java:552)
+        at org.apache.hadoop.mapred.MapTask$MapOutputBuffer.&lt;init&gt;(MapTask.java:369)
+        at org.apache.hadoop.mapred.MapTask.run(MapTask.java:185)
+        at org.apache.hadoop.mapred.TaskTracker$Child.main(TaskTracker.java:2124)
+Caused by: java.lang.ClassNotFoundException: org.apache.lucene.store.Directory
+        at java.net.URLClassLoader$1.run(URLClassLoader.java:200)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at java.net.URLClassLoader.findClass(URLClassLoader.java:188)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+        at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:276)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+        at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:319)
+        ... 9 more
+08/10/09 22:34:08 INFO mapred.JobClient: Task Id : task_200810092201_0010_m_000001_2, Status
+: FAILED
+java.lang.NoClassDefFoundError: org/apache/lucene/store/Directory
+        at java.lang.Class.forName0(Native Method)
+        at java.lang.Class.forName(Class.java:247)
+        at org.apache.hadoop.conf.Configuration.getClassByName(Configuration.java:581)
+        at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:599)
+        at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:625)
+        at org.apache.hadoop.mapred.JobConf.getMapOutputValueClass(JobConf.java:552)
+        at org.apache.hadoop.mapred.MapTask$MapOutputBuffer.&lt;init&gt;(MapTask.java:369)
+        at org.apache.hadoop.mapred.MapTask.run(MapTask.java:185)
+        at org.apache.hadoop.mapred.TaskTracker$Child.main(TaskTracker.java:2124)
+Caused by: java.lang.ClassNotFoundException: org.apache.lucene.store.Directory
+        at java.net.URLClassLoader$1.run(URLClassLoader.java:200)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at java.net.URLClassLoader.findClass(URLClassLoader.java:188)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+        at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:276)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+        at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:319)
+        ... 9 more
+08/10/09 22:34:10 INFO mapred.JobClient: Task Id : task_200810092201_0010_r_000000_2, Status
+: FAILED
+java.lang.NoClassDefFoundError: org/apache/lucene/store/Directory
+        at java.lang.Class.forName0(Native Method)
+        at java.lang.Class.forName(Class.java:247)
+        at org.apache.hadoop.conf.Configuration.getClassByName(Configuration.java:581)
+        at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:599)
+        at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:625)
+        at org.apache.hadoop.mapred.JobConf.getMapOutputValueClass(JobConf.java:552)
+        at org.apache.hadoop.mapred.ReduceTask$ReduceCopier.&lt;init&gt;(ReduceTask.java:964)
+        at org.apache.hadoop.mapred.ReduceTask.run(ReduceTask.java:327)
+        at org.apache.hadoop.mapred.TaskTracker$Child.main(TaskTracker.java:2124)
+Caused by: java.lang.ClassNotFoundException: org.apache.lucene.store.Directory
+        at java.net.URLClassLoader$1.run(URLClassLoader.java:200)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at java.net.URLClassLoader.findClass(URLClassLoader.java:188)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+        at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:276)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+        at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:319)
+        ... 9 more
+08/10/09 22:34:13 INFO mapred.JobClient:  map 100% reduce 100%
+08/10/09 22:34:14 INFO main.UpdateIndex: Elapsed time is  37s
+Elapsed time is 37s
+java.io.IOException: Job failed!
+        at org.apache.hadoop.mapred.JobClient.runJob(JobClient.java:1062)
+        at org.apache.hadoop.contrib.index.mapred.IndexUpdater.run(IndexUpdater.java:53)
+        at org.apache.hadoop.contrib.index.main.UpdateIndex.main(UpdateIndex.java:263)
+        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+        at java.lang.reflect.Method.invoke(Method.java:597)
+        at org.apache.hadoop.util.RunJar.main(RunJar.java:155)
+        at org.apache.hadoop.mapred.JobShell.run(JobShell.java:194)
+        at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:65)
+        at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:79)
+        at org.apache.hadoop.mapred.JobShell.main(JobShell.java:220)
+
+2008-10-10 
+
+
+
+chenlbspace 
+
+
+
+∑¢º˛»À£∫ imcaptor 
+∑¢ÀÕ ±º‰£∫ 2008-10-10  17:07:39 
+ ’º˛»À£∫ core-user@hadoop.apache.org 
+≥≠ÀÕ£∫ 
+÷˜Ã‚£∫ Re: hadoop index org/apache/lucene/store/Directory NoClassDefFoundError 
+ 
+Try do this.
+In the hadoop path,
+-bash-3.00$ pwd
+/data/hadoop/hadoop-0.18.1
+cp src/contrib/index/lib/lucene-core-2.3.1.jar lib
+Then you can run the task.
+chenlbspace –¥µ¿:
+&gt; hi, 
+&gt;
+&gt; I try to use contrib/index/hadoop-0.17.1-index.jar build lucene index, but Directory
+NoClassDefFoundError.
+&gt;
+&gt; How solve? Thinks.
+&gt;
+&gt; Additional, hadoop run Pseudo-Distributed Mode. and can run "bin/hadoop jar hadoop-*-examples.jar
+grep input output 'dfs[a-z.]+'"
+&gt;
+&gt; ---------------------------error----------------------------------------------------------------------------------
+&gt; [chenlb@master hadoop]$ bin/hadoop jar contrib/index/hadoop-0.17.1-index.jar -inputPaths
+src/contrib/index/sample -outputPath index-msg-out -indexPath index -conf src/contrib/index/conf/index-config.xml
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: inputPaths = src/contrib/index/sample
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: outputPath = index-msg-out
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: shards     = null
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: indexPath  = index
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: numShards  = -1
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: numMapTasks= -1
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: confPath   = src/contrib/index/conf/index-config.xml
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: Elapsed time is  0s
+&gt; Elapsed time is 0s
+&gt; java.lang.NoClassDefFoundError: org/apache/lucene/store/Directory
+&gt;         at java.lang.Class.forName0(Native Method)
+&gt;         at java.lang.Class.forName(Class.java:247)
+&gt;         at org.apache.hadoop.conf.Configuration.getClassByName(Configuration.java:581)
+&gt;         at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:599)
+&gt;         at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:625)
+&gt;         at org.apache.hadoop.contrib.index.mapred.IndexUpdateConfiguration.getIndexUpdaterClass(IndexUpdateConfiguration.java:145)
+&gt;         at org.apache.hadoop.contrib.index.main.UpdateIndex.main(UpdateIndex.java:257)
+&gt;         at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+&gt;         at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+&gt;         at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+&gt;         at java.lang.reflect.Method.invoke(Method.java:597)
+&gt;         at org.apache.hadoop.util.RunJar.main(RunJar.java:155)
+&gt;         at org.apache.hadoop.mapred.JobShell.run(JobShell.java:194)
+&gt;         at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:65)
+&gt;         at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:79)
+&gt;         at org.apache.hadoop.mapred.JobShell.main(JobShell.java:220)
+&gt; Caused by: java.lang.ClassNotFoundException: org.apache.lucene.store.Directory
+&gt;         at java.net.URLClassLoader$1.run(URLClassLoader.java:200)
+&gt;         at java.security.AccessController.doPrivileged(Native Method)
+&gt;         at java.net.URLClassLoader.findClass(URLClassLoader.java:188)
+&gt;         at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+&gt;         at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+&gt;         at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:319)
+&gt;         ... 16 more
+&gt;
+&gt; -----------------------------------------------------------------------------------------------------------------
+&gt;
+&gt; 2008-10-10 
+&gt;
+&gt;
+&gt;
+&gt; chenlbspace 
+&gt;
+&gt;   
+__________ NOD32 3510 (20081010) Information __________
+This message was checked by NOD32 antivirus system.
+http://www.nod32cn.com
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Re: hadoop index org/apache/lucene/store/Directory NoClassDefFoundError</title>
+<author><name>imcaptor &lt;imcaptor@126.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c48EF1B5B.8080207@126.com%3e"/>
+<id>urn:uuid:%3c48EF1B5B-8080207@126-com%3e</id>
+<updated>2008-10-10T09:07:39Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+
+Try do this.
+
+In the hadoop path,
+-bash-3.00$ pwd
+/data/hadoop/hadoop-0.18.1
+cp src/contrib/index/lib/lucene-core-2.3.1.jar lib
+
+
+Then you can run the task.
+
+chenlbspace –¥µ¿:
+&gt; hi, 
+&gt;
+&gt; I try to use contrib/index/hadoop-0.17.1-index.jar build lucene index, but Directory
+NoClassDefFoundError.
+&gt;
+&gt; How solve? Thinks.
+&gt;
+&gt; Additional, hadoop run Pseudo-Distributed Mode. and can run "bin/hadoop jar hadoop-*-examples.jar
+grep input output 'dfs[a-z.]+'"
+&gt;
+&gt; ---------------------------error----------------------------------------------------------------------------------
+&gt; [chenlb@master hadoop]$ bin/hadoop jar contrib/index/hadoop-0.17.1-index.jar -inputPaths
+src/contrib/index/sample -outputPath index-msg-out -indexPath index -conf src/contrib/index/conf/index-config.xml
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: inputPaths = src/contrib/index/sample
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: outputPath = index-msg-out
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: shards     = null
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: indexPath  = index
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: numShards  = -1
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: numMapTasks= -1
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: confPath   = src/contrib/index/conf/index-config.xml
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: Elapsed time is  0s
+&gt; Elapsed time is 0s
+&gt; java.lang.NoClassDefFoundError: org/apache/lucene/store/Directory
+&gt;         at java.lang.Class.forName0(Native Method)
+&gt;         at java.lang.Class.forName(Class.java:247)
+&gt;         at org.apache.hadoop.conf.Configuration.getClassByName(Configuration.java:581)
+&gt;         at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:599)
+&gt;         at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:625)
+&gt;         at org.apache.hadoop.contrib.index.mapred.IndexUpdateConfiguration.getIndexUpdaterClass(IndexUpdateConfiguration.java:145)
+&gt;         at org.apache.hadoop.contrib.index.main.UpdateIndex.main(UpdateIndex.java:257)
+&gt;         at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+&gt;         at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+&gt;         at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+&gt;         at java.lang.reflect.Method.invoke(Method.java:597)
+&gt;         at org.apache.hadoop.util.RunJar.main(RunJar.java:155)
+&gt;         at org.apache.hadoop.mapred.JobShell.run(JobShell.java:194)
+&gt;         at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:65)
+&gt;         at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:79)
+&gt;         at org.apache.hadoop.mapred.JobShell.main(JobShell.java:220)
+&gt; Caused by: java.lang.ClassNotFoundException: org.apache.lucene.store.Directory
+&gt;         at java.net.URLClassLoader$1.run(URLClassLoader.java:200)
+&gt;         at java.security.AccessController.doPrivileged(Native Method)
+&gt;         at java.net.URLClassLoader.findClass(URLClassLoader.java:188)
+&gt;         at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+&gt;         at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+&gt;         at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:319)
+&gt;         ... 16 more
+&gt;
+&gt; -----------------------------------------------------------------------------------------------------------------
+&gt;
+&gt; 2008-10-10 
+&gt;
+&gt;
+&gt;
+&gt; chenlbspace 
+&gt;
+&gt;   
+
+
+
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Re: hadoop index org/apache/lucene/store/Directory NoClassDefFoundError</title>
+<author><name>imcaptor &lt;imcaptor@126.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c48EF1842.1010908@126.com%3e"/>
+<id>urn:uuid:%3c48EF1842-1010908@126-com%3e</id>
+<updated>2008-10-10T08:54:26Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+The jar file is in the src/contrib/index/lib/lucene-core-2.3.1.jar, u
+must set the file in classpath.
+
+imcaptor –¥µ¿:
+&gt; U must download the lucene binary jar file,and set the jar file in the
+&gt; classpath.
+&gt;
+&gt; chenlbspace –¥µ¿:
+&gt;   
+&gt;&gt; hi, 
+&gt;&gt;
+&gt;&gt; I try to use contrib/index/hadoop-0.17.1-index.jar build lucene index, but Directory
+NoClassDefFoundError.
+&gt;&gt;
+&gt;&gt; How solve? Thinks.
+&gt;&gt;
+&gt;&gt; Additional, hadoop run Pseudo-Distributed Mode. and can run "bin/hadoop jar hadoop-*-examples.jar
+grep input output 'dfs[a-z.]+'"
+&gt;&gt;
+&gt;&gt; ---------------------------error----------------------------------------------------------------------------------
+&gt;&gt; [chenlb@master hadoop]$ bin/hadoop jar contrib/index/hadoop-0.17.1-index.jar -inputPaths
+src/contrib/index/sample -outputPath index-msg-out -indexPath index -conf src/contrib/index/conf/index-config.xml
+&gt;&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: inputPaths = src/contrib/index/sample
+&gt;&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: outputPath = index-msg-out
+&gt;&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: shards     = null
+&gt;&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: indexPath  = index
+&gt;&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: numShards  = -1
+&gt;&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: numMapTasks= -1
+&gt;&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: confPath   = src/contrib/index/conf/index-config.xml
+&gt;&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: Elapsed time is  0s
+&gt;&gt; Elapsed time is 0s
+&gt;&gt; java.lang.NoClassDefFoundError: org/apache/lucene/store/Directory
+&gt;&gt;         at java.lang.Class.forName0(Native Method)
+&gt;&gt;         at java.lang.Class.forName(Class.java:247)
+&gt;&gt;         at org.apache.hadoop.conf.Configuration.getClassByName(Configuration.java:581)
+&gt;&gt;         at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:599)
+&gt;&gt;         at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:625)
+&gt;&gt;         at org.apache.hadoop.contrib.index.mapred.IndexUpdateConfiguration.getIndexUpdaterClass(IndexUpdateConfiguration.java:145)
+&gt;&gt;         at org.apache.hadoop.contrib.index.main.UpdateIndex.main(UpdateIndex.java:257)
+&gt;&gt;         at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+&gt;&gt;         at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+&gt;&gt;         at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+&gt;&gt;         at java.lang.reflect.Method.invoke(Method.java:597)
+&gt;&gt;         at org.apache.hadoop.util.RunJar.main(RunJar.java:155)
+&gt;&gt;         at org.apache.hadoop.mapred.JobShell.run(JobShell.java:194)
+&gt;&gt;         at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:65)
+&gt;&gt;         at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:79)
+&gt;&gt;         at org.apache.hadoop.mapred.JobShell.main(JobShell.java:220)
+&gt;&gt; Caused by: java.lang.ClassNotFoundException: org.apache.lucene.store.Directory
+&gt;&gt;         at java.net.URLClassLoader$1.run(URLClassLoader.java:200)
+&gt;&gt;         at java.security.AccessController.doPrivileged(Native Method)
+&gt;&gt;         at java.net.URLClassLoader.findClass(URLClassLoader.java:188)
+&gt;&gt;         at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+&gt;&gt;         at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+&gt;&gt;         at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:319)
+&gt;&gt;         ... 16 more
+&gt;&gt;
+&gt;&gt; -----------------------------------------------------------------------------------------------------------------
+&gt;&gt;
+&gt;&gt; 2008-10-10 
+&gt;&gt;
+&gt;&gt;
+&gt;&gt;
+&gt;&gt; chenlbspace 
+&gt;&gt;
+&gt;&gt;   
+&gt;&gt;     
+&gt;
+&gt;
+&gt;
+&gt;
+&gt;   
+
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Re: hadoop index org/apache/lucene/store/Directory NoClassDefFoundError</title>
+<author><name>imcaptor &lt;imcaptor@126.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c48EF1481.2080500@126.com%3e"/>
+<id>urn:uuid:%3c48EF1481-2080500@126-com%3e</id>
+<updated>2008-10-10T08:38:25Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+U must download the lucene binary jar file,and set the jar file in the
+classpath.
+
+chenlbspace –¥µ¿:
+&gt; hi, 
+&gt;
+&gt; I try to use contrib/index/hadoop-0.17.1-index.jar build lucene index, but Directory
+NoClassDefFoundError.
+&gt;
+&gt; How solve? Thinks.
+&gt;
+&gt; Additional, hadoop run Pseudo-Distributed Mode. and can run "bin/hadoop jar hadoop-*-examples.jar
+grep input output 'dfs[a-z.]+'"
+&gt;
+&gt; ---------------------------error----------------------------------------------------------------------------------
+&gt; [chenlb@master hadoop]$ bin/hadoop jar contrib/index/hadoop-0.17.1-index.jar -inputPaths
+src/contrib/index/sample -outputPath index-msg-out -indexPath index -conf src/contrib/index/conf/index-config.xml
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: inputPaths = src/contrib/index/sample
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: outputPath = index-msg-out
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: shards     = null
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: indexPath  = index
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: numShards  = -1
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: numMapTasks= -1
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: confPath   = src/contrib/index/conf/index-config.xml
+&gt; 08/10/09 21:41:28 INFO main.UpdateIndex: Elapsed time is  0s
+&gt; Elapsed time is 0s
+&gt; java.lang.NoClassDefFoundError: org/apache/lucene/store/Directory
+&gt;         at java.lang.Class.forName0(Native Method)
+&gt;         at java.lang.Class.forName(Class.java:247)
+&gt;         at org.apache.hadoop.conf.Configuration.getClassByName(Configuration.java:581)
+&gt;         at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:599)
+&gt;         at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:625)
+&gt;         at org.apache.hadoop.contrib.index.mapred.IndexUpdateConfiguration.getIndexUpdaterClass(IndexUpdateConfiguration.java:145)
+&gt;         at org.apache.hadoop.contrib.index.main.UpdateIndex.main(UpdateIndex.java:257)
+&gt;         at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+&gt;         at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+&gt;         at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+&gt;         at java.lang.reflect.Method.invoke(Method.java:597)
+&gt;         at org.apache.hadoop.util.RunJar.main(RunJar.java:155)
+&gt;         at org.apache.hadoop.mapred.JobShell.run(JobShell.java:194)
+&gt;         at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:65)
+&gt;         at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:79)
+&gt;         at org.apache.hadoop.mapred.JobShell.main(JobShell.java:220)
+&gt; Caused by: java.lang.ClassNotFoundException: org.apache.lucene.store.Directory
+&gt;         at java.net.URLClassLoader$1.run(URLClassLoader.java:200)
+&gt;         at java.security.AccessController.doPrivileged(Native Method)
+&gt;         at java.net.URLClassLoader.findClass(URLClassLoader.java:188)
+&gt;         at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+&gt;         at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+&gt;         at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:319)
+&gt;         ... 16 more
+&gt;
+&gt; -----------------------------------------------------------------------------------------------------------------
+&gt;
+&gt; 2008-10-10 
+&gt;
+&gt;
+&gt;
+&gt; chenlbspace 
+&gt;
+&gt;   
+
+
+
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>hadoop index org/apache/lucene/store/Directory NoClassDefFoundError</title>
+<author><name>&quot;chenlbspace&quot; &lt;chenlbspace@sina.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c200810101635391407226@sina.com%3e"/>
+<id>urn:uuid:%3c200810101635391407226@sina-com%3e</id>
+<updated>2008-10-10T08:35:40Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+hi, 
+
+I try to use contrib/index/hadoop-0.17.1-index.jar build lucene index, but Directory NoClassDefFoundError.
+
+How solve? Thinks.
+
+Additional, hadoop run Pseudo-Distributed Mode. and can run "bin/hadoop jar hadoop-*-examples.jar
+grep input output 'dfs[a-z.]+'"
+
+---------------------------error----------------------------------------------------------------------------------
+[chenlb@master hadoop]$ bin/hadoop jar contrib/index/hadoop-0.17.1-index.jar -inputPaths src/contrib/index/sample
+-outputPath index-msg-out -indexPath index -conf src/contrib/index/conf/index-config.xml
+08/10/09 21:41:28 INFO main.UpdateIndex: inputPaths = src/contrib/index/sample
+08/10/09 21:41:28 INFO main.UpdateIndex: outputPath = index-msg-out
+08/10/09 21:41:28 INFO main.UpdateIndex: shards     = null
+08/10/09 21:41:28 INFO main.UpdateIndex: indexPath  = index
+08/10/09 21:41:28 INFO main.UpdateIndex: numShards  = -1
+08/10/09 21:41:28 INFO main.UpdateIndex: numMapTasks= -1
+08/10/09 21:41:28 INFO main.UpdateIndex: confPath   = src/contrib/index/conf/index-config.xml
+08/10/09 21:41:28 INFO main.UpdateIndex: Elapsed time is  0s
+Elapsed time is 0s
+java.lang.NoClassDefFoundError: org/apache/lucene/store/Directory
+        at java.lang.Class.forName0(Native Method)
+        at java.lang.Class.forName(Class.java:247)
+        at org.apache.hadoop.conf.Configuration.getClassByName(Configuration.java:581)
+        at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:599)
+        at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:625)
+        at org.apache.hadoop.contrib.index.mapred.IndexUpdateConfiguration.getIndexUpdaterClass(IndexUpdateConfiguration.java:145)
+        at org.apache.hadoop.contrib.index.main.UpdateIndex.main(UpdateIndex.java:257)
+        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+        at java.lang.reflect.Method.invoke(Method.java:597)
+        at org.apache.hadoop.util.RunJar.main(RunJar.java:155)
+        at org.apache.hadoop.mapred.JobShell.run(JobShell.java:194)
+        at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:65)
+        at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:79)
+        at org.apache.hadoop.mapred.JobShell.main(JobShell.java:220)
+Caused by: java.lang.ClassNotFoundException: org.apache.lucene.store.Directory
+        at java.net.URLClassLoader$1.run(URLClassLoader.java:200)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at java.net.URLClassLoader.findClass(URLClassLoader.java:188)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+        at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:319)
+        ... 16 more
+
+-----------------------------------------------------------------------------------------------------------------
+
+2008-10-10 
+
+
+
+chenlbspace 
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Re: How to make LZO work?</title>
+<author><name>Arun C Murthy &lt;acm@yahoo-inc.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3cD337C613-A64D-4D19-8A6E-034C2692DAA0@yahoo-inc.com%3e"/>
+<id>urn:uuid:%3cD337C613-A64D-4D19-8A6E-034C2692DAA0@yahoo-inc-com%3e</id>
+<updated>2008-10-10T08:05:30Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+
+On Oct 10, 2008, at 12:51 AM, Songting Chen wrote:
+
+&gt; Thanks Arun.
+&gt;
+&gt; Still sort of confused.
+&gt;
+&gt; If I don't need to rebuild the library, after lzo is installed, it's  
+&gt; still not working.
+&gt;
+
+Could you please elaborate? What is the error/exception?
+
+Arun
+
+&gt; My code: 		
+&gt;
+&gt; writer = SequenceFile.createWriter(fileSys, jobConf,
+&gt; 		file, LongWritable.class, BytesWritable.class,
+&gt;   		SequenceFile.CompressionType.BLOCK, new LzoCodec());
+&gt;
+&gt; Rebuilding the library gave some weird error too.
+&gt;
+&gt;
+&gt; --- On Fri, 10/10/08, Arun C Murthy &lt;acm@yahoo-inc.com&gt; wrote:
+&gt;
+&gt;&gt; From: Arun C Murthy &lt;acm@yahoo-inc.com&gt;
+&gt;&gt; Subject: Re: How to make LZO work?
+&gt;&gt; To: core-user@hadoop.apache.org
+&gt;&gt; Date: Friday, October 10, 2008, 12:40 AM
+&gt;&gt; On Oct 9, 2008, at 6:46 PM, Songting Chen wrote:
+&gt;&gt;
+&gt;&gt;&gt; Thanks, Arun.
+&gt;&gt;&gt;
+&gt;&gt;&gt; Does that mean I have to rebuild the native library?
+&gt;&gt;&gt;
+&gt;&gt;
+&gt;&gt; No, hadoop releases come bundled with pre-built 32/64 bit
+&gt;&gt; libhadoop.so
+&gt;&gt; for Linux...
+&gt;&gt;
+&gt;&gt; Arun
+&gt;&gt;
+&gt;&gt;&gt; Also, the LZO installation puts liblzo2.a and
+&gt;&gt; liblzo2.la under /usr/
+&gt;&gt;&gt; local/lib. There is no liblzo2.so there. Do I need to
+&gt;&gt; rename them to
+&gt;&gt;&gt; liblzo2.so somehow?
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt; --- On Thu, 10/9/08, Arun C Murthy
+&gt;&gt; &lt;acm@yahoo-inc.com&gt; wrote:
+&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; From: Arun C Murthy &lt;acm@yahoo-inc.com&gt;
+&gt;&gt;&gt;&gt; Subject: Re: How to make LZO work?
+&gt;&gt;&gt;&gt; To: core-user@hadoop.apache.org
+&gt;&gt;&gt;&gt; Date: Thursday, October 9, 2008, 6:35 PM
+&gt;&gt;&gt;&gt; On Oct 9, 2008, at 5:58 PM, Songting Chen wrote:
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; Hi,
+&gt;&gt;&gt;&gt;&gt; I have installed lzo-2.03 to my Linux box.
+&gt;&gt;&gt;&gt;&gt; But still my code for writing a SequenceFile
+&gt;&gt; using
+&gt;&gt;&gt;&gt; LZOcodec returns
+&gt;&gt;&gt;&gt;&gt; the following error:
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; util.NativeCodeLoader: Loaded the
+&gt;&gt; native-hadoop
+&gt;&gt;&gt;&gt; library
+&gt;&gt;&gt;&gt;&gt; java.lang.UnsatisfiedLinkError: Cannot load
+&gt;&gt;&gt;&gt; liblzo2.so!
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; What needs to be done to make this work?
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;
+&gt;&gt; http://hadoop.apache.org/core/docs/current/native_libraries.html
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; Arun
+
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Gets a number of reduce_output_records</title>
+<author><name>&quot;Edward J. Yoon&quot; &lt;edwardyoon@apache.org&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3ceb4706e0810100052i4e2fd9eaua603415d066d29d4@mail.gmail.com%3e"/>
+<id>urn:uuid:%3ceb4706e0810100052i4e2fd9eaua603415d066d29d4@mail-gmail-com%3e</id>
+<updated>2008-10-10T07:52:10Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+Hi,
+
+To get a number of reduce_output_records, I was write code as:
+
+    long rows = rJob.getCounters().findCounter(
+        "org.apache.hadoop.mapred.Task$Counter", 8, "REDUCE_OUTPUT_RECORDS")
+        .getCounter();
+
+I want to know other method to get it since findCounter(String group,
+int id, String name) is deprecated.
+
+-- 
+Best regards, Edward J. Yoon
+edwardyoon@apache.org
+http://blog.udanax.org
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Re: How to make LZO work?</title>
+<author><name>Arun C Murthy &lt;acm@yahoo-inc.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3cC5E709E3-82B0-42B1-A901-09B71FA899A4@yahoo-inc.com%3e"/>
+<id>urn:uuid:%3cC5E709E3-82B0-42B1-A901-09B71FA899A4@yahoo-inc-com%3e</id>
+<updated>2008-10-10T07:40:18Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+
+On Oct 9, 2008, at 6:46 PM, Songting Chen wrote:
+
+&gt; Thanks, Arun.
+&gt;
+&gt; Does that mean I have to rebuild the native library?
+&gt;
+
+No, hadoop releases come bundled with pre-built 32/64 bit libhadoop.so  
+for Linux...
+
+Arun
+
+&gt; Also, the LZO installation puts liblzo2.a and liblzo2.la under /usr/ 
+&gt; local/lib. There is no liblzo2.so there. Do I need to rename them to  
+&gt; liblzo2.so somehow?
+&gt;
+&gt;
+&gt; --- On Thu, 10/9/08, Arun C Murthy &lt;acm@yahoo-inc.com&gt; wrote:
+&gt;
+&gt;&gt; From: Arun C Murthy &lt;acm@yahoo-inc.com&gt;
+&gt;&gt; Subject: Re: How to make LZO work?
+&gt;&gt; To: core-user@hadoop.apache.org
+&gt;&gt; Date: Thursday, October 9, 2008, 6:35 PM
+&gt;&gt; On Oct 9, 2008, at 5:58 PM, Songting Chen wrote:
+&gt;&gt;
+&gt;&gt;&gt; Hi,
+&gt;&gt;&gt; I have installed lzo-2.03 to my Linux box.
+&gt;&gt;&gt; But still my code for writing a SequenceFile using
+&gt;&gt; LZOcodec returns
+&gt;&gt;&gt; the following error:
+&gt;&gt;&gt;
+&gt;&gt;&gt; util.NativeCodeLoader: Loaded the native-hadoop
+&gt;&gt; library
+&gt;&gt;&gt; java.lang.UnsatisfiedLinkError: Cannot load
+&gt;&gt; liblzo2.so!
+&gt;&gt;&gt;
+&gt;&gt;&gt; What needs to be done to make this work?
+&gt;&gt;&gt;
+&gt;&gt;
+&gt;&gt; http://hadoop.apache.org/core/docs/current/native_libraries.html
+&gt;&gt;
+&gt;&gt; Arun
+
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>RE: LZO and native hadoop libraries</title>
+<author><name>Songting Chen &lt;ken_cst1998@yahoo.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c368592.95749.qm@web81802.mail.mud.yahoo.com%3e"/>
+<id>urn:uuid:%3c368592-95749-qm@web81802-mail-mud-yahoo-com%3e</id>
+<updated>2008-10-10T07:32:08Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+It seems that I encountered a similar problem:
+
+Zlib , lzo installed.
+
+Running ant -Dcompile.native=true gave the following error.
+
+     [exec] /server/hadoop-0.18.1/src/native/src/org/apache/hadoop/io/compress/lzo/LzoCompressor.c:
+In function 'Java_org_apache_hadoop_io_compress_lzo_LzoCompressor_initIDs':
+     [exec] /server/hadoop-0.18.1/src/native/src/org/apache/hadoop/io/compress/lzo/LzoCompressor.c:135:
+error: expected expression before ',' token
+
+* I updated build/native/&lt;platform&gt;/config.h 's HADOOP_LZO_LIBRARY to "liblzo2.so"
+* However, I don‚Äôt know how to "hardcode" liblzo2.so ...
+
+Thanks
+-Songting
+
+-----Original Message-----
+From: Arun C Murthy [mailto:acm@yahoo-inc.com] 
+Sent: Wednesday, October 01, 2008 1:35 PM
+To: core-user@hadoop.apache.org
+Subject: Re: LZO and native hadoop libraries
+
+
+On Oct 1, 2008, at 12:54 PM, Nathan Marz wrote:
+
+&gt; Yes, this is exactly what I'm seeing. To be honest, I don't know  
+&gt; which LZO native library it should be looking for. The LZO install  
+&gt; dropped "liblzo2.la" and "liblzo2.a" in my /usr/local/lib directory,  
+&gt; but not a file with a ".so" extension. Hardcoding would be fine as a  
+&gt; temporary solution, but I don't know what to hardcode.
+&gt;
+
+You do need liblzo2.so for this to work.
+
+The hardcoded value has to be liblzo2.so too ...
+
+Arun
+
+&gt; Thanks,
+&gt; Nathan
+&gt;
+&gt;
+&gt; On Sep 30, 2008, at 8:45 PM, Amareshwari Sriramadasu wrote:
+&gt;
+&gt;&gt; Are you seeing HADOOP-2009?
+&gt;&gt;
+&gt;&gt; Thanks
+&gt;&gt; Amareshwari
+&gt;&gt; Nathan Marz wrote:
+&gt;&gt;&gt; Unfortunately, setting those environment variables did not help my  
+&gt;&gt;&gt; issue. It appears that the "HADOOP_LZO_LIBRARY" variable is not  
+&gt;&gt;&gt; defined in both LzoCompressor.c and LzoDecompressor.c. Where is  
+&gt;&gt;&gt; this variable supposed to be set?
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt; On Sep 30, 2008, at 12:33 PM, Colin Evans wrote:
+&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; Hi Nathan,
+&gt;&gt;&gt;&gt; You probably need to add the Java headers to your build path as  
+&gt;&gt;&gt;&gt; well - I don't know why the Mac doesn't ship with this as a  
+&gt;&gt;&gt;&gt; default setting:
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; export CPATH="/System/Library/Frameworks/JavaVM.framework/ 
+&gt;&gt;&gt;&gt; Versions/CurrentJDK/Home/include "
+&gt;&gt;&gt;&gt; export CPPFLAGS="-I/System/Library/Frameworks/JavaVM.framework/ 
+&gt;&gt;&gt;&gt; Versions/CurrentJDK/Home/include"
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; Nathan Marz wrote:
+&gt;&gt;&gt;&gt;&gt; Thanks for the help. I was able to get past my previous issue,  
+&gt;&gt;&gt;&gt;&gt; but the native build is still failing. Here is the end of the  
+&gt;&gt;&gt;&gt;&gt; log output:
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;   [exec]     then mv -f ".deps/LzoCompressor.Tpo" ".deps/ 
+&gt;&gt;&gt;&gt;&gt; LzoCompressor.Plo"; else rm -f ".deps/LzoCompressor.Tpo"; exit  
+&gt;&gt;&gt;&gt;&gt; 1; fi
+&gt;&gt;&gt;&gt;&gt;   [exec] mkdir .libs
+&gt;&gt;&gt;&gt;&gt;   [exec]  gcc -DHAVE_CONFIG_H -I. -I/Users/nathan/Downloads/ 
+&gt;&gt;&gt;&gt;&gt; hadoop-0.18.1/src/native/src/org/apache/hadoop/io/compress/lzo - 
+&gt;&gt;&gt;&gt;&gt; I../../../../../../.. -I/Library/Java/Home//include -I/Users/ 
+&gt;&gt;&gt;&gt;&gt; nathan/Downloads/hadoop-0.18.1/src/native/src -g -Wall -fPIC -O2  
+&gt;&gt;&gt;&gt;&gt; -m32 -g -O2 -MT LzoCompressor.lo -MD -MP -MF .deps/ 
+&gt;&gt;&gt;&gt;&gt; LzoCompressor.Tpo -c /Users/nathan/Downloads/hadoop-0.18.1/src/ 
+&gt;&gt;&gt;&gt;&gt; native/src/org/apache/hadoop/io/compress/lzo/LzoCompressor.c  - 
+&gt;&gt;&gt;&gt;&gt; fno-common -DPIC -o .libs/LzoCompressor.o
+&gt;&gt;&gt;&gt;&gt;   [exec] /Users/nathan/Downloads/hadoop-0.18.1/src/native/src/ 
+&gt;&gt;&gt;&gt;&gt; org/apache/hadoop/io/compress/lzo/LzoCompressor.c: In function  
+&gt;&gt;&gt;&gt;&gt; 'Java_org_apache_hadoop_io_compress_lzo_LzoCompressor_initIDs':
+&gt;&gt;&gt;&gt;&gt;   [exec] /Users/nathan/Downloads/hadoop-0.18.1/src/native/src/ 
+&gt;&gt;&gt;&gt;&gt; org/apache/hadoop/io/compress/lzo/LzoCompressor.c:135: error:  
+&gt;&gt;&gt;&gt;&gt; syntax error before ',' token
+&gt;&gt;&gt;&gt;&gt;   [exec] make[2]: *** [LzoCompressor.lo] Error 1
+&gt;&gt;&gt;&gt;&gt;   [exec] make[1]: *** [all-recursive] Error 1
+&gt;&gt;&gt;&gt;&gt;   [exec] make: *** [all] Error 2
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; Any ideas?
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; On Sep 30, 2008, at 11:53 AM, Colin Evans wrote:
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt; There's a patch to get the native targets to build on Mac OS X:
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt; http://issues.apache.org/jira/browse/HADOOP-3659
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt; You probably will need to monkey with LDFLAGS as well to get it 
+
+&gt;&gt;&gt;&gt;&gt;&gt; to work, but we've been able to build the native libs for the  
+&gt;&gt;&gt;&gt;&gt;&gt; Mac without too much trouble.
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt; Doug Cutting wrote:
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Arun C Murthy wrote:
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; You need to add libhadoop.so to your java.library.patch.
+ 
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; libhadoop.so is available in the corresponding release in
+the  
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; lib/native directory.
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; I think he needs to first build libhadoop.so, since he appears
+ 
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; to be running on OS X and we only provide Linux builds of this
+ 
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; in releases.
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Doug
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;
+&gt;
+
+
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>RE: HDFS error</title>
+<author><name>&quot;Htin Hlaing&quot; &lt;hhlaing@attributor.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c001d01c92aa4$74818c20$5d84a460$@com%3e"/>
+<id>urn:uuid:%3c001d01c92aa4$74818c20$5d84a460$@com%3e</id>
+<updated>2008-10-10T06:50:48Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+Thanks for you help Samuel.  I was having problem in both writing and
+reading.  Did run the fsck and removed some damaged files and restarted
+the dfs.  Seems to be OK now.  Not exactly sure what happened though.
+
+Thanks,
+Htin
+
+-----Original Message-----
+From: Samuel Guo [mailto:guosijie@gmail.com] 
+Sent: Thursday, October 09, 2008 6:15 PM
+To: core-user@hadoop.apache.org
+Subject: Re: HDFS error
+
+Does this happen when you want to write some files to HDFS?
+if it is so, plz check that you have enough space in the disks of your
+datanode.
+
+if this happened when you want to read some files in HDFS, maybe you can
+run
+fsck to check if the file is healthy.
+
+hope it will be helpful.
+
+On Fri, Oct 10, 2008 at 8:21 AM, Htin Hlaing &lt;hhlaing@attributor.com&gt;
+wrote:
+
+&gt; Hello -  I am experiencing the following HDFS problem across the
+clusters
+&gt; sharing the DFS.  It's not specific to this particular data node ip
+&gt; address but the exception is across all other data nodes as well.  Any
+&gt; help is appreciated.
+&gt;
+&gt; 2008-10-09 14:13:59,732 INFO org.apache.hadoop.fs.DFSClient: Exception
+in
+&gt; createBlockOutputStream java.io.IOException: Bad connect ack with
+&gt; firstBadLink 10.50.80.108:50010
+&gt; 2008-10-09 14:13:59,732 INFO org.apache.hadoop.fs.DFSClient: Abandoning
+&gt; block blk_2383100013215057496
+&gt; 2008-10-09 14:13:59,732 INFO org.apache.hadoop.fs.DFSClient: Waiting to
+&gt; find target node: 10.50.80.112:50010
+&gt; 2008-10-09 14:14:16,604 INFO org.apache.hadoop.fs.DFSClient: Could not
+&gt; obtain block blk_3359685166656187008 from any node:
+java.io.IOException:
+&gt; No live nodes contain current block
+&gt; 2008-10-09 14:14:54,370 INFO org.apache.hadoop.fs.DFSClient: Could not
+&gt; obtain block blk_-4901580690304720524 from any node:
+java.io.IOException:
+&gt; No live nodes contain current block
+&gt; 2008-10-09 14:17:19,619 INFO org.apache.hadoop.fs.DFSClient: Could not
+&gt; obtain block blk_3359685166656187008 from any node:
+java.io.IOException:
+&gt; No live nodes contain current block
+&gt; 2008-10-09 14:17:57,385 INFO org.apache.hadoop.fs.DFSClient: Could not
+&gt; obtain block blk_-4901580690304720524 from any node:
+java.io.IOException:
+&gt; No live nodes contain current block
+&gt; 2008-10-09 14:20:25,634 INFO org.apache.hadoop.fs.DFSClient: Could not
+&gt; obtain block blk_3359685166656187008 from any node:
+java.io.IOException:
+&gt; No live nodes contain current block
+&gt; 2008-10-09 14:21:09,401 INFO org.apache.hadoop.fs.DFSClient: Could not
+&gt; obtain block blk_-4901580690304720524 from any node:
+java.io.IOException:
+&gt; No live nodes contain current block
+&gt; 2008-10-09 14:23:28,649 INFO org.apache.hadoop.fs.DFSClient: Could not
+&gt; obtain block blk_3359685166656187008 from any node:
+java.io.IOException:
+&gt; No live nodes contain current block
+&gt;
+&gt; Is there a knowledge base that I can search in the old posts to the
+&gt; mailing list?
+&gt;
+&gt; Thanks,
+&gt; Htin
+&gt;
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>save mp3 file Using Hadoop</title>
+<author><name>&quot;yu ping322&quot; &lt;yuping322@gmail.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c2a8ba4160810092208h21c045fajc08591ac068fc66c@mail.gmail.com%3e"/>
+<id>urn:uuid:%3c2a8ba4160810092208h21c045fajc08591ac068fc66c@mail-gmail-com%3e</id>
+<updated>2008-10-10T05:08:12Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+i am a beginner,i want to save a lot of Mp3 files into Hadoop and
+using Tomcat to service this files.
+1.i want to using org.apache.hadoop.io.MapFile, key is mp3  name's
+MD5,value is Mp3 stream data. mp3 's filesize is nearly 3M. i split
+20G per one MapFile.There are 30~50 MapFile.
+2. i put these MapFile into  x linux server.
+3. my user send Mp3' name request to Tomcat ,Tomcat using Mp3 name 's
+MD5 to find Mp3 file in one linux server .
+
+question:
+1&gt; is it right way to use hadoop?
+
+2&gt; if 20 user access one linux server in one time,maybe 20 Mp3 files
+load in memory,20* 3M memory is being eat? is it right? how to solve
+this problem ?
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Re: How to make LZO work?</title>
+<author><name>Songting Chen &lt;ken_cst1998@yahoo.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c59010.47716.qm@web81807.mail.mud.yahoo.com%3e"/>
+<id>urn:uuid:%3c59010-47716-qm@web81807-mail-mud-yahoo-com%3e</id>
+<updated>2008-10-10T01:46:39Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+Thanks, Arun.
+
+Does that mean I have to rebuild the native library?
+
+Also, the LZO installation puts liblzo2.a and liblzo2.la under /usr/local/lib. There is no
+liblzo2.so there. Do I need to rename them to liblzo2.so somehow?
+
+
+--- On Thu, 10/9/08, Arun C Murthy &lt;acm@yahoo-inc.com&gt; wrote:
+
+&gt; From: Arun C Murthy &lt;acm@yahoo-inc.com&gt;
+&gt; Subject: Re: How to make LZO work?
+&gt; To: core-user@hadoop.apache.org
+&gt; Date: Thursday, October 9, 2008, 6:35 PM
+&gt; On Oct 9, 2008, at 5:58 PM, Songting Chen wrote:
+&gt; 
+&gt; &gt; Hi,
+&gt; &gt;  I have installed lzo-2.03 to my Linux box.
+&gt; &gt;  But still my code for writing a SequenceFile using
+&gt; LZOcodec returns  
+&gt; &gt; the following error:
+&gt; &gt;
+&gt; &gt;  util.NativeCodeLoader: Loaded the native-hadoop
+&gt; library
+&gt; &gt;  java.lang.UnsatisfiedLinkError: Cannot load
+&gt; liblzo2.so!
+&gt; &gt;
+&gt; &gt;  What needs to be done to make this work?
+&gt; &gt;
+&gt; 
+&gt; http://hadoop.apache.org/core/docs/current/native_libraries.html
+&gt; 
+&gt; Arun
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Re: How to make LZO work?</title>
+<author><name>Arun C Murthy &lt;acm@yahoo-inc.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c9E38258E-81D9-48BC-A530-422659CD511F@yahoo-inc.com%3e"/>
+<id>urn:uuid:%3c9E38258E-81D9-48BC-A530-422659CD511F@yahoo-inc-com%3e</id>
+<updated>2008-10-10T01:35:25Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+
+On Oct 9, 2008, at 5:58 PM, Songting Chen wrote:
+
+&gt; Hi,
+&gt;  I have installed lzo-2.03 to my Linux box.
+&gt;  But still my code for writing a SequenceFile using LZOcodec returns  
+&gt; the following error:
+&gt;
+&gt;  util.NativeCodeLoader: Loaded the native-hadoop library
+&gt;  java.lang.UnsatisfiedLinkError: Cannot load liblzo2.so!
+&gt;
+&gt;  What needs to be done to make this work?
+&gt;
+
+http://hadoop.apache.org/core/docs/current/native_libraries.html
+
+Arun
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Re: HDFS error</title>
+<author><name>&quot;Samuel Guo&quot; &lt;guosijie@gmail.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c25aacb800810091815k1b1fd8fchc7f4a919c4c18155@mail.gmail.com%3e"/>
+<id>urn:uuid:%3c25aacb800810091815k1b1fd8fchc7f4a919c4c18155@mail-gmail-com%3e</id>
+<updated>2008-10-10T01:15:00Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+Does this happen when you want to write some files to HDFS?
+if it is so, plz check that you have enough space in the disks of your
+datanode.
+
+if this happened when you want to read some files in HDFS, maybe you can run
+fsck to check if the file is healthy.
+
+hope it will be helpful.
+
+On Fri, Oct 10, 2008 at 8:21 AM, Htin Hlaing &lt;hhlaing@attributor.com&gt; wrote:
+
+&gt; Hello -  I am experiencing the following HDFS problem across the clusters
+&gt; sharing the DFS.  It's not specific to this particular data node ip
+&gt; address but the exception is across all other data nodes as well.  Any
+&gt; help is appreciated.
+&gt;
+&gt; 2008-10-09 14:13:59,732 INFO org.apache.hadoop.fs.DFSClient: Exception in
+&gt; createBlockOutputStream java.io.IOException: Bad connect ack with
+&gt; firstBadLink 10.50.80.108:50010
+&gt; 2008-10-09 14:13:59,732 INFO org.apache.hadoop.fs.DFSClient: Abandoning
+&gt; block blk_2383100013215057496
+&gt; 2008-10-09 14:13:59,732 INFO org.apache.hadoop.fs.DFSClient: Waiting to
+&gt; find target node: 10.50.80.112:50010
+&gt; 2008-10-09 14:14:16,604 INFO org.apache.hadoop.fs.DFSClient: Could not
+&gt; obtain block blk_3359685166656187008 from any node:  java.io.IOException:
+&gt; No live nodes contain current block
+&gt; 2008-10-09 14:14:54,370 INFO org.apache.hadoop.fs.DFSClient: Could not
+&gt; obtain block blk_-4901580690304720524 from any node:  java.io.IOException:
+&gt; No live nodes contain current block
+&gt; 2008-10-09 14:17:19,619 INFO org.apache.hadoop.fs.DFSClient: Could not
+&gt; obtain block blk_3359685166656187008 from any node:  java.io.IOException:
+&gt; No live nodes contain current block
+&gt; 2008-10-09 14:17:57,385 INFO org.apache.hadoop.fs.DFSClient: Could not
+&gt; obtain block blk_-4901580690304720524 from any node:  java.io.IOException:
+&gt; No live nodes contain current block
+&gt; 2008-10-09 14:20:25,634 INFO org.apache.hadoop.fs.DFSClient: Could not
+&gt; obtain block blk_3359685166656187008 from any node:  java.io.IOException:
+&gt; No live nodes contain current block
+&gt; 2008-10-09 14:21:09,401 INFO org.apache.hadoop.fs.DFSClient: Could not
+&gt; obtain block blk_-4901580690304720524 from any node:  java.io.IOException:
+&gt; No live nodes contain current block
+&gt; 2008-10-09 14:23:28,649 INFO org.apache.hadoop.fs.DFSClient: Could not
+&gt; obtain block blk_3359685166656187008 from any node:  java.io.IOException:
+&gt; No live nodes contain current block
+&gt;
+&gt; Is there a knowledge base that I can search in the old posts to the
+&gt; mailing list?
+&gt;
+&gt; Thanks,
+&gt; Htin
+&gt;
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>How to make LZO work?</title>
+<author><name>Songting Chen &lt;ken_cst1998@yahoo.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c610692.96012.qm@web81803.mail.mud.yahoo.com%3e"/>
+<id>urn:uuid:%3c610692-96012-qm@web81803-mail-mud-yahoo-com%3e</id>
+<updated>2008-10-10T00:58:37Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+Hi,
+  I have installed lzo-2.03 to my Linux box.
+  But still my code for writing a SequenceFile using LZOcodec returns the following error:
+
+  util.NativeCodeLoader: Loaded the native-hadoop library
+  java.lang.UnsatisfiedLinkError: Cannot load liblzo2.so!
+
+  What needs to be done to make this work?
+
+Thanks a lot,
+-Songting
+
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Re: HDFS error</title>
+<author><name>&quot;=?UTF-8?B?5Y+25Y+M5piO?=&quot; &lt;yeshuangming@gmail.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c9233ccac0810091728t308404ferde34ff336ebc3589@mail.gmail.com%3e"/>
+<id>urn:uuid:%3c9233ccac0810091728t308404ferde34ff336ebc3589@mail-gmail-com%3e</id>
+<updated>2008-10-10T00:28:03Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+No live nodes contain current block
+
+It seem that you want to access a Block which isn't exist in the cluster.
+
+2008/10/10 Htin Hlaing &lt;hhlaing@attributor.com&gt;
+
+&gt; Hello -  I am experiencing the following HDFS problem across the clusters
+&gt; sharing the DFS.  It's not specific to this particular data node ip
+&gt; address but the exception is across all other data nodes as well.  Any
+&gt; help is appreciated.
+&gt;
+&gt; 2008-10-09 14:13:59,732 INFO org.apache.hadoop.fs.DFSClient: Exception in
+&gt; createBlockOutputStream java.io.IOException: Bad connect ack with
+&gt; firstBadLink 10.50.80.108:50010
+&gt; 2008-10-09 14:13:59,732 INFO org.apache.hadoop.fs.DFSClient: Abandoning
+&gt; block blk_2383100013215057496
+&gt; 2008-10-09 14:13:59,732 INFO org.apache.hadoop.fs.DFSClient: Waiting to
+&gt; find target node: 10.50.80.112:50010
+&gt; 2008-10-09 14:14:16,604 INFO org.apache.hadoop.fs.DFSClient: Could not
+&gt; obtain block blk_3359685166656187008 from any node:  java.io.IOException:
+&gt; No live nodes contain current block
+&gt; 2008-10-09 14:14:54,370 INFO org.apache.hadoop.fs.DFSClient: Could not
+&gt; obtain block blk_-4901580690304720524 from any node:  java.io.IOException:
+&gt; No live nodes contain current block
+&gt; 2008-10-09 14:17:19,619 INFO org.apache.hadoop.fs.DFSClient: Could not
+&gt; obtain block blk_3359685166656187008 from any node:  java.io.IOException:
+&gt; No live nodes contain current block
+&gt; 2008-10-09 14:17:57,385 INFO org.apache.hadoop.fs.DFSClient: Could not
+&gt; obtain block blk_-4901580690304720524 from any node:  java.io.IOException:
+&gt; No live nodes contain current block
+&gt; 2008-10-09 14:20:25,634 INFO org.apache.hadoop.fs.DFSClient: Could not
+&gt; obtain block blk_3359685166656187008 from any node:  java.io.IOException:
+&gt; No live nodes contain current block
+&gt; 2008-10-09 14:21:09,401 INFO org.apache.hadoop.fs.DFSClient: Could not
+&gt; obtain block blk_-4901580690304720524 from any node:  java.io.IOException:
+&gt; No live nodes contain current block
+&gt; 2008-10-09 14:23:28,649 INFO org.apache.hadoop.fs.DFSClient: Could not
+&gt; obtain block blk_3359685166656187008 from any node:  java.io.IOException:
+&gt; No live nodes contain current block
+&gt;
+&gt; Is there a knowledge base that I can search in the old posts to the
+&gt; mailing list?
+&gt;
+&gt; Thanks,
+&gt; Htin
+&gt;
+
+
+
+-- 
+Sorry for my English!! Êòé
+Please help me correct my English expression and error in syntax
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>HDFS error</title>
+<author><name>&quot;Htin Hlaing&quot; &lt;hhlaing@attributor.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c004401c92a6e$1b972830$52c57890$@com%3e"/>
+<id>urn:uuid:%3c004401c92a6e$1b972830$52c57890$@com%3e</id>
+<updated>2008-10-10T00:21:45Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+Hello -  I am experiencing the following HDFS problem across the clusters
+sharing the DFS.  It's not specific to this particular data node ip
+address but the exception is across all other data nodes as well.  Any
+help is appreciated.
+
+2008-10-09 14:13:59,732 INFO org.apache.hadoop.fs.DFSClient: Exception in
+createBlockOutputStream java.io.IOException: Bad connect ack with
+firstBadLink 10.50.80.108:50010
+2008-10-09 14:13:59,732 INFO org.apache.hadoop.fs.DFSClient: Abandoning
+block blk_2383100013215057496
+2008-10-09 14:13:59,732 INFO org.apache.hadoop.fs.DFSClient: Waiting to
+find target node: 10.50.80.112:50010
+2008-10-09 14:14:16,604 INFO org.apache.hadoop.fs.DFSClient: Could not
+obtain block blk_3359685166656187008 from any node:  java.io.IOException:
+No live nodes contain current block
+2008-10-09 14:14:54,370 INFO org.apache.hadoop.fs.DFSClient: Could not
+obtain block blk_-4901580690304720524 from any node:  java.io.IOException:
+No live nodes contain current block
+2008-10-09 14:17:19,619 INFO org.apache.hadoop.fs.DFSClient: Could not
+obtain block blk_3359685166656187008 from any node:  java.io.IOException:
+No live nodes contain current block
+2008-10-09 14:17:57,385 INFO org.apache.hadoop.fs.DFSClient: Could not
+obtain block blk_-4901580690304720524 from any node:  java.io.IOException:
+No live nodes contain current block
+2008-10-09 14:20:25,634 INFO org.apache.hadoop.fs.DFSClient: Could not
+obtain block blk_3359685166656187008 from any node:  java.io.IOException:
+No live nodes contain current block
+2008-10-09 14:21:09,401 INFO org.apache.hadoop.fs.DFSClient: Could not
+obtain block blk_-4901580690304720524 from any node:  java.io.IOException:
+No live nodes contain current block
+2008-10-09 14:23:28,649 INFO org.apache.hadoop.fs.DFSClient: Could not
+obtain block blk_3359685166656187008 from any node:  java.io.IOException:
+No live nodes contain current block 
+
+Is there a knowledge base that I can search in the old posts to the
+mailing list?
+
+Thanks,
+Htin
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Hadoop User Group (Bay Area) Oct 15th</title>
+<author><name>&quot;Ajay Anand&quot; &lt;aanand@yahoo-inc.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3cDD27C9769EA63D43BE3CF4CCCC12DD9701AA84EB@SNV-EXVS02.ds.corp.yahoo.com%3e"/>
+<id>urn:uuid:%3cDD27C9769EA63D43BE3CF4CCCC12DD9701AA84EB@SNV-EXVS02-ds-corp-yahoo-com%3e</id>
+<updated>2008-10-09T18:35:56Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+The next Bay Area User Group meeting is scheduled for October 15th at
+Yahoo! 2821 Mission College Blvd, Santa Clara, Building 1, Training
+Rooms 3 &amp; 4 from 6:00-7:30 pm.
+
+Agenda:
+- Exploiting database join techniques for analytics with Hadoop: Jun
+Rao, IBM
+- Jaql Update: Kevin Beyer, IBM
+- Experiences moving a Petabyte Data Center: Sriram Rao, Quantcast
+
+Look forward to seeing you there!
+Ajay
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Keep jobcache files around</title>
+<author><name>Saptarshi Guha &lt;saptarshi.guha@gmail.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3cD3E24AAA-93D0-40DA-870E-98B6040B4DCF@gmail.com%3e"/>
+<id>urn:uuid:%3cD3E24AAA-93D0-40DA-870E-98B6040B4DCF@gmail-com%3e</id>
+<updated>2008-10-09T18:35:53Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+Hello,
+I wish to keep my jobcache files after the run. I'm using a program  
+which can't read from STDIN (i'm hadoop streaming)
+so i've written a python wrapper to create a file and pass the file to  
+the program.
+However, though the python file runs (and maybe the program) i'm not  
+getting the desired results.
+Nothing fails, and even though I've kept keep.failed.tasks=true
+(-jobconf mapred.reduce.tasks=0 -jobconf keep.failed.tasks.files=1 in  
+the streaming command line)
+nothing is preserved i.e the jobcache folders(no  
+attempt_200810091420_0004_m_000003_3*** folders) are deletecd from the  
+task nodes.
+
+How can I keep them, even when nothing fails?
+Regards
+Saptarshi
+
+
+
+Saptarshi Guha | saptarshi.guha@gmail.com | http://www.stat.purdue.edu/~sguha
+
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Re: Cannot run program &quot;bash&quot;: java.io.IOException: error=12, Cannot allocate memory</title>
+<author><name>&quot;Edward J. Yoon&quot; &lt;edwardyoon@apache.org&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3ceb4706e0810090207g2762916aq1a5d3ea1ea8d8bb@mail.gmail.com%3e"/>
+<id>urn:uuid:%3ceb4706e0810090207g2762916aq1a5d3ea1ea8d8bb@mail-gmail-com%3e</id>
+<updated>2008-10-09T09:07:28Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+Thanks Alexander!!
+
+On Thu, Oct 9, 2008 at 4:49 PM, Alexander Aristov
+&lt;alexander.aristov@gmail.com&gt; wrote:
+&gt; I received such errors when I overloaded data nodes. You may increase swap
+&gt; space or run less tasks.
+&gt;
+&gt; Alexander
+&gt;
+&gt; 2008/10/9 Edward J. Yoon &lt;edwardyoon@apache.org&gt;
+&gt;
+&gt;&gt; Hi,
+&gt;&gt;
+&gt;&gt; I received below message. Can anyone explain this?
+&gt;&gt;
+&gt;&gt; 08/10/09 11:53:33 INFO mapred.JobClient: Task Id :
+&gt;&gt; task_200810081842_0004_m_000000_0, Status : FAILED
+&gt;&gt; java.io.IOException: Cannot run program "bash": java.io.IOException:
+&gt;&gt; error=12, Cannot allocate memory
+&gt;&gt;        at java.lang.ProcessBuilder.start(ProcessBuilder.java:459)
+&gt;&gt;        at org.apache.hadoop.util.Shell.runCommand(Shell.java:149)
+&gt;&gt;        at org.apache.hadoop.util.Shell.run(Shell.java:134)
+&gt;&gt;        at org.apache.hadoop.fs.DF.getAvailable(DF.java:73)
+&gt;&gt;        at
+&gt;&gt; org.apache.hadoop.fs.LocalDirAllocator$AllocatorPerContext.getLocalPathForWrite(LocalDirAllocator.java:296)
+&gt;&gt;        at
+&gt;&gt; org.apache.hadoop.fs.LocalDirAllocator.getLocalPathForWrite(LocalDirAllocator.java:124)
+&gt;&gt;        at
+&gt;&gt; org.apache.hadoop.mapred.MapOutputFile.getSpillFileForWrite(MapOutputFile.java:107)
+&gt;&gt;        at
+&gt;&gt; org.apache.hadoop.mapred.MapTask$MapOutputBuffer.sortAndSpill(MapTask.java:734)
+&gt;&gt;        at
+&gt;&gt; org.apache.hadoop.mapred.MapTask$MapOutputBuffer.flush(MapTask.java:694)
+&gt;&gt;        at org.apache.hadoop.mapred.MapTask.run(MapTask.java:220)
+&gt;&gt;        at
+&gt;&gt; org.apache.hadoop.mapred.TaskTracker$Child.main(TaskTracker.java:2124)
+&gt;&gt; Caused by: java.io.IOException: java.io.IOException: error=12, Cannot
+&gt;&gt; allocate memory
+&gt;&gt;        at java.lang.UNIXProcess.&lt;init&gt;(UNIXProcess.java:148)
+&gt;&gt;        at java.lang.ProcessImpl.start(ProcessImpl.java:65)
+&gt;&gt;        at java.lang.ProcessBuilder.start(ProcessBuilder.java:452)
+&gt;&gt;        ... 10 more
+&gt;&gt;
+&gt;&gt; --
+&gt;&gt; Best regards, Edward J. Yoon
+&gt;&gt; edwardyoon@apache.org
+&gt;&gt; http://blog.udanax.org
+&gt;&gt;
+&gt;
+&gt;
+&gt;
+&gt; --
+&gt; Best Regards
+&gt; Alexander Aristov
+&gt;
+
+
+
+-- 
+Best regards, Edward J. Yoon
+edwardyoon@apache.org
+http://blog.udanax.org
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Re: Cannot run program &quot;bash&quot;: java.io.IOException: error=12, Cannot allocate memory</title>
+<author><name>&quot;Alexander Aristov&quot; &lt;alexander.aristov@gmail.com&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c11975c90810090049n33b736b4g789dfb0b702351b8@mail.gmail.com%3e"/>
+<id>urn:uuid:%3c11975c90810090049n33b736b4g789dfb0b702351b8@mail-gmail-com%3e</id>
+<updated>2008-10-09T07:49:22Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+I received such errors when I overloaded data nodes. You may increase swap
+space or run less tasks.
+
+Alexander
+
+2008/10/9 Edward J. Yoon &lt;edwardyoon@apache.org&gt;
+
+&gt; Hi,
+&gt;
+&gt; I received below message. Can anyone explain this?
+&gt;
+&gt; 08/10/09 11:53:33 INFO mapred.JobClient: Task Id :
+&gt; task_200810081842_0004_m_000000_0, Status : FAILED
+&gt; java.io.IOException: Cannot run program "bash": java.io.IOException:
+&gt; error=12, Cannot allocate memory
+&gt;        at java.lang.ProcessBuilder.start(ProcessBuilder.java:459)
+&gt;        at org.apache.hadoop.util.Shell.runCommand(Shell.java:149)
+&gt;        at org.apache.hadoop.util.Shell.run(Shell.java:134)
+&gt;        at org.apache.hadoop.fs.DF.getAvailable(DF.java:73)
+&gt;        at
+&gt; org.apache.hadoop.fs.LocalDirAllocator$AllocatorPerContext.getLocalPathForWrite(LocalDirAllocator.java:296)
+&gt;        at
+&gt; org.apache.hadoop.fs.LocalDirAllocator.getLocalPathForWrite(LocalDirAllocator.java:124)
+&gt;        at
+&gt; org.apache.hadoop.mapred.MapOutputFile.getSpillFileForWrite(MapOutputFile.java:107)
+&gt;        at
+&gt; org.apache.hadoop.mapred.MapTask$MapOutputBuffer.sortAndSpill(MapTask.java:734)
+&gt;        at
+&gt; org.apache.hadoop.mapred.MapTask$MapOutputBuffer.flush(MapTask.java:694)
+&gt;        at org.apache.hadoop.mapred.MapTask.run(MapTask.java:220)
+&gt;        at
+&gt; org.apache.hadoop.mapred.TaskTracker$Child.main(TaskTracker.java:2124)
+&gt; Caused by: java.io.IOException: java.io.IOException: error=12, Cannot
+&gt; allocate memory
+&gt;        at java.lang.UNIXProcess.&lt;init&gt;(UNIXProcess.java:148)
+&gt;        at java.lang.ProcessImpl.start(ProcessImpl.java:65)
+&gt;        at java.lang.ProcessBuilder.start(ProcessBuilder.java:452)
+&gt;        ... 10 more
+&gt;
+&gt; --
+&gt; Best regards, Edward J. Yoon
+&gt; edwardyoon@apache.org
+&gt; http://blog.udanax.org
+&gt;
+
+
+
+-- 
+Best Regards
+Alexander Aristov
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Cannot run program &quot;bash&quot;: java.io.IOException: error=12, Cannot allocate memory</title>
+<author><name>&quot;Edward J. Yoon&quot; &lt;edwardyoon@apache.org&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3ceb4706e0810081959j2bd56846j2680f9ed98da9f04@mail.gmail.com%3e"/>
+<id>urn:uuid:%3ceb4706e0810081959j2bd56846j2680f9ed98da9f04@mail-gmail-com%3e</id>
+<updated>2008-10-09T02:59:55Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+Hi,
+
+I received below message. Can anyone explain this?
+
+08/10/09 11:53:33 INFO mapred.JobClient: Task Id :
+task_200810081842_0004_m_000000_0, Status : FAILED
+java.io.IOException: Cannot run program "bash": java.io.IOException:
+error=12, Cannot allocate memory
+        at java.lang.ProcessBuilder.start(ProcessBuilder.java:459)
+        at org.apache.hadoop.util.Shell.runCommand(Shell.java:149)
+        at org.apache.hadoop.util.Shell.run(Shell.java:134)
+        at org.apache.hadoop.fs.DF.getAvailable(DF.java:73)
+        at org.apache.hadoop.fs.LocalDirAllocator$AllocatorPerContext.getLocalPathForWrite(LocalDirAllocator.java:296)
+        at org.apache.hadoop.fs.LocalDirAllocator.getLocalPathForWrite(LocalDirAllocator.java:124)
+        at org.apache.hadoop.mapred.MapOutputFile.getSpillFileForWrite(MapOutputFile.java:107)
+        at org.apache.hadoop.mapred.MapTask$MapOutputBuffer.sortAndSpill(MapTask.java:734)
+        at org.apache.hadoop.mapred.MapTask$MapOutputBuffer.flush(MapTask.java:694)
+        at org.apache.hadoop.mapred.MapTask.run(MapTask.java:220)
+        at org.apache.hadoop.mapred.TaskTracker$Child.main(TaskTracker.java:2124)
+Caused by: java.io.IOException: java.io.IOException: error=12, Cannot
+allocate memory
+        at java.lang.UNIXProcess.&lt;init&gt;(UNIXProcess.java:148)
+        at java.lang.ProcessImpl.start(ProcessImpl.java:65)
+        at java.lang.ProcessBuilder.start(ProcessBuilder.java:452)
+        ... 10 more
+
+-- 
+Best regards, Edward J. Yoon
+edwardyoon@apache.org
+http://blog.udanax.org
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Re: Official group blog of the hadoop user/dev group?</title>
+<author><name>&quot;Edward J. Yoon&quot; &lt;edwardyoon@apache.org&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3ceb4706e0810081711u36018853ge1c0f6b6c4ab239@mail.gmail.com%3e"/>
+<id>urn:uuid:%3ceb4706e0810081711u36018853ge1c0f6b6c4ab239@mail-gmail-com%3e</id>
+<updated>2008-10-09T00:11:49Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+&gt; Well, not a bad idea I think. But isn't wiki a better tool to catch and
+&gt; shape collective knowledge?
+
+Yes, but I think some stuff (e.g. news-tic information, ) aren't
+publishable on wiki.
+
+On Thu, Oct 9, 2008 at 1:15 AM, Luk√°≈° Vlƒçek &lt;lukas.vlcek@gmail.com&gt; wrote:
+&gt; Hi,
+&gt;
+&gt; Well, not a bad idea I think. But isn't wiki a better tool to catch and
+&gt; shape collective knowledge?
+&gt; Lukas
+&gt;
+&gt; On Wed, Oct 8, 2008 at 5:39 PM, Steve Loughran &lt;stevel@apache.org&gt; wrote:
+&gt;
+&gt;&gt; Edward J. Yoon wrote:
+&gt;&gt;
+&gt;&gt;&gt; If we have a group blog of the hadoop user/dev group such as a Y!
+&gt;&gt;&gt; developer network, we can easily share/introduce our experience and
+&gt;&gt;&gt; outcomes from our research. So, I thought about a group blog, I guess
+&gt;&gt;&gt; there are plenty of contributors.
+&gt;&gt;&gt;
+&gt;&gt;&gt; What do you think about it?
+&gt;&gt;&gt;
+&gt;&gt;
+&gt;&gt; there's the planetapache aggregator; you could join that or set up a
+&gt;&gt; similar 'planet' up to pull in the different feeds of different people
+&gt;&gt;
+&gt;
+&gt;
+&gt;
+&gt; --
+&gt; http://blog.lukas-vlcek.com/
+&gt;
+
+
+
+-- 
+Best regards, Edward J. Yoon
+edwardyoon@apache.org
+http://blog.udanax.org
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>Re: Official group blog of the hadoop user/dev group?</title>
+<author><name>&quot;Edward J. Yoon&quot; &lt;edwardyoon@apache.org&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3ceb4706e0810081703l2f8b529eu37f28decb3a421cf@mail.gmail.com%3e"/>
+<id>urn:uuid:%3ceb4706e0810081703l2f8b529eu37f28decb3a421cf@mail-gmail-com%3e</id>
+<updated>2008-10-09T00:03:27Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+Oh, Great!! Now I did know that. :)
+
+On Thu, Oct 9, 2008 at 12:39 AM, Steve Loughran &lt;stevel@apache.org&gt; wrote:
+&gt; Edward J. Yoon wrote:
+&gt;&gt;
+&gt;&gt; If we have a group blog of the hadoop user/dev group such as a Y!
+&gt;&gt; developer network, we can easily share/introduce our experience and
+&gt;&gt; outcomes from our research. So, I thought about a group blog, I guess
+&gt;&gt; there are plenty of contributors.
+&gt;&gt;
+&gt;&gt; What do you think about it?
+&gt;
+&gt; there's the planetapache aggregator; you could join that or set up a similar
+&gt; 'planet' up to pull in the different feeds of different people
+&gt;
+
+
+
+-- 
+Best regards, Edward J. Yoon
+edwardyoon@apache.org
+http://blog.udanax.org
+
+
+</pre>
+</div>
+</content>
+</entry>
+<entry>
+<title>shipping streaming libraries with cacheArchive</title>
+<author><name>Karl Anderson &lt;kra@monkey.org&gt;</name></author>
+<link rel="alternate" href="http://mail-archives.apache.org/mod_mbox/hadoop-core-user/200810.mbox/%3c9B554976-B75E-460B-A8D9-B8209DDB5ADA@monkey.org%3e"/>
+<id>urn:uuid:%3c9B554976-B75E-460B-A8D9-B8209DDB5ADA@monkey-org%3e</id>
+<updated>2008-10-08T22:15:46Z</updated>
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<pre>
+Has anybody been able to ship a hadoop streaming library using
+cacheArchive?  I am able to see my unjarred archive from my mapper,
+but I'm not able to import Python files within it.
+
+As a test, I'm jarring up a test directory and putting it on the HDFS:
+
+   [root@domU-12-31-39-00-64-E2 ~]# ls jar_test
+   __init__.py  __init__.pyc  bar.py  foo.py  foo.pyc
+   [root@domU-12-31-39-00-64-E2 ~]# jar cvf jar_test.jar -C jar_test .
+   [...]
+   [root@domU-12-31-39-00-64-E2 ~]# hadoop dfs -put jar_test.jar  
+jar_test.jar
+   [...]
+
+My test module is importable.
+
+   [root@domU-12-31-39-00-64-E2 ~]# python
+   Python 2.5.1 (r251:54863, Oct 30 2007, 13:54:11)
+   [GCC 4.1.2 20070925 (Red Hat 4.1.2-33)] on linux2
+   Type "help", "copyright", "credits" or "license" for more  
+information.
+   &gt;&gt;&gt; import jar_test.foo
+   &gt;&gt;&gt; 
+
+I include "-cacheArchive hdfs:///user/root/jar_test.jar#jar_test" in
+my Hadoop streaming invocation.
+
+My mapper is able to read the linked, extrated jar_test directory.
+This prints "['foo.py', '.jar_test.jar.crc', 'jar_test.jar',
+'__init__.py', 'META-INF', 'bar.py']" to the mapper output.
+
+   #!/usr/bin/env python
+
+   import sys
+   import os
+
+   #import jar_test.foo
+
+   if __name__ == "__main__":
+       for line in sys.stdin:
+           pass
+       print os.listdir('jar_test')
+
+
+However, when I uncomment the import line, my mapper dies with
+"ImportError: No module named jar_test.foo".
+
+Any clues?
+
+
+Karl Anderson
+kra@monkey.org
+http://monkey.org/~kra
+
+
+
+
+</pre>
+</div>
+</content>
+</entry>
+</feed>

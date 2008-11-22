@@ -1,0 +1,13 @@
+2008-11-22, 09:24:34
+
+
+ ====================
+ = static documents =
+ ====================
+
+for popular documents (feeds, pages):
+- pre-generate every n minutes/hours
+- write to file
+- per htaccess rules:
+  - if file exists: serve it
+  - otherwise: forward request to script
