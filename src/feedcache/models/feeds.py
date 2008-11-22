@@ -317,7 +317,7 @@ class Feed(object):
 	def _update_categories(self, store, d):
 		if d.feed.has_key('tags'):
 			for fp_category in d.feed.tags:
-				term, scheme, label = fputil.category_tuple(fp_category)
+				term, scheme, label = fputil.build_category_tuple(fp_category)
 				category = Category.FindOrCreate(store, term, scheme, label)
 				if (category in self.categories)==False:
 					self.categories.add(category)
