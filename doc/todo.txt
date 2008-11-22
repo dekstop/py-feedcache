@@ -7,21 +7,6 @@ TODO:
 - users, user tags, ...
 - enclosures
 
-batchimports:
-- successful import
-  - fail count = 0
-  - last fetch date != null
-  - imported = true
-  - feed with that url exists
-- failed import
-  - fail count = 1
-  - last fetch date != null
-  - imported = false
-  - feed with that url does not exist
-
-messages:
-- ...?
-
  ======================
  = application logger =
  ======================

@@ -27,26 +27,28 @@ def _get_instance(store, message_class, message_object, exception):
 	message_object is either a Batchimport or Feed instance
 	exception is of type FeedcacheError, or any other exception
 	
-	returns an instance of the class specified with message_class
+	Returns an instance of the class specified with message_class.
 	'''
-	if isinstance(exception, FeedcacheError):
+	if isinstance(exception, FeedcacheError): 
+		# exception of type FeedcacheError
 		return message_class(
 			message_object,
 			MessageType.FindOrCreate(store, unicode(exception.get_message_type())),
 			unicode(exception.get_message()),
 			unicode(exception.get_payload()))
-	# FIXME: this code will break if not called from within an exception handler
-	tb = traceback.format_exception(sys.exc_info()[0], sys.exc_info()[1], sys.exc_info()[2])
-	msg = tb.pop()
-	stacktrace = '%r : %s\n%s' % (type(exception), msg, '\n'.join(tb))
+	else: 
+		# any other exception
+		# FIXME: this code will break if not called from within an exception handler
+		tb = traceback.format_exception(sys.exc_info()[0], sys.exc_info()[1], sys.exc_info()[2])
+		msg = tb.pop()
+		stacktrace = '%r : %s\n%s' % (type(exception), msg, '\n'.join(tb))
 	
-	return message_class(
-		message_object,
-		MessageType.FindOrCreate(store, unicode(exception.__class__.__name__)),
-		unicode(str(exception)),
-		unicode(stacktrace)
-	)
-	
+		return message_class(
+			message_object,
+			MessageType.FindOrCreate(store, unicode(exception.__class__.__name__)),
+			unicode(str(exception)),
+			unicode(stacktrace)
+		)
 
 # ===========
 # = classes =
@@ -143,3 +145,12 @@ class FeedMessage(object):
 
 	FromException = staticmethod(FromException)
 
+# ==============
+# = references =
+# ==============
+
+# many-to-many
+Batchimport.messages = storm.ReferenceSet(Batchimport.id, BatchimportMessage.batchimport_id, 
+	BatchimportMessage.message_id, Message.id)
+Feed.messages = storm.ReferenceSet(Feed.id, FeedMessage.feed_id, 
+	FeedMessage.message_id, Message.id)

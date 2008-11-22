@@ -5,6 +5,7 @@ import unittest
 from test_batchimports import *
 from test_feeds import *
 from test_http import *
+from test_messages import *
 
 
 if __name__ == "__main__":

@@ -15,7 +15,7 @@ class BatchimportTest(DBTestBase):
 		
 		result = self.store.execute('select count(*) from batchimports')
 		count = result.get_one()[0]
-		self.assertEquals(1, count, 'table "batchimports" has %d entries, when 1 is expected' % (count))
+		self.assertEquals(1, count, 'table "batchimports" has %d entries, when it should have 1' % (count))
 		
 		b = Batchimport.FindByUrl(self.store, TEST.fixture(u'dekstop.de_weblog_index.xml'))
 		self.assertNotEquals(None, b)
@@ -40,7 +40,7 @@ class BatchimportTest(DBTestBase):
 
 		result = self.store.execute('select count(*) from feeds')
 		count = result.get_one()[0]
-		self.assertEquals(1, count, 'table "feeds" has %d entries, when 1 is expected' % (count))
+		self.assertEquals(1, count, 'table "feeds" has %d entries, when it should have 1' % (count))
 
 		feed = Feed.Load(self.store, TEST.fixture(u'dekstop.de_weblog_index.xml'))
 		self.assertNotEquals(None, feed)
@@ -63,4 +63,4 @@ class BatchimportTest(DBTestBase):
 
 		result = self.store.execute('select count(*) from feeds')
 		count = result.get_one()[0]
-		self.assertEquals(0, count, 'table "feeds" has %d entries, when 0 is expected' % (count))
+		self.assertEquals(0, count, 'table "feeds" has %d entries, when it should have 0' % (count))

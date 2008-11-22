@@ -115,7 +115,7 @@ class Batchimport(object):
 			self.fail_count += 1
 			self.date_last_fetched = fetch_date
 			e = sys.exc_info()[1]
-			b = BatchimportMessage.FromException(store, batchimport, e)
+			b = BatchimportMessage.FromException(store, self, e)
 			store.add(b)
 			store.commit()
 			raise
@@ -254,7 +254,7 @@ class Feed(object):
 			self.fail_count += 1
 			self.date_last_fetched = fetch_date
 			e = sys.exc_info()[0]
-			f = FeedMessage.FromException(store, feed, e)
+			f = FeedMessage.FromException(store, self, e)
 			store.add(f)
 			store.commit()
 			raise
