@@ -51,8 +51,7 @@ class Crawler(object):
 		# ignore entries that get added during this session:
 		cutoff_time = datetime.datetime.now()
 		
-		keep_running = True
-		while keep_running:
+		while True:
 			keep_running = False
 
 			batchimport = Batchimport.GetOne(store, 
@@ -70,6 +69,9 @@ class Crawler(object):
 				print 'update: %s' % feed.url
 				self.worker.update(store, feed)
 				keep_running = True
+		
+		 	if keep_running==False:
+				break
 
 class CrawlerWorker(object):
 	
@@ -77,25 +79,15 @@ class CrawlerWorker(object):
 		try:
 			batchimport.import_feed(store)
 		except:
-			e = sys.exc_info()[1]			
-			#store.rollback()
-			#batchimport.fail_count += 1
-			b = BatchimportMessage.FromException(store, batchimport, e)
-			print b
-			store.add(b)
-			store.commit()
+			e = sys.exc_info()[1]
+			print e
 
 	def update(self, store, feed):
 		try:
 			feed.update(store)
 		except:
-			e = sys.exc_info()[0]
-			#store.rollback()
-			#feed.fail_count += 1
-			f = FeedMessage.FromException(store, feed, e)
-			print f
-			store.add(f)
-			store.commit()
+			e = sys.exc_info()[1]
+			print e
 
 # ========
 # = main =

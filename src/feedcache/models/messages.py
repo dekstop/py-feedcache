@@ -14,7 +14,7 @@ from feedcache.models.feeds import Batchimport, Feed
 from feedcache.exceptions import FeedcacheError
 
 __all__ = [
-	'MessageType', 'BatchimportMessage', 'FeedMessage'
+	'MessageType', 'Message', 'BatchimportMessage', 'FeedMessage'
 ]
 
 # ===========

@@ -18,6 +18,8 @@
 # martind 2008-11-01, 11:17:11
 #
 
+import sys
+
 import storm.locals as storm
 
 import feedcache.util as util
@@ -94,7 +96,8 @@ class Batchimport(object):
 		"""
 		Attempts to fetch and import the feed, returns a Feed instance on success,
 		or throws an exception on failue. Always updates the date_last_fetched and fail_count 
-		properties, even on exceptions.
+		properties, even on exceptions. Will log a BatchimportMessage in the event of
+		an exception.
 		
 		Raises a FeedFetchError if the HTTP request fails.
 		Raises a FeedParseError if the returned document is in an unsupported format.
@@ -111,6 +114,9 @@ class Batchimport(object):
 			store.rollback()
 			self.fail_count += 1
 			self.date_last_fetched = fetch_date
+			e = sys.exc_info()[1]
+			b = BatchimportMessage.FromException(store, batchimport, e)
+			store.add(b)
 			store.commit()
 			raise
 	
@@ -225,6 +231,7 @@ class Feed(object):
 		"""
 		Fetches a known feed again and applies updates. Always updates the 
 		'date_last_fetched' and 'fail_count' properties, even on failure.
+		Will log a BatchimportMessage in the event of an exception.
 		
 		Raises a FeedFetchError if the HTTP request fails.
 		Raises a FeedParseError if the returned document is in an unsupported format.
@@ -246,6 +253,9 @@ class Feed(object):
 			store.rollback()
 			self.fail_count += 1
 			self.date_last_fetched = fetch_date
+			e = sys.exc_info()[0]
+			f = FeedMessage.FromException(store, feed, e)
+			store.add(f)
 			store.commit()
 			raise
 	
@@ -438,3 +448,6 @@ Entry.authors = storm.ReferenceSet(Entry.id, EntryAuthor.entry_id, EntryAuthor.a
 
 Feed.categories = storm.ReferenceSet(Feed.id, FeedCategory.feed_id, FeedCategory.category_id, Category.id)
 Entry.categories = storm.ReferenceSet(Entry.id, EntryCategory.entry_id, EntryCategory.category_id, Category.id)
+
+# moved this to the end because this include establishes a circular reference between modules:
+from messages import BatchimportMessage, FeedMessage
