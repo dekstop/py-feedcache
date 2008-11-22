@@ -25,7 +25,8 @@ DSN = u'postgres://postgres:@localhost/feedcache_test'
 # These will be truncated between tests, which is used for e.g.
 # transaction rollback testing:
 TABLES = [
-	'feeds', 'entries', 
+	'batchimports', 'feeds', 'entries', 
+	'messages', 'batchimports_messages', 'feeds_messages',
 	'authors', 'feeds_authors', 'entries_authors', 
 	'categories', 'feeds_categories', 'entries_categories'
 ]

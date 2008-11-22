@@ -111,10 +111,7 @@ if __name__ == "__main__":
 	FILE.close()
 
 	for url in feedurls:
-		b = Batchimport.CreateIfMissing(store, url)
-		if b:
-			store.add(b)
-			store.commit()
+		Batchimport.CreateIfMissing(store, url)
 
 	# run
 	crawler = Crawler()

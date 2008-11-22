@@ -35,8 +35,8 @@ except storm.exceptions.IntegrityError, e:
 result = Batchimport.FindByUrl(store, u'http://dsaasdgfawsdg.dsf/dsfadf')
 print result.feed_url, result.imported
 
-result = Batchimport.Queue(store)
-print [item.feed_url for item in result]
+batchimport = Batchimport.GetOne(store)
+print batchimport.feed_url
 
 result = Feed.FindByUrl(store, u'http://dsaasdgfawsdg.dsf/dsfadf')
 print result

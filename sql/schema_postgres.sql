@@ -28,7 +28,7 @@ CREATE TABLE batchimports (
   imported      BOOLEAN NOT NULL DEFAULT FALSE,
 
   date_added    TIMESTAMP NOT NULL DEFAULT now(),
-  date_last_fetched TIMESTAMP NOT NULL DEFAULT now(),
+  date_last_fetched TIMESTAMP,
   fail_count    INTEGER NOT NULL DEFAULT 0
 );
 CREATE TRIGGER batchimports_update_lastmodified BEFORE UPDATE ON batchimports FOR EACH ROW EXECUTE PROCEDURE update_lastmodified_column();

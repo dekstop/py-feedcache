@@ -215,15 +215,6 @@ class Batchimport(object):
 	def __init__(self, feed_url):
 		self.feed_url = transcode(feed_url)
 	
-	def Queue(store, cutoff_time=datetime_now()):
-		"""
-		Static method, returns a ResultSet of zero or more Batchimport instances
-		that were added before cutoff_time and haven't been imported.
-		"""
-		return store.find(Batchimport, 
-			Batchimport.imported==False, 
-			Batchimport.date_added<cutoff_time)
-	
 	def GetOne(store, cutoff_time=datetime_now(), retry_cutoff_time=datetime_now()):
 		"""
 		Returns a random non-imported Batchimport that was added before cutoff_time,
@@ -254,12 +245,17 @@ class Batchimport(object):
 	
 	def CreateIfMissing(store, feed_url):
 		"""
-		Returns a new Batchimport entry if FindByUrl for this URL comes up empty.
-		Returns None otherwise.
+		Returns a Batchimport instance.
+		Creates a new Batchimport entry if FindByUrl for this URL comes up empty,
+		then commits.
 		"""
-		if Batchimport.FindByUrl(store, feed_url):
-			return None
-		return Batchimport(feed_url)
+		b = Batchimport.FindByUrl(store, feed_url)
+		if b:
+			return b
+		b = Batchimport(feed_url)
+		store.add(b)
+		store.commit()
+		return b
 	
 	def import_feed(self, store):
 		"""
@@ -270,7 +266,8 @@ class Batchimport(object):
 		Raises a FeedFetchError if the HTTP request fails.
 		Raises a FeedParseError if the returned document is in an unsupported format.
 		"""
-		self.date_last_fetched = datetime_now()
+		fetch_date = datetime_now()
+		self.date_last_fetched = fetch_date
 		try:
 			feed = Feed.CreateFromUrl(store, self.feed_url)
 			self.imported = True
@@ -278,14 +275,12 @@ class Batchimport(object):
 			store.commit()
 			return feed
 		except:
-			t = self.date_last_fetched
 			store.rollback()
 			self.fail_count += 1
-			self.date_last_fetched = t
+			self.date_last_fetched = fetch_date
 			store.commit()
 			raise
 	
-	Queue = staticmethod(Queue)
 	GetOne = staticmethod(GetOne)
 	FindByUrl = staticmethod(FindByUrl)
 	CreateIfMissing = staticmethod(CreateIfMissing)
@@ -402,7 +397,8 @@ class Feed(object):
 		Raises a FeedParseError if the returned document is in an unsupported format.
 		"""
 		url = self.initial_url
-		self.date_last_fetched = datetime_now()
+		fetch_date = datetime_now()
+		self.date_last_fetched = fetch_date
 		try:
 			d = fetch_feed(url, etag=self.http_etag, modified=from_datetime(self.http_last_modified))
 			self.fail_count = 0
@@ -413,10 +409,9 @@ class Feed(object):
 				self._apply_feed_document(store, d)
 			store.commit()
 		except:
-			t = self.date_last_fetched
 			store.rollback()
 			self.fail_count += 1
-			self.date_last_fetched = t
+			self.date_last_fetched = fetch_date
 			store.commit()
 			raise
 	

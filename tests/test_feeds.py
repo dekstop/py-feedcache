@@ -16,7 +16,6 @@ from base import *
 # = tests =
 # =========
 
-
 class BasicParserTest(DBTestBase):
 	
 	def testLoadFeed(self):
@@ -139,10 +138,6 @@ class TransactionTest(DBTestBase):
 	
 	def testTransactionRollback(self):
 		"""a failed feed import must not result in orphaned records (unused author/entry/category/... rows)"""
-		for tablename in TEST.tables():
-			result = self.store.execute('select count(*) from ' + tablename)
-			self.assertEquals(0, result.get_one()[0], 
-				'table "%s" is not empty before test' % (tablename))
 		try:
 			feed = Feed.Load(self.store, TEST.fixture(u'broken_encoding.xml')) # expected to throw a FeedParseError
 			self.assertTrue(False)
