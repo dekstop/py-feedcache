@@ -3,7 +3,9 @@
 check out http://sourceforge.net/projects/senews
 
 TODO: 
-- tests for batchimports, error logs
+- tests for feed.category, feed.author
+- tests for timezones
+- semaphores
 - users, user tags, ...
 - enclosures
 

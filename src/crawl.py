@@ -24,7 +24,7 @@ import feedcache.exceptions
 
 DSN = 'postgres://postgres:@localhost/feedcache'
 
-MIN_TIME_BETWEEN_RETRIES = datetime.timedelta(minutes=0) # datetime.timedelta(hours=1)
+MIN_TIME_BETWEEN_RETRIES = datetime.timedelta(hours=1)
 MIN_TIME_BETWEEN_UPDATES = datetime.timedelta(minutes=30)
 
 # from storm.tracer import debug
