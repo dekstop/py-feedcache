@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="http://feeds.feedburner.com/~d/styles/rss2enclosuresfull.xsl" type="text/xsl" media="screen"?><?xml-stylesheet href="http://feeds.feedburner.com/~d/styles/itemcontent.css" type="text/css" media="screen"?><rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+
+<channel>
+	<title>Cybersonica Social</title>
+	
+	<link>http://social.cybersonica.org</link>
+	<description>a monthly slice of Cybersonica</description>
+	<pubDate>Tue, 07 Oct 2008 14:22:28 +0000</pubDate>
+	<generator>http://wordpress.org/?v=2.6.2</generator>
+	<language>en</language>
+		<!-- podcast_generator="podPress/8.8" -->
+		<copyright>© </copyright>
+		<managingEditor>social@cybersonica.org ()</managingEditor>
+		<webMaster>social@cybersonica.org()</webMaster>
+		<category />
+		<ttl>1440</ttl>
+		<itunes:keywords />
+		<itunes:subtitle />
+		<itunes:summary>a monthly slice of Cybersonica</itunes:summary>
+		<itunes:author />
+		<itunes:category text="Society &amp; Culture" />
+		<itunes:owner>
+			<itunes:name />
+			<itunes:email>social@cybersonica.org</itunes:email>
+		</itunes:owner>
+		<itunes:block>No</itunes:block>
+		<itunes:explicit>no</itunes:explicit>
+		<itunes:image href="http://conicsocial.cybersonica.org/wp-content/plugins/podpress/images/powered_by_podpress_large.jpg" />
+		<image>
+			<url>http://conicsocial.cybersonica.org/wp-content/plugins/podpress/images/powered_by_podpress.jpg</url>
+			<title>Cybersonica Social</title>
+			<link>http://social.cybersonica.org</link>
+			<width>144</width>
+			<height>144</height>
+		</image>
+		<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" href="http://feeds.feedburner.com/conicsocial" type="application/rss+xml" /><item>
+		<title>CYBERSONICA SOCIAL: In 3 Dimensions</title>
+		<link>http://social.cybersonica.org/?p=35</link>
+		<comments>http://social.cybersonica.org/?p=35#comments</comments>
+		<pubDate>Tue, 07 Oct 2008 08:56:46 +0000</pubDate>
+		<dc:creator>admin</dc:creator>
+		
+		<category><![CDATA[Events]]></category>
+
+		<category><![CDATA[D-Fuse]]></category>
+
+		<category><![CDATA[Daniel Jones]]></category>
+
+		<category><![CDATA[Fat Butcher]]></category>
+
+		<category><![CDATA[Illustrious]]></category>
+
+		<category><![CDATA[Martyn Ware]]></category>
+
+		<category><![CDATA[squidsoup]]></category>
+
+		<guid isPermaLink="false">http://social.cybersonica.org/?p=35</guid>
+		<description><![CDATA[Friday, 10th October, 7-11pm &#124; The Flea-Pit, 49 Columbia Road, London E2 7RG &#124; £4/£3 concs
+Martyn Ware - Illustrious
+D-Fuse
+squidsoup
+Daniel Jones
+Fat Butcher
+
+ 
+
+
+Cybersonica Social (formerly known as Çonic Social) relaunches after a summer break and at a new venue - The Flea-Pit &#60;http://thefleapit.com&#62; - a cafe-bar on Columbia Rd right next to the park and a place [...]]]></description>
+		<wfw:commentRss>http://social.cybersonica.org/?feed=rss2&amp;p=35</wfw:commentRss>
+		</item>
+		<item>
+		<title>Latest News</title>
+		<link>http://social.cybersonica.org/?p=28</link>
+		<comments>http://social.cybersonica.org/?p=28#comments</comments>
+		<pubDate>Fri, 01 Aug 2008 12:00:54 +0000</pubDate>
+		<dc:creator>admin</dc:creator>
+		
+		<category><![CDATA[News]]></category>
+
+		<guid isPermaLink="false">http://social.cybersonica.org/?p=28</guid>
+		<description><![CDATA[An unfortunate webhosting fiasco forced the Çonic Social website offline for most of June and July.   
+As a result it&#8217;s badly in need of an update - so expect before too long, posts on:
+ V0.3 ROUND-UP
+ÇONIC SOCIAL V0.4
+V0.4 ROUND-UP
+In fact we&#8217;re taking a break through August and September but restarting in October - the [...]]]></description>
+		<wfw:commentRss>http://social.cybersonica.org/?feed=rss2&amp;p=28</wfw:commentRss>
+		</item>
+		<item>
+		<title>ÇONIC SOCIAL V0.3</title>
+		<link>http://social.cybersonica.org/?p=21</link>
+		<comments>http://social.cybersonica.org/?p=21#comments</comments>
+		<pubDate>Fri, 30 May 2008 11:39:30 +0000</pubDate>
+		<dc:creator>admin</dc:creator>
+		
+		<category><![CDATA[Events]]></category>
+
+		<category><![CDATA[Ad Hoc]]></category>
+
+		<category><![CDATA[DJ Tendraw &amp; The Gypsies Dog]]></category>
+
+		<category><![CDATA[Scanone]]></category>
+
+		<category><![CDATA[The Gluerooms]]></category>
+
+		<guid isPermaLink="false">http://social.cybersonica.org/?p=21</guid>
+		<description><![CDATA[Wednesday, 4th June, 7-12pm &#124; Bar Vinyl, 6 Inverness St, Camden NW1 7HJ &#124; FREE
+Scanone (Yellow Machines)
+DJ Tendraw &#38; The Gypsies Dog (The Gluerooms)
+Ad Hoc
+DJ Çonic
+
+ 
+
+The next Çonic Social is the third in a regular monthly night at Bar Vinyl, Inverness Street, Camden NW1 hosted by Cybersonica - London’s annual festival of music, sound, art [...]]]></description>
+		<wfw:commentRss>http://social.cybersonica.org/?feed=rss2&amp;p=21</wfw:commentRss>
+			<enclosure url="http://www.adhoc.fm/releases/dust/adhoc_dust_20080528.mp3" length="117584000" type="audio/mpeg" />
+<itunes:duration>00:01:01</itunes:duration>
+		<itunes:subtitle>Wednesday, 4th June, 7-12pm #124; Bar Vinyl, 6 Inverness St, Camden NW1 7HJ #124; FREE
+Scanone (Yellow Machines)
+DJ Tendraw #38; The Gypsies Dog (The Gluerooms)
+Ad Hoc
+DJ ...</itunes:subtitle>
+		<itunes:summary>Wednesday, 4th June, 7-12pm #124; Bar Vinyl, 6 Inverness St, Camden NW1 7HJ #124; FREE
+Scanone (Yellow Machines)
+DJ Tendraw #38; The Gypsies Dog (The Gluerooms)
+Ad Hoc
+DJ Ccedil;onic
+nbsp;
+
+
+The next Ccedil;onic Social is the third in a regular monthly night at Bar Vinyl, Inverness Street, Camden NW1 hosted by Cybersonica - Londonrsquo;s annual festival of music, sound, art and technology - and now moves to the first Wednesday of every month.
+
+For those of you interested in the technology, methodology and production behind the music then at 9pm we have a demonstration by DJ Tendraw #38; The Gypsies Dog who will show what goes on behind their particular brand  of circuit bent analogue mayhem - including re-routed childrens toys, magnetic hotel keys, feedback, casio keyboards, and an array of unrecognisable home-made devices. Always entertaining you really should catch these Cybersonica regulars doing what comes naturally!
+
+So with bass driven electronics from DJ #38; producer Scanone, an unnatural barrage of clatter from DJ Tendraw #38; The Gypsies Dog, complex micro-collages from Ad Hoc and eclectic electronics from DJ Ccedil;onic you should join us at our lsquo;hang-outrsquo; for progressive electronic music makers and fans looking for somewhere to meet like-minded people, share creative work and techniques and enjoy fresh, vibrant music and performance.
+
+For biogs, photos, links, videos #38; downloadshellip; 
+
+ 
+
+
+
+Scanone
+ www.myspace.com/scanone
+www.myspace.com/bionicsproject
+www.myspace.com/yellowmachinesinfo
+
+Interview and live mix link...
+www.basterdized.com/int12.html
+
+
+
+Intelligent and sharp beat structures reinforced with heavy bass, emotive synth lines and sci-fi fx... this equally talented DJ and Producer has been making tracks for over a decade. In that time he has managed to develop a sound that borders a myriad of underground genres, from bass heavy electro and techno to glitched IDM and dark brooding dubstep, drawing influences from his musical history, hardcore and early techno play a huge part in Scanone's ideas and production.
+
+Scanone has performed alongside some of the biggest names in his field, in various clubs and festivals around the world. He has released tracks on labels such as COMBAT RECORDINGS, DIRTY NEEDLES / DIGITAL DISTORTIONS / BROKEN FADER CARTEL / MIB and BLASE. On COMBAT his 'SEVENTH BULLET EP' was unleashed with great support within the electro community, with 'KICK IT' pre-empting the electro / grime crossover by a whole year. Other tracks like the electro 2-step monster 'YES YES' and the mutant dubstep electro tune 'DUBWISE' were supported on the BBC'S Breezeblock. 2007 saw his 'TOOLKIT EP' embraced by DJ's including Surgeon and Rob Hall (Gescom). Now with the launch of his new label 'Yellow Machines' we can expect more quality bass driven electronics.
+
+DJ Tendraw #38; The Gypsies Dog
+ www.gluerooms.com
+www.myspace.com/djtendrawandthegypsiesdog
+
+
+
+
+"Next up were DJ TENDRAW #38; THE GYPSIES DOG who easily walked away with the nightrsquo;s prize for having the most flashing lights. And thatrsquo;s not all. They are both clearly products of deep commitment to the underground rave scene from a very early age. Having finely honed their craft on Londonrsquo;s arts scene over the last four years, these two lads created a stunning amalgam of break-core, bleep, noise, grinning and hardcorepunk-style shouting; seemingly simultaneously unerringly tight and on the verge of collapse. With syncopated movements and almost turntablist-like rigour on circuit-bent kids toys and other unrecognisable devices spewing out their unnatural barrage of clatter, DJ Tendraw #38; the Gypsies Dog captivated the audience while looking all the while noticeably un-demonic in their smart-casual attire and sensible haircuts."
+Slightly off Kilter Records. Club Silencio, The Volks, 12 Nov 2006.
+
+Ad Hoc
+www.adhoc.fm
+
+
+
+
+
+Ad Hoc is a reformed hacker and software engineer, ...</itunes:summary>
+		<itunes:keywords>Events</itunes:keywords>
+		<itunes:author>social@cybersonica.org</itunes:author>
+		<itunes:explicit>no</itunes:explicit>
+		<itunes:block>No</itunes:block>
+	</item>
+		<item>
+		<title>V0.2 ROUND-UP</title>
+		<link>http://social.cybersonica.org/?p=20</link>
+		<comments>http://social.cybersonica.org/?p=20#comments</comments>
+		<pubDate>Fri, 23 May 2008 10:52:55 +0000</pubDate>
+		<dc:creator>admin</dc:creator>
+		
+		<category><![CDATA[Demos]]></category>
+
+		<category><![CDATA[Boep]]></category>
+
+		<category><![CDATA[DJ Çonic]]></category>
+
+		<category><![CDATA[DJ Cylob]]></category>
+
+		<category><![CDATA[mp3]]></category>
+
+		<guid isPermaLink="false">http://social.cybersonica.org/?p=20</guid>
+		<description><![CDATA[Once again&#8230; big thanks to all who entertained us at Çonic Social v0.2 and to everyone who who came along. Despite a slightly fraught start (cheers to everyone who rolled up their sleeves and pitched in early on) the night was as varied and entertaining as expected. Boep managed to just about squeeze into the [...]]]></description>
+		<wfw:commentRss>http://social.cybersonica.org/?feed=rss2&amp;p=20</wfw:commentRss>
+			<enclosure url="http://cybersonica.net/conicsocialmp3/08-05-06_Boep_Liveset.mp3" length="75830964" type="audio/mpeg" />
+<itunes:duration>00:01:01</itunes:duration>
+		<itunes:subtitle>Once again... big thanks to all who entertained us at Ccedil;onic Social v0.2 and to everyone who who came along. Despite a slightly fraught start ...</itunes:subtitle>
+		<itunes:summary>Once again... big thanks to all who entertained us at Ccedil;onic Social v0.2 and to everyone who who came along. Despite a slightly fraught start (cheers to everyone who rolled up their sleeves and pitched in early on) the night was as varied and entertaining as expected. Boep managed to just about squeeze into the DJ booth and still stretch the venue sound system with their improvised loop-based live set, DJ Cylob showed off his Cylob Music System (there's an mp3 of his software demo below) and Ben Osborne grooved us out with some progressive disco - albeit a bit too late in the evening for most (sorry Ben!).
+
+And just to make it clear... these mp3s are recordings of the live sets and DJ mixes from the night made available with the permission of the performers - topped and tailed, normalised and and mildly processed but otherwise undedited and untreated. Essentially you're hearing what you would in the venue.
+
+Check back soon to see some photos and watch a short video from the nighthellip;</itunes:summary>
+		<itunes:keywords>Demos</itunes:keywords>
+		<itunes:author>social@cybersonica.org</itunes:author>
+		<itunes:explicit>no</itunes:explicit>
+		<itunes:block>No</itunes:block>
+	</item>
+		<item>
+		<title>ÇONIC SOCIAL v0.2</title>
+		<link>http://social.cybersonica.org/?p=14</link>
+		<comments>http://social.cybersonica.org/?p=14#comments</comments>
+		<pubDate>Mon, 28 Apr 2008 02:51:58 +0000</pubDate>
+		<dc:creator>admin</dc:creator>
+		
+		<category><![CDATA[Events]]></category>
+
+		<category><![CDATA[Media]]></category>
+
+		<category><![CDATA[Adverse Camber]]></category>
+
+		<category><![CDATA[Ben Osborne]]></category>
+
+		<category><![CDATA[Boep]]></category>
+
+		<category><![CDATA[DJ Cylob]]></category>
+
+		<category><![CDATA[Noise Of Art]]></category>
+
+		<category><![CDATA[YouTube]]></category>
+
+		<guid isPermaLink="false">http://social.cybersonica.org/?p=14</guid>
+		<description><![CDATA[Tuesday, 6th May, 7-12pm &#124; Bar Vinyl, 6 Inverness St, Camden NW1 7HJ &#124; FREE
+DJ Cylob
+Ben Osborne (Noise Of Art)
+Boep (Adverse Camber)
+DJ Çonic
+
+ 
+
+The next Çonic Social is the second in a regular monthly night at Bar Vinyl, Inverness Street, Camden NW1 hosted by Cybersonica - London’s annual festival of music, sound, art and technology.
+For those [...]]]></description>
+		<wfw:commentRss>http://social.cybersonica.org/?feed=rss2&amp;p=14</wfw:commentRss>
+			<enclosure url="http://www.boep.net/audio/sketch1_boep.mp3" length="19051739" type="audio/mpeg" />
+<itunes:duration>00:01:01</itunes:duration>
+		<itunes:subtitle>Tuesday, 6th May, 7-12pm #124; Bar Vinyl, 6 Inverness St, Camden NW1 7HJ #124; FREE
+DJ Cylob
+Ben Osborne (Noise Of Art)
+Boep (Adverse Camber)
+DJ Ccedil;onic
+nbsp;
+
+
+The next Ccedil;onic ...</itunes:subtitle>
+		<itunes:summary>Tuesday, 6th May, 7-12pm #124; Bar Vinyl, 6 Inverness St, Camden NW1 7HJ #124; FREE
+DJ Cylob
+Ben Osborne (Noise Of Art)
+Boep (Adverse Camber)
+DJ Ccedil;onic
+nbsp;
+
+
+The next Ccedil;onic Social is the second in a regular monthly night at Bar Vinyl, Inverness Street, Camden NW1 hosted by Cybersonica - Londonrsquo;s annual festival of music, sound, art and technology.
+
+For those of you interested in the technology, methodology and production behind the music then starting at 7.30pm we have a demonstration by DJ Cylob of some of the music software he's been working on - the Cylob Music System written in the Supercollider language which includes his use of a monome 128 adaptable, minimalist interface (watch the YouTube video below). A real treat - not to be missed.
+
+With style-shifting electronic music from DJ Cylob, serious beats from Ben Osborne, break-steppin trunk-funk from Boep and squidgy electronica from DJ Ccedil;onic this has to be the lsquo;hang-outrsquo; for progressive electronic music makers and fans looking for somewhere to meet like-minded people, share creative work and techniques and enjoy fresh, vibrant music and performance.
+For biogs, photos, links, video #38; downloads...
+
+
+Cylob
+Website: www.cylob.com
+Blog: cylob.blogspot.com
+Myspace: www.myspace.com/cylob
+YouTube: youtube.com/djcylob
+
+
+
+Cylob is the alias of electronic music maker Chris Jeffs. A trombone player in his youth, he progressed to experimenting with electronic music and recording in his late teens and continues to perform regularly and work on recording projects.
+
+Cylob has been playing live and DJ'ing since 1994, playing his first set in legendary Leeds techno club The Orbit, and since touring extensively in Europe, North America, Japan, Australia and Russia. He has also made the occasional worldwide radio broadcast including twice on BBC Radio 1's Breezeblock show.
+
+At first inspired by early 80's synth-pop, old-school hip-hop and electro, and dance pioneers Art Of Noise, 808 State and LFO, Chris gave a demo tape to Aphex Twin at a gig in early 1993, subsequently signing to his Rephlex label a short time after. Since his debut, he has released 13 singles and 5 albums on Rephlex. Although Cylob's music is predominantly instrumental, his most well known tracks have been the underground hits "Rewind" and "Cut The Midrange, Drop The Bass" which pioneered computer-generated rapping and singing on top of signature Cylob beats. 2007 saw the launch of Cylob's own net label, Cylob Industries with 2 singles and 3 albums scheduled for release before the end of the year, initially on bleep.com.
+
+Cylob makes his music using his own Cylob Music System written in the SuperCollider language. This continuing work in progress, started in 2001, has led to his sound becoming increasingly distinctive. Details of this software can be found on his website.
+
+Download a live mix from DJ Cylob - Live in London December 2007
+"... thrill to the bits where I play live keyboard or enter beats in real-time! I had to cut the sound in a few places due to the notorious SuperCollider audio glitch problem, and I've applied some eq, compression and level-riding, but apart from that, this is how it was."
+and watch the Monome Music System takes its first steps.
+
+
+
+Ben Osborne
+www.myspace.com/noiseofart
+www.myspace.com/leshommesdutrainpage
+
+
+
+Ben Osborne is a DJ, music producer, writer and the founder of Noise of Art and resident at Slipped Disco. He has written extensively for the national press and magazines but now concentrates on writing for DJ magazine to leave himself time for developing Noise of Art projects, DJing internationally and doing his own music.
+
+You can listen to and download a selection of tracks from Ben at his www.myspace.com/leshommesdutrainpage.
+
+Boep
+www.boep.net
+www.myspace.com/boepacid
+Randomoidz - www.myspace.com/randomoidz
+Scheme Boy - www.myspace.com/schemeboy
+
+
+
+
+Adverse Camber's infamous street b...</itunes:summary>
+		<itunes:keywords>Events,,Media</itunes:keywords>
+		<itunes:author>social@cybersonica.org</itunes:author>
+		<itunes:explicit>no</itunes:explicit>
+		<itunes:block>No</itunes:block>
+	</item>
+	</channel>
+</rss>

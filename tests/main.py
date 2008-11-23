@@ -13,6 +13,6 @@ if __name__ == "__main__":
 	unittest.main()
 	
 	# runner = unittest.TextTestRunner()
-	# runner.run(HTTPCachingTest('testETagHeader'))
+	# runner.run(CategoryTest('testFeedCategory'))
 	# runner.run(BasicParserTest('testLoadFeed'))
 	# runner.run(TransactionTest('testTransactionRollback'))

@@ -82,6 +82,14 @@ class AuthorTest(DBTestBase):
 
 class CategoryTest(DBTestBase):
 	
+	def testFeedCategory(self):
+		"""must properly detect feed categories"""
+		feed = Feed.Load(self.store, TEST.fixture(u'conicsocial.cybersonica.org__feed_rss2'))
+		self.assertEquals(1, feed.categories.count())
+		self.assertEquals(u'Society & Culture', feed.categories.any().term)
+		# self.assertEquals(u'noreply@blogger.com', feed.categories.any().scheme)
+		# self.assertEquals(u'http://www.blogger.com/profile/15625196533865711283', feed.categories.any().label)
+
 	def testEntryCategory(self):
 		"""must properly detect entry author(s)"""
 		feed = Feed.Load(self.store, TEST.fixture(u'www.dot-alt.blogspot.com_atom.xml'))
