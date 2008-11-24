@@ -10,11 +10,12 @@ CREATE FUNCTION update_datemodified_column() RETURNS TRIGGER AS '
 -- = feeds =
 -- =========
 
-CREATE TABLE semaphore (
+CREATE TABLE semaphores (
   id            SERIAL PRIMARY KEY,
   date_created  TIMESTAMP NOT NULL DEFAULT now(),
   
-  guid          VARCHAR(40) UNIQUE NOT NULL
+  guid          VARCHAR(40) UNIQUE NOT NULL,
+  shutdown_requested BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE batchimports (
@@ -23,7 +24,7 @@ CREATE TABLE batchimports (
   
   semaphore_id  INTEGER DEFAULT NULL,
   date_locked   TIMESTAMP DEFAULT NULL,
-  
+
   url           VARCHAR(4096) UNIQUE NOT NULL,
   imported      BOOLEAN NOT NULL DEFAULT FALSE,
 
@@ -38,8 +39,8 @@ CREATE TABLE feeds (
   date_modified TIMESTAMP DEFAULT now(),
   
   semaphore_id  INTEGER DEFAULT NULL,
-  semaphore_acquisition_date TIMESTAMP DEFAULT NULL,
-  
+  date_locked   TIMESTAMP DEFAULT NULL,
+
   active        BOOLEAN NOT NULL DEFAULT TRUE,
   url           VARCHAR(4096) UNIQUE NOT NULL,
   actual_url    VARCHAR(4096) NOT NULL,
@@ -249,3 +250,4 @@ CREATE TABLE entries_tags (
   UNIQUE(user_id, entry_id, tag_id)
 );
 CREATE TRIGGER entries_tags_update_datemodified BEFORE UPDATE ON entries_tags FOR EACH ROW EXECUTE PROCEDURE update_datemodified_column();
+

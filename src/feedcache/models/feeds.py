@@ -26,6 +26,7 @@ import feedcache.util as util
 import feedcache.feedparser_util as fputil
 from authors import Author, FeedAuthor, EntryAuthor
 from categories import Category, FeedCategory, EntryCategory
+from semaphores import Semaphore
 
 __all__ = [
 	'Batchimport',
@@ -39,6 +40,10 @@ __all__ = [
 class Batchimport(object):
 	__storm_table__ = 'batchimports'
 	id = storm.Int(primary=True)
+
+	semaphore_id = storm.Int()
+	semaphore = storm.Reference(semaphore_id, Semaphore.id)
+	date_locked = storm.DateTime()
 
 	url = storm.Unicode()
 	imported = storm.Bool()
@@ -132,6 +137,10 @@ class Feed(object):
 	__storm_table__ = 'feeds'
 	id = storm.Int(primary=True)
 	
+	semaphore_id = storm.Int()
+	semaphore = storm.Reference(semaphore_id, Semaphore.id)
+	date_locked = storm.DateTime()
+
 	active = storm.Bool()
 	url = storm.Unicode()
 	actual_url = storm.Unicode()
