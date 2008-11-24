@@ -134,10 +134,12 @@ class Worker(object):
 			# https://bugs.launchpad.net/storm/+bug/149335
 			# -> retry
 			store.rollback()
-			self.log('%s, retrying...' % str(e))
 			if retries>0:
-				self.acquire_batchimports(store, semaphore, cutoff_time, retries-1)
-			return None
+				self.log('%s, retrying...' % str(e).strip())
+				return self.acquire_batchimports(store, semaphore, cutoff_time, retries-1)
+			else:
+				self.log('%s, giving up.' % str(e).strip())
+				return None
 		except storm.exceptions.IntegrityError, e:
 			# Violated unique constraint: another worker has already acquired the lock.
 			# If this happens we failed at making Storm do an atomic INSERT .. SELECT
