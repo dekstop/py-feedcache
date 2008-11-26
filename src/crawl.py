@@ -40,6 +40,8 @@ UPDATE_TIMEOUT = datetime.timedelta(minutes=30)
 stdout = sys.stdout
 stderr = sys.stdout
 
+num_retries = 0
+
 # ===========
 # = helpers =
 # ===========
@@ -57,7 +59,6 @@ def load_batchimport_file(DSN, file):
 
 	store.close()
 
-
 # ===========
 # = classes =
 # ===========
@@ -69,7 +70,7 @@ class Worker(object):
 		self.semaphore = Semaphore()
 	
 	def log(self, message):
-		print str(self.semaphore), message
+		print "%d %s %s" % (self.semaphore.id, datetime.datetime.now().isoformat(), message)
 	
 	def _expr_importable_batchimports(self, store, semaphore, cutoff_time):
 		"""
@@ -135,6 +136,9 @@ class Worker(object):
 			# -> retry
 			store.rollback()
 			if retries>0:
+				#time.sleep(0.1 + random.random()) # to avoid lock contention
+				global num_retries
+				num_retries += 1
 				self.log('%s, retrying...' % str(e).strip())
 				return self.acquire_batchimports(store, semaphore, cutoff_time, retries-1)
 			else:
@@ -208,6 +212,11 @@ class Worker(object):
 					
 			if keep_running==False:
 				break
+			
+			store.flush()
+		
+		if self.semaphore.shutdown_requested==True:
+			log("Shutdown requested")
 		
 		store.remove(self.semaphore)
 		store.commit()
@@ -219,34 +228,63 @@ class Worker(object):
 # ========
 
 if __name__ == '__main__':
+	
+	if len(sys.argv)!=2:
+		print "<num_threads>"
+		sys.exit(1)
+	
+	num_threads = int(sys.argv[1])
+	
 	# setup
 	load_batchimport_file(DSN, 'crawltest.txt')
-	
-	db = storm.database.create_database(DSN)
-	store = storm.store.Store(db)
-	
-	for tablename in ['semaphores']:
-		store.execute('truncate ' + tablename)
-	for tablename in ['feeds', 'batchimports']:
-		store.execute('update ' + tablename + ' set semaphore_id=null, date_locked=null')
-	store.commit()
-	
-	# run
-	# from storm.tracer import debug
-	# debug(True, stream=sys.stdout)
 
-	# worker = Worker(DSN)
-	# worker.run()
+	# =======
+	# = run =
+	# =======
+	
+	start_time = datetime.datetime.now()
 	
 	workers = []
 
-	for i in range(9):
-		worker = Worker(DSN)
-		t = Thread(target=worker.run)
-		workers.append(t)
-		time.sleep(0.1 + random.random()) # to avoid lock contention
-		t.start()
+	try:
+		for i in range(num_threads):
+			worker = Worker(DSN)
+			t = Thread(target=worker.run)
+			workers.append(t)
+			time.sleep(0.1 + random.random()) # to avoid lock contention
+			t.start()
+
+		for worker in workers:
+			worker.join()
+	except (KeyboardInterrupt, SystemExit):
+		# ask all workers to shut down
+		store.execute(storm.expr.Update({Semaphore.shutdown_requested: True}, True, Semaphore))
+
+	end_time = datetime.datetime.now()
 	
-	for worker in workers:
-		worker.join()
+	# ===========
+	# = measure =
+	# ===========
 	
+	db = storm.database.create_database(DSN)
+	store = storm.store.Store(db)
+	num_messages = store.execute('select count(*) from messages').get_one()[0]
+	store.close()
+	
+	# create table stats(id serial primary key, type text, start_time timestamp, end_time timestamp, num_retries int, num_messages int);
+	db = storm.database.create_database('postgres://postgres:@localhost/metrics')
+	store = storm.store.Store(db)
+	
+	# create table stats(id serial primary key, type text, start_time timestamp, end_time timestamp, num_retries int, num_messages int);
+	# create view stats_summary as select type, count(*), min(end_time-start_time) as min_time, max(end_time-start_time) as max_time, avg(end_time-start_time) as avg_time, round(cast(stddev(extract(epoch from (end_time-start_time))) as numeric), 2) as sd_time, min(num_retries) as min_retries, max(num_retries) as max_retries, round(avg(num_retries), 2) as avg_retries, round(stddev(num_retries), 2) as sd_retries, min(num_messages) as min_messages, max(num_messages) as max_messages, round(avg(num_messages), 2) as avg_messages, round(stddev(num_messages), 2) as sd_messages from stats group by type order by min(id);
+	store.execute(
+		"insert into stats(type, start_time, end_time, num_retries, num_messages) values ('%s', '%s', '%s', %d, %d)" %
+		(
+			("threads: %d" % num_threads),
+			start_time.isoformat(),
+			end_time.isoformat(),
+			num_retries,
+			num_messages
+		))
+	store.commit()
+	store.close()

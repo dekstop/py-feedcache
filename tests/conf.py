@@ -28,7 +28,8 @@ TABLES = [
 	'batchimports', 'feeds', 'entries', 
 	'messages', 'batchimports_messages', 'feeds_messages',
 	'authors', 'feeds_authors', 'entries_authors', 
-	'categories', 'feeds_categories', 'entries_categories'
+	'categories', 'feeds_categories', 'entries_categories',
+	'semaphores'
 ]
 
 
