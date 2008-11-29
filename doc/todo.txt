@@ -6,27 +6,26 @@ TODO:
 - tests for feed.category, feed.author
 - tests for timezones
 - semaphores
+- worker threads/processes
 - users, user tags, ...
 - enclosures
 
- ======================
- = application logger =
- ======================
+ ===========
+ = locking =
+ ===========
 
-log session metrics to file:
-- feed update:
-  - feed id
-  - network time
-  - serialisation time
-  - entries added
-  - entries updated
-  - ...
-- use syslog? how does apache log to /var/log/ with multiple processes?
+- stable application-level locking mechanism for concurrent updates (threads, processes, ...)
+- using implicit locks: API wraps locked operations; it should be impossible to forget to lock/release
 
+- allow coarse-grained locks:
+  - authors, categories, tags, ... all refer to a feed (have a FK feed_id)
+  - <relation>_feeds join tables become obsolete
+  - <relation>_entries join tables remain
+  - locking a feed implicitly locks all relations for that feed
+  - it becomes impossible to have update collisions for authors/categories/... while concurrently updating multiple feeds
 
- ==============
- = work queue =
- ==============
+better retry mechanism
+- cf https://bugs.launchpad.net/storm/+bug/149335 ("For Launchpad, we currently retry the following exceptions: ...")
 
 worker lock mechanism
 - batchimport, feed tables have a locking flag (e.g. 2 columns: lock owner, lock start date)
@@ -48,6 +47,40 @@ worker lock mechanism
 semaphore UIDs: 
 - base64.b32encode(hashlib.sha1(str(datetime.datetime.now())).digest())
 - base64.urlsafe_b64encode(hashlib.sha1(str(datetime.datetime.now())).digest())
+
+ =============================
+ = message queue for updates =
+ =============================
+
+- clients can keep track of updated feed entries
+- is asynchronous to/detached from feed update process
+- routing to multiple inboxes based on simple rules (cf feedfilter.txt: by feed, keyword search, ...)
+- messages only contain references to entries, no text
+
+e.g.:
+- list of subscribers
+- filter list per subscriber (feeds, patterns, only added or also updated items?)
+- inbox per subscriber:
+  - timestamp
+  - entry id
+  - boolean received?
+- entries are only guaranteed to remain in inbox for a limited time
+- subscriber must flag entries as received (should be abstracted by a client library)
+
+ ======================
+ = application logger =
+ ======================
+
+log session metrics to file:
+- feed update:
+  - feed id
+  - network time
+  - serialisation time
+  - entries added
+  - entries updated
+  - ...
+- use syslog? how does apache log to /var/log/ with multiple processes?
+
 
  ==================
  = code structure =
@@ -111,7 +144,7 @@ cf 'encoding'
   - level of atomicity for updates (per feed? per entry?)
 
 tests:
-- ensure that multiple threads updating the same feed don't interfere with each other (e.g.: feed has multiple entries with same GUID but no timestamps, so the physical entry gets overwritten multiple times on every crawl)
+- ensure that multiple threads updating the same feed don't interfere with each other (e.g.: feed has multiple entries with same GUID but no timestamps, so the physical entry gets overwritten multiple times on every crawl; or: multiple feeds with same author/topic tuples)
 
 
  =======

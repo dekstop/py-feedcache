@@ -208,7 +208,7 @@ CREATE TABLE users(
 );
 CREATE TRIGGER users_update_datemodified BEFORE UPDATE ON users FOR EACH ROW EXECUTE PROCEDURE update_datemodified_column();
 
-CREATE TABLE feeds_users (
+CREATE TABLE users_feeds (
   date_modified TIMESTAMP DEFAULT now(),
   
   user_id       INTEGER NOT NULL,
@@ -216,7 +216,7 @@ CREATE TABLE feeds_users (
   
   UNIQUE (user_id, feed_id)
 );
-CREATE TRIGGER feeds_users_update_datemodified BEFORE UPDATE ON feeds_users FOR EACH ROW EXECUTE PROCEDURE update_datemodified_column();
+CREATE TRIGGER users_feeds_update_datemodified BEFORE UPDATE ON users_feeds FOR EACH ROW EXECUTE PROCEDURE update_datemodified_column();
 
 -- ========
 -- = tags =

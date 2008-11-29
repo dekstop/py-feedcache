@@ -186,7 +186,7 @@ class Worker(object):
 		Runs until all batchimports have been processed and all stale
 		feeds updated.
 		"""
-		db = storm.database.create_database(DSN)
+		db = storm.database.create_database(self.DSN)
 		store = storm.store.Store(db)
 
 		store.add(self.semaphore)
@@ -216,7 +216,7 @@ class Worker(object):
 			store.flush()
 		
 		if self.semaphore.shutdown_requested==True:
-			log("Shutdown requested")
+			self.log("Shutdown requested")
 		
 		store.remove(self.semaphore)
 		store.commit()

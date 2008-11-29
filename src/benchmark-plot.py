@@ -16,13 +16,16 @@ num_threads = []
 time = []
 num_retries = []
 num_messages = []
-p = re.compile('[^:]+: (\d+)')
+p = re.compile('pro[^:]+: (\d+)')
 
 for row in store.execute("select type, extract(epoch from (end_time-start_time)) as time, num_retries, num_messages from stats").get_all():
-	num_threads.append(int(p.match(row[0]).group(1)))
-	time.append(row[1])
-	num_retries.append(row[2])
-	num_messages.append(row[3])
+	m = p.match(row[0])
+	if m:
+		c = m.group(1)
+		num_threads.append(int(c))
+		time.append(row[1])
+		num_retries.append(row[2])
+		num_messages.append(row[3])
 
 store.close()
 
@@ -41,5 +44,5 @@ leg.get_frame().set_edgecolor('1')
 for t in leg.get_texts():
 	t.set_fontsize(10)
 
-pylab.savefig('plot-stats.png')
+pylab.savefig('benchmark-plot.png')
 pylab.show()
