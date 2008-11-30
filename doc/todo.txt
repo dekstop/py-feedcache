@@ -3,12 +3,10 @@
 check out http://sourceforge.net/projects/senews
 
 TODO: 
-- tests for feed.category, feed.author
-- tests for timezones
-- semaphores
-- worker threads/processes
-- users, user tags, ...
-- enclosures
+- tests for semaphores
+- worker threads/processes; tests
+- users, user tags, ...; tests
+- tests for timezones (first need to maker sure that feedparser and storm do it correctly...)
 
  ===========
  = locking =

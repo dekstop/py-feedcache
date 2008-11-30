@@ -117,6 +117,24 @@ def build_category_tuple(fp_category):
 		pass
 	return (term, scheme, label)
 
+def build_enclosure_tuple(fp_enclosure):
+	"""
+	Takes a feedparser-style category (tag) tuple and makes it nice (e.g. gets rid of empty strings.)
+	"""
+	url = None
+	length = None
+	type = None
+	if fp_enclosure.has_key('href') and fp_enclosure.href!='':
+		url = util.transcode(fp_enclosure.href)
+	if fp_enclosure.has_key('length') and fp_enclosure.length!='':
+		length = int(fp_enclosure.length)
+	if fp_enclosure.has_key('type') and fp_enclosure.type!='':
+		type = util.transcode(fp_enclosure.type)
+	if url==None:
+		# can this happen? if yes -> ignore enclosure
+		pass
+	return (url, length, type)
+
 def select_preferred_entry_content(entries, 
 	preferredContentTypes=['text/plain', 'text/html', 'application/xhtml+xml']):
 	"""

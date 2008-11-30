@@ -16,7 +16,7 @@ num_threads = []
 time = []
 num_retries = []
 num_messages = []
-p = re.compile('pro[^:]+: (\d+)')
+p = re.compile('coarse-grained lock, t[^:]+: (\d+)')
 
 for row in store.execute("select type, extract(epoch from (end_time-start_time)) as time, num_retries, num_messages from stats").get_all():
 	m = p.match(row[0])
@@ -33,7 +33,7 @@ store.close()
 # = draw =
 # ========
 
-pylab.xlabel('num_processes', fontsize=10)
+pylab.xlabel('num_threads', fontsize=10)
 
 pylab.scatter(num_threads, time, label='time', color='green', edgecolor='green', alpha=0.3)
 pylab.scatter(num_threads, num_retries, label='num_retries', color='b', edgecolor='b', alpha=0.3)

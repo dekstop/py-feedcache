@@ -94,7 +94,7 @@ class CategoryTest(DBTestBase):
 		#self.assertEquals(1, feed.categories.count())
 		self.assertEquals(26, feed.categories.count())
 		
-		self.assertEquals(u'Society & Culture', feed.categories.any().term)
+		self.assertTrue(u'Society & Culture', feed.categories.order_by(Entry.id).first().term)
 		# self.assertEquals(u'noreply@blogger.com', feed.categories.any().scheme)
 		# self.assertEquals(u'http://www.blogger.com/profile/15625196533865711283', feed.categories.any().label)
 
@@ -135,6 +135,27 @@ class CategoryTest(DBTestBase):
 		self.assertEquals(8, counters[u'audio'])
 		self.assertEquals(4, counters[u'Wiley'])
 		self.assertEquals(4, counters[u'sub fm'])
+
+class EnclosureTest(DBTestBase):
+	
+	def testAtomEnclosure(self):
+		"""must properly detect Atom entry enclosures"""
+		feed = Feed.Load(self.store, TEST.fixture(u'flickr_tag_feed.xml'))
+		entry = feed.entries.order_by(Entry.id).first()
+		self.assertEquals(1, entry.enclosures.count())
+		enclosure = entry.enclosures.any()
+		self.assertEquals(u'http://farm4.static.flickr.com/3101/2802364045_f579710880_o.jpg', enclosure.url)
+		self.assertEquals(u'image/jpeg', enclosure.type)
+
+	def testRss2Enclosure(self):
+		"""must properly detect RSS 2.0 entry enclosures"""
+		feed = Feed.Load(self.store, TEST.fixture(u'conicsocial.cybersonica.org__feed_rss2'))
+		entry = feed.entries.order_by(Entry.id).first()
+		self.assertEquals(1, entry.enclosures.count())
+		enclosure = entry.enclosures.any()
+		self.assertEquals(u'http://www.boep.net/audio/sketch1_boep.mp3', enclosure.url)
+		self.assertEquals(19051739, enclosure.length)
+		self.assertEquals(u'audio/mpeg', enclosure.type)
 
 class ParseErrorTest(DBTestBase):
 	

@@ -10,7 +10,7 @@ import storm.locals as storm
 from feedcache.models.feeds import Feed
 
 __all__ = [
-	'Category', 'FeedCategory', 'EntryCategory'
+	'Category', 'EntryCategory'
 ]
 
 class Category(object):

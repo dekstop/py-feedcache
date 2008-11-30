@@ -6,6 +6,7 @@ from test_batchimports import *
 from test_feeds import *
 from test_http import *
 from test_messages import *
+from test_timezones import *
 
 
 if __name__ == "__main__":

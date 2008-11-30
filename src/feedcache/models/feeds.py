@@ -410,6 +410,7 @@ class Entry(object):
 		
 		entry._update_authors(store, feedparser_entry)
 		entry._update_categories(store, feedparser_entry)
+		entry._update_enclosures(store, feedparser_entry)
 		
 		# this assumes that storm does proper 'dirty' checking and only writes on changes; 
 		# otherwise it would be wasteful to override every field on every call
@@ -439,6 +440,14 @@ class Entry(object):
 				if (category in self.categories)==False:
 					self.categories.add(category)
 
+	def _update_enclosures(self, store, feedparser_entry):
+		if feedparser_entry.has_key('enclosures'):
+			for fp_enclosure in feedparser_entry.enclosures:
+				url, length, type = fputil.build_enclosure_tuple(fp_enclosure)
+				enclosure = Enclosure.FindOrCreate(store, self.feed, url, length, type)
+				if (enclosure in self.enclosures)==False:
+					self.enclosures.add(enclosure)
+
 	FindByUniqueId = staticmethod(FindByUniqueId)
 	CreateOrUpdate = staticmethod(CreateOrUpdate)
 
@@ -450,6 +459,7 @@ class Entry(object):
 from messages import BatchimportMessage, FeedMessage
 from authors import Author, EntryAuthor
 from categories import Category, EntryCategory
+from enclosures import Enclosure, EntryEnclosure
 
 # many-to-one references
 Feed.entries = storm.ReferenceSet(Feed.id, Entry.feed_id)
@@ -461,3 +471,5 @@ Entry.authors = storm.ReferenceSet(Entry.id, EntryAuthor.entry_id, EntryAuthor.a
 Feed.categories = storm.ReferenceSet(Feed.id, Category.feed_id, Category.id)
 Entry.categories = storm.ReferenceSet(Entry.id, EntryCategory.entry_id, EntryCategory.category_id, Category.id)
 
+Feed.enclosures = storm.ReferenceSet(Feed.id, Enclosure.feed_id, Enclosure.id)
+Entry.enclosures = storm.ReferenceSet(Entry.id, EntryEnclosure.entry_id, EntryEnclosure.enclosure_id, Enclosure.id)

@@ -14,7 +14,7 @@ CREATE TABLE semaphores (
   id            SERIAL PRIMARY KEY,
   date_created  TIMESTAMP NOT NULL DEFAULT now(),
   
-  guid          VARCHAR(40) UNIQUE NOT NULL,
+  guid          TEXT UNIQUE NOT NULL,
   shutdown_requested BOOLEAN NOT NULL DEFAULT FALSE
 );
 
@@ -86,8 +86,8 @@ CREATE TABLE message_types (
   id            SERIAL PRIMARY KEY,
   date_modified TIMESTAMP DEFAULT now(),
   
-  name          VARCHAR(1024) UNIQUE NOT NULL,
-  description   VARCHAR(2048)
+  name          TEXT UNIQUE NOT NULL,
+  description   TEXT
 );
 CREATE TRIGGER message_types_update_datemodified BEFORE UPDATE ON message_types FOR EACH ROW EXECUTE PROCEDURE update_datemodified_column();
 
@@ -99,7 +99,7 @@ CREATE TABLE messages (
   date_modified TIMESTAMP DEFAULT now(),
   
   message_type_id INTEGER NOT NULL,
-  message       VARCHAR(2048) NOT NULL,
+  message       TEXT NOT NULL,
   payload       TEXT
 );
 CREATE TRIGGER messages_lastmodified BEFORE UPDATE ON messages FOR EACH ROW EXECUTE PROCEDURE update_datemodified_column();
@@ -174,6 +174,32 @@ CREATE TABLE entries_categories (
   UNIQUE(entry_id, category_id)
 );
 CREATE TRIGGER entries_categories_update_datemodified BEFORE UPDATE ON entries_categories FOR EACH ROW EXECUTE PROCEDURE update_datemodified_column();
+
+-- ==============
+-- = enclosures =
+-- ==============
+CREATE TABLE enclosures (
+  id            SERIAL PRIMARY KEY,
+  date_modified TIMESTAMP DEFAULT now(),
+  
+  feed_id       INTEGER NOT NULL,
+  url           VARCHAR(4096) NOT NULL,
+  length        INTEGER,
+  type          VARCHAR(1024),
+  
+  UNIQUE(feed_id, url, length, type)
+);
+CREATE TRIGGER enclosures_update_datemodified BEFORE UPDATE ON enclosures FOR EACH ROW EXECUTE PROCEDURE update_datemodified_column();
+
+CREATE TABLE entries_enclosures (
+  date_modified TIMESTAMP DEFAULT now(),
+  
+  entry_id      INTEGER NOT NULL,
+  enclosure_id   INTEGER NOT NULL,
+  
+  UNIQUE(entry_id, enclosure_id)
+);
+CREATE TRIGGER entries_enclosures_update_datemodified BEFORE UPDATE ON entries_enclosures FOR EACH ROW EXECUTE PROCEDURE update_datemodified_column();
 
 -- =========
 -- = users =
