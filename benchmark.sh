@@ -2,7 +2,8 @@
 
 function run() {
 	bash ~/Documents/code/_aggregator/python/py-feedcache/bin/resetdb.sh feedcache
-	python benchmark-processes.py $1 || return 1
+	python benchmark-threads.py $1 || return 1
+	#python benchmark-processes.py $1 || return 1
 }
 
 function repeat() {

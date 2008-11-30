@@ -18,7 +18,7 @@ TODO:
 - using implicit locks: API wraps locked operations; it should be impossible to forget to lock/release
 
 - allow coarse-grained locks:
-  - authors, categories, tags, ... all refer to a feed (have a FK feed_id)
+  - authors, categories, ... all refer to a feed (have a FK feed_id)
   - <relation>_feeds join tables become obsolete
   - <relation>_entries join tables remain
   - locking a feed implicitly locks all relations for that feed

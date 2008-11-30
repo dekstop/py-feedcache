@@ -280,7 +280,7 @@ if __name__ == '__main__':
 	store.execute(
 		"insert into stats(type, start_time, end_time, num_retries, num_messages) values ('%s', '%s', '%s', %d, %d)" %
 		(
-			("threads: %d" % num_threads),
+			("coarse-grained lock, threads: %d" % num_threads),
 			start_time.isoformat(),
 			end_time.isoformat(),
 			num_retries,

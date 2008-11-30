@@ -33,7 +33,7 @@ store.close()
 # = draw =
 # ========
 
-pylab.xlabel('num_threads', fontsize=10)
+pylab.xlabel('num_processes', fontsize=10)
 
 pylab.scatter(num_threads, time, label='time', color='green', edgecolor='green', alpha=0.3)
 pylab.scatter(num_threads, num_retries, label='num_retries', color='b', edgecolor='b', alpha=0.3)

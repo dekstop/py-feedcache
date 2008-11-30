@@ -108,8 +108,8 @@ CREATE TABLE batchimports_messages (
   id            SERIAL PRIMARY KEY,
   date_modified TIMESTAMP DEFAULT now(),
   
-  batchimport_id       INTEGER NOT NULL,
-  message_id     INTEGER NOT NULL
+  batchimport_id INTEGER NOT NULL,
+  message_id    INTEGER NOT NULL
 );
 CREATE TRIGGER batchimports_messages_update_datemodified BEFORE UPDATE ON batchimports_messages FOR EACH ROW EXECUTE PROCEDURE update_datemodified_column();
 
@@ -118,7 +118,7 @@ CREATE TABLE feeds_messages (
   date_modified TIMESTAMP DEFAULT now(),
   
   feed_id       INTEGER NOT NULL,
-  message_id     INTEGER NOT NULL
+  message_id    INTEGER NOT NULL
 );
 CREATE TRIGGER feeds_messages_update_datemodified BEFORE UPDATE ON feeds_messages FOR EACH ROW EXECUTE PROCEDURE update_datemodified_column();
 
@@ -130,23 +130,14 @@ CREATE TABLE authors (
   id            SERIAL PRIMARY KEY,
   date_modified TIMESTAMP DEFAULT now(),
   
+  feed_id       INTEGER NOT NULL,
   name          VARCHAR(100) NOT NULL,
   email         VARCHAR(320),
   link          VARCHAR(4096),
   
-  UNIQUE(name, email, link)
+  UNIQUE(feed_id, name, email, link)
 );
 CREATE TRIGGER authors_update_datemodified BEFORE UPDATE ON authors FOR EACH ROW EXECUTE PROCEDURE update_datemodified_column();
-
-CREATE TABLE feeds_authors (
-  date_modified TIMESTAMP DEFAULT now(),
-  
-  feed_id       INTEGER NOT NULL,
-  author_id     INTEGER NOT NULL,
-  
-  UNIQUE(feed_id, author_id)
-);
-CREATE TRIGGER feeds_authors_update_datemodified BEFORE UPDATE ON feeds_authors FOR EACH ROW EXECUTE PROCEDURE update_datemodified_column();
 
 CREATE TABLE entries_authors (
   date_modified TIMESTAMP DEFAULT now(),
@@ -165,23 +156,14 @@ CREATE TABLE categories (
   id            SERIAL PRIMARY KEY,
   date_modified TIMESTAMP DEFAULT now(),
   
+  feed_id       INTEGER NOT NULL,
   term          VARCHAR(1024) NOT NULL,
   scheme        VARCHAR(4096),
   label         VARCHAR(1024),
   
-  UNIQUE(term, scheme, label)
+  UNIQUE(feed_id, term, scheme, label)
 );
 CREATE TRIGGER categories_update_datemodified BEFORE UPDATE ON categories FOR EACH ROW EXECUTE PROCEDURE update_datemodified_column();
-
-CREATE TABLE feeds_categories (
-  date_modified TIMESTAMP DEFAULT now(),
-  
-  feed_id       INTEGER NOT NULL,
-  category_id   INTEGER NOT NULL,
-  
-  UNIQUE(feed_id, category_id)
-);
-CREATE TRIGGER feeds_categories_update_datemodified BEFORE UPDATE ON feeds_categories FOR EACH ROW EXECUTE PROCEDURE update_datemodified_column();
 
 CREATE TABLE entries_categories (
   date_modified TIMESTAMP DEFAULT now(),

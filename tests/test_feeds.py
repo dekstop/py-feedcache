@@ -46,7 +46,11 @@ class AuthorTest(DBTestBase):
 	def testFeedAuthor(self):
 		"""must properly detect feed author(s)"""
 		feed = Feed.Load(self.store, TEST.fixture(u'www.dot-alt.blogspot.com_atom.xml'))
-		self.assertEquals(1, feed.authors.count())
+
+		# new table schema means every entry author is also a feed author
+		#self.assertEquals(1, feed.authors.count())
+		self.assertEquals(4, feed.authors.count())
+		
 		self.assertEquals(u'Alex Bok Bok', feed.authors.any().name)
 		self.assertEquals(u'noreply@blogger.com', feed.authors.any().email)
 		self.assertEquals(u'http://www.blogger.com/profile/15625196533865711283', feed.authors.any().link)
@@ -85,7 +89,11 @@ class CategoryTest(DBTestBase):
 	def testFeedCategory(self):
 		"""must properly detect feed categories"""
 		feed = Feed.Load(self.store, TEST.fixture(u'conicsocial.cybersonica.org__feed_rss2'))
-		self.assertEquals(1, feed.categories.count())
+		
+		# new table schema means every entry category is also a feed category
+		#self.assertEquals(1, feed.categories.count())
+		self.assertEquals(26, feed.categories.count())
+		
 		self.assertEquals(u'Society & Culture', feed.categories.any().term)
 		# self.assertEquals(u'noreply@blogger.com', feed.categories.any().scheme)
 		# self.assertEquals(u'http://www.blogger.com/profile/15625196533865711283', feed.categories.any().label)

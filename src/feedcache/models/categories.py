@@ -7,6 +7,8 @@
 
 import storm.locals as storm
 
+from feedcache.models.feeds import Feed
+
 __all__ = [
 	'Category', 'FeedCategory', 'EntryCategory'
 ]
@@ -15,35 +17,32 @@ class Category(object):
 	__storm_table__ = 'categories'
 	id = storm.Int(primary=True)
 	
+	feed_id = storm.Int()
+	feed = storm.Reference(feed_id, Feed.id)
 	term = storm.Unicode()
 	scheme = storm.Unicode()
 	label = storm.Unicode()
 	
-	def __init__(self, term, scheme, label):
+	def __init__(self, feed, term, scheme, label):
+		self.feed = feed
 		self.term = term
 		self.scheme = scheme
 		self.label = label
 	
-	def FindByProperties(store, term, scheme=None, label=None):
-		return store.find(Category, Category.term==term, Category.scheme==scheme, Category.label==label).one()
+	def FindByProperties(store, feed, term, scheme=None, label=None):
+		return store.find(Category, Category.feed==feed, Category.term==term, 
+			Category.scheme==scheme, Category.label==label).one()
 	
-	def FindOrCreate(store, term, scheme=None, label=None):
-		category = Category.FindByProperties(store, term, scheme, label)
+	def FindOrCreate(store, feed, term, scheme=None, label=None):
+		category = Category.FindByProperties(store, feed, term, scheme, label)
 		if (category==None):
-			category = Category(term, scheme, label)
+			category = Category(feed, term, scheme, label)
 			store.add(category)
 			store.flush()
 		return category
 	
 	FindByProperties = staticmethod(FindByProperties)
 	FindOrCreate = staticmethod(FindOrCreate)
-
-class FeedCategory(object):
-	__storm_table__ = 'feeds_categories'
-	__storm_primary__ = 'feed_id', 'category_id'
-	
-	feed_id = storm.Int()
-	category_id = storm.Int()
 
 class EntryCategory(object):
 	__storm_table__ = 'entries_categories'

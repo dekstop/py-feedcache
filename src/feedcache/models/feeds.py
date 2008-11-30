@@ -24,8 +24,6 @@ import storm.locals as storm
 
 import feedcache.util as util
 import feedcache.feedparser_util as fputil
-from authors import Author, FeedAuthor, EntryAuthor
-from categories import Category, FeedCategory, EntryCategory
 from semaphores import Semaphore
 
 __all__ = [
@@ -283,7 +281,7 @@ class Feed(object):
 		self._update_categories(store, d)
 
 		# this assumes that storm does proper 'dirty' checking and only writes on changes; 
-		# otherwise this would be wasteful on every call
+		# otherwise it would be wasteful to override every field on every call
 		store.flush()
 
 		self._update_entries(store, d.entries)
@@ -319,7 +317,7 @@ class Feed(object):
 				fp_authors.append(fp_author)
 		for fp_author in fp_authors:
 			name, email, link = fputil.build_author_tuple(fp_author)
-			author = Author.FindOrCreate(store, name, email, link)
+			author = Author.FindOrCreate(store, self, name, email, link)
 			if (author in self.authors)==False:
 				self.authors.add(author)
 	
@@ -327,7 +325,7 @@ class Feed(object):
 		if d.feed.has_key('tags'):
 			for fp_category in d.feed.tags:
 				term, scheme, label = fputil.build_category_tuple(fp_category)
-				category = Category.FindOrCreate(store, term, scheme, label)
+				category = Category.FindOrCreate(store, self, term, scheme, label)
 				if (category in self.categories)==False:
 					self.categories.add(category)
 
@@ -414,7 +412,7 @@ class Entry(object):
 		entry._update_categories(store, feedparser_entry)
 		
 		# this assumes that storm does proper 'dirty' checking and only writes on changes; 
-		# otherwise this would be wasteful on every call
+		# otherwise it would be wasteful to override every field on every call
 		#store.add(entry)
 		store.flush()
 		
@@ -429,7 +427,7 @@ class Entry(object):
 				fp_authors.append(fp_author)
 		for fp_author in fp_authors:
 			name, email, link = fputil.build_author_tuple(fp_author)
-			author = Author.FindOrCreate(store, name, email, link)
+			author = Author.FindOrCreate(store, self.feed, name, email, link)
 			if (author in self.authors)==False:
 				self.authors.add(author)
 				
@@ -437,7 +435,7 @@ class Entry(object):
 		if feedparser_entry.has_key('tags'):
 			for fp_category in feedparser_entry.tags:
 				term, scheme, label = fputil.build_category_tuple(fp_category)
-				category = Category.FindOrCreate(store, term, scheme, label)
+				category = Category.FindOrCreate(store, self.feed, term, scheme, label)
 				if (category in self.categories)==False:
 					self.categories.add(category)
 
@@ -448,15 +446,18 @@ class Entry(object):
 # = References =
 # ==============
 
+# moved this to the end because this include establishes a circular reference between modules:
+from messages import BatchimportMessage, FeedMessage
+from authors import Author, EntryAuthor
+from categories import Category, EntryCategory
+
 # many-to-one references
 Feed.entries = storm.ReferenceSet(Feed.id, Entry.feed_id)
 
 # many-to-many references
-Feed.authors = storm.ReferenceSet(Feed.id, FeedAuthor.feed_id, FeedAuthor.author_id, Author.id)
+Feed.authors = storm.ReferenceSet(Feed.id, Author.feed_id, Author.id)
 Entry.authors = storm.ReferenceSet(Entry.id, EntryAuthor.entry_id, EntryAuthor.author_id, Author.id)
 
-Feed.categories = storm.ReferenceSet(Feed.id, FeedCategory.feed_id, FeedCategory.category_id, Category.id)
+Feed.categories = storm.ReferenceSet(Feed.id, Category.feed_id, Category.id)
 Entry.categories = storm.ReferenceSet(Entry.id, EntryCategory.entry_id, EntryCategory.category_id, Category.id)
 
-# moved this to the end because this include establishes a circular reference between modules:
-from messages import BatchimportMessage, FeedMessage
