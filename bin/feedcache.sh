@@ -26,7 +26,7 @@ shift
 if [ "$COMMAND" = "import" ] ; then	
 	python "${FEEDCACHE_HOME}/src/batchimport.py" $DSN $@
 elif [ "$COMMAND" = "update" ] ; then
-	pid="${FEEDCACHE_PID_DIR}/feedcache-${COMMAND}.pid"
+	pid="${FEEDCACHE_PID_DIR}/feedcache-${FEEDCACHE_VERSION}-${COMMAND}.pid"
 	mkdir -p "${FEEDCACHE_PID_DIR}"
 	
 	if [ -f $pid ]; then
