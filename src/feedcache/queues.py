@@ -129,10 +129,7 @@ class EntityQueue(object):
 				self.__class__.entity_type))
 			store.commit()
 			
-			items = store.find(self.__class__.entity_type, self.__class__.entity_type.semaphore == self.semaphore)
-			for item in items:
-				self.log('locked %s with id %d' % (self.__class__.entity_type.__name__, item.id))
-			return items
+			return store.find(self.__class__.entity_type, self.__class__.entity_type.semaphore == self.semaphore)
 			
 		except psycopg2.extensions.TransactionRollbackError, e:
 			# Another worker acquired a lock on the same item before we could; -> retry
@@ -182,6 +179,7 @@ class EntityQueue(object):
 		items = self._acquire_locks(store, num_items)
 		if items:
 			for item in items:
+				self.log('Processing %s with id %d' % (self.__class__.entity_type.__name__, item.id))
 				yield item
 				self._release_lock(store, item)
 		else:

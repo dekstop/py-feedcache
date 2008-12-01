@@ -7,17 +7,12 @@
 # martind 2008-12-01, 19:01:41
 #
 
+from optparse import OptionParser
 import sys
 
 import storm.locals
 
 from feedcache.models.feeds import Batchimport
-
-# ========
-# = conf =
-# ========
-
-DSN = 'postgres://postgres:@localhost/feedcache'
 
 # ===========
 # = helpers =
@@ -38,14 +33,19 @@ def load_batchimport_file(store, filename):
 
 if __name__ == '__main__':
 	
-	if len(sys.argv) == 1:
-		print '<feed_urls.txt>'
-		sys.exit(1)
+	usage = 'usage: %prog driver://user:password@host/database <feed_urls.txt>'
+	parser = OptionParser(usage)
 	
-	db = storm.database.create_database(DSN)
+	(options, args) = parser.parse_args()
+
+	if len(args) <= 1:
+		parser.error('incorrect number of arguments')
+	dsn = args[0]
+
+	db = storm.database.create_database(dsn)
 	store = storm.store.Store(db)
 
-	for filename in sys.argv[1:]:
+	for filename in args[1:]:
 		load_batchimport_file(store, filename)
 
 	store.close()

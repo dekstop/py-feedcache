@@ -1,8 +1,18 @@
 #!/bin/sh
 #
 # Variables used to run tests.
+# Overrides some of the parameters in env.sh
 #
 
-SCRIPT_DIR=`dirname $0`
-APP_ROOT=`cd $SCRIPT_DIR; cd ..; pwd`
-export PYTHONPATH="${APP_ROOT}/src"
+bin=`dirname $0`
+bin=`cd $bin; pwd`
+
+. ${bin}/env.sh
+
+export DBENGINE=postgres
+export DBHOST=localhost
+export DBUSER=postgres
+export DBPASSWORD=
+export DBNAME=feedcache_test
+
+export PYTHONPATH=${PYTHONPATH}:"${FEEDCACHE_HOME}/test"

@@ -1,11 +1,15 @@
 #!/bin/sh
 
-SCRIPT_DIR=`dirname $0`
-APP_ROOT=`cd $SCRIPT_DIR; cd ..; pwd`
-. ${APP_ROOT}/bin/env-test.sh
+bin=`dirname $0`
+bin=`cd $bin; pwd`
 
-pushd ${APP_ROOT}/tests > /dev/null
+. ${bin}/env.sh
+. ${bin}/env-test.sh
 
-python ${APP_ROOT}/tests/main.py
+TESTS_DIR="${FEEDCACHE_HOME}/tests"
+MAIN="${TESTS_DIR}/main.py"
 
+# we chdir so the test data can be found
+pushd ${TESTS_DIR} > /dev/null
+python $MAIN $@
 popd > /dev/null
