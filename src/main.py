@@ -40,7 +40,7 @@ def create_and_run_worker(dsn, lock_timeout, update_timeout, retry_timeout):
 	"""
 	Instantiates and starts a worker, returns the result of Worker.run()
 	"""
-	from worker import Worker # required for pp
+	from feedcache.worker import Worker # required for pp
 	worker = Worker(dsn, lock_timeout, update_timeout, retry_timeout)
 	return worker.run()
 

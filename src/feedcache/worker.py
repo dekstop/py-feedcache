@@ -17,12 +17,11 @@ import time
 
 import storm.locals
 
+import feedcache.exceptions
 from feedcache.models.semaphores import Semaphore
 from feedcache.models.feeds import Batchimport, Feed
 from feedcache.models.messages import BatchimportMessage, FeedMessage
-import feedcache.exceptions
-
-from queues import BatchimportQueue, FeedQueue
+from feedcache.queues import BatchimportQueue, FeedQueue
 
 __all__ = [
 	'Worker'
