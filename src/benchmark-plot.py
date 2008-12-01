@@ -16,7 +16,7 @@ num_threads = []
 time = []
 num_retries = []
 num_messages = []
-p = re.compile('coarse-grained lock, t[^:]+: (\d+)')
+p = re.compile('coarse-grained lock, p[^:]+: (\d+)')
 
 for row in store.execute("select type, extract(epoch from (end_time-start_time)) as time, num_retries, num_messages from stats").get_all():
 	m = p.match(row[0])

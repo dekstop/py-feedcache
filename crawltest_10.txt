@@ -1,0 +1,10 @@
+http://127.0.0.1/~mongo/feeds/help.textdrive.com_index.php_pg_forums.feed_id_1
+http://127.0.0.1/~mongo/feeds/browse%20me%20(archived)/del.icio.us_rss_tag_datamining
+http://127.0.0.1/~mongo/feeds/browse%20me%20(archived)/del.icio.us_rss_tag_ppdm
+http://127.0.0.1/~mongo/feeds/browse%20me%20(archived)/del.icio.us_rss_tag_sqlite
+http://127.0.0.1/~mongo/feeds/browse%20me%20(archived)/del.icio.us_rss_tag_tufte
+http://127.0.0.1/~mongo/feeds/browse%20me%20(archived)/del.icio.us_rss_tag_visualization
+http://127.0.0.1/~mongo/feeds/browse%20me%20(archived)/feeds.delicious.com_rss_subscriptions_martind
+http://127.0.0.1/~mongo/feeds/contexts/api.flickr.com_services_feeds_photos_public.gne_tags_hadoop
+http://127.0.0.1/~mongo/feeds/contexts/api.flickr.com_services_feeds_photos_public.gne_tags_huguk2008
+http://127.0.0.1/~mongo/feeds/contexts/blogsearch.google.com_blogsearch_feeds_hl_en_q_bigtablewarehouse_ie_utf-8_num_10_output_atom

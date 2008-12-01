@@ -4,9 +4,13 @@ check out http://sourceforge.net/projects/senews
 
 TODO: 
 - tests for semaphores
-- worker threads/processes; tests
+- tests for worker, queues
+- command to stop all workers (by setting the shutdown_requested flag)
+- renice processes?, http://www.parallelpython.com/component/option,com_smf/Itemid,29/topic,93.0
+- itunes extensions
 - users, user tags, ...; tests
-- tests for timezones (first need to maker sure that feedparser and storm do it correctly...)
+- tests for timezones (first need to make sure that feedparser and storm do it correctly...)
+
 
  ===========
  = locking =

@@ -12,8 +12,8 @@
 # after that are probably design bugs. (The only exception to this are SQL constraint 
 # violations that may get thrown while writing data.)
 #
-# In other words, a failure to fetch or parse a feed will not result in
-# incomplete or orphaned database records.
+# In other words, a failure to fetch or parse a feed will not result in incomplete or 
+# orphaned database records.
 #
 # martind 2008-11-01, 11:17:11
 #
@@ -52,26 +52,6 @@ class Batchimport(object):
 	
 	def __init__(self, url):
 		self.url = util.transcode(url)
-	
-	def GetOne(store, cutoff_time=util.datetime_now(), retry_cutoff_time=util.datetime_now()):
-		"""
-		Returns a random non-imported Batchimport that was added before cutoff_time,
-		and (if the last attempt failed) last fetched before retry_cutoff_time.
-		
-		This is NOT treadsafe! Multiple parralel workers may receive the same entry.
-		"""
-		return store.find(Batchimport, 
-			Batchimport.imported==False, 
-			storm.And(
-				Batchimport.date_added<cutoff_time,
-				storm.Or(
-					Batchimport.fail_count == 0,
-					storm.And(
-						Batchimport.fail_count > 0,
-						Batchimport.date_last_fetched<retry_cutoff_time,
-					)
-				)
-			)).any()
 	
 	def FindByUrl(store, url):
 		"""
@@ -123,7 +103,6 @@ class Batchimport(object):
 			store.commit()
 			raise
 	
-	GetOne = staticmethod(GetOne)
 	FindByUrl = staticmethod(FindByUrl)
 	CreateIfMissing = staticmethod(CreateIfMissing)
 
@@ -213,26 +192,6 @@ class Feed(object):
 			raise
 		
 		return feed
-	
-	def GetOneForUpdate(store, cutoff_time=util.datetime_now(), retry_cutoff_time=util.datetime_now()):
-		"""
-		Returns a random non-imported Batchimport that was last fetched before cutoff_time,
-		and (if the last attempt failed) last fetched before retry_cutoff_time.
-		
-		This is NOT treadsafe! Multiple parralel workers may receive the same entry.
-		"""
-		return store.find(Feed, 
-			Feed.active==True, 
-			storm.And(
-				Feed.date_last_fetched<cutoff_time,
-				storm.Or(
-					Feed.fail_count == 0,
-					storm.And(
-						Feed.fail_count > 0,
-						Feed.date_last_fetched<retry_cutoff_time,
-					)
-				)
-			)).any()
 	
 	def update(self, store):
 		"""
@@ -340,7 +299,6 @@ class Feed(object):
 	FindByUrl = staticmethod(FindByUrl)
 	FindByAnyUrl = staticmethod(FindByAnyUrl)
 	CreateFromUrl = staticmethod(CreateFromUrl)
-	GetOneForUpdate = staticmethod(GetOneForUpdate)
 	Load = staticmethod(Load)
 
 # =========
@@ -455,7 +413,7 @@ class Entry(object):
 # = References =
 # ==============
 
-# moved this to the end because this include establishes a circular reference between modules:
+# FIXME: had to move this to the end because these includes establish a circular reference between modules.
 from messages import BatchimportMessage, FeedMessage
 from authors import Author, EntryAuthor
 from categories import Category, EntryCategory
