@@ -6,7 +6,7 @@
 bin=`dirname $0`
 bin=`cd $bin; pwd`
 
-FEEDCACHE_VERSION=0.0-dev
+export FEEDCACHE_VERSION=0.0-dev
 
 export DBENGINE=postgres
 export DBHOST=localhost
