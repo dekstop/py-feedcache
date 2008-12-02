@@ -67,7 +67,7 @@ class Worker(object):
 			datetime.datetime.now().isoformat(), 
 			message)
 	
-	def inc(self, key, n):
+	def inc(self, key, n=1):
 		"""
 		Helper to increment entries in the 'stats' dict. 
 		We can't use a defaultdict because pp apparently  can't pickle those,
@@ -80,23 +80,25 @@ class Worker(object):
 	
 	def add(self, store, batchimport):
 		self.log('import: %s' % batchimport.url)
-		self.inc('num_batchimport_adds', 1)
+		self.inc('num_batchimport_adds')
 		try:
 			return batchimport.import_feed(store)
 		except:
 			e = sys.exc_info()[1]
 			self.log(e)
+			self.inc('num_exceptions:%s' % e.__class__.__name__)
 			return None
 
 	def update(self, store, feed):
 		self.log('update: %s' % feed.url)
-		self.inc('num_feed_updates', 1)
+		self.inc('num_feed_updates')
 		try:
 			feed.update(store)
 			return feed
 		except:
 			e = sys.exc_info()[1]
 			self.log(e)
+			self.inc('num_exceptions:%s' % e.__class__.__name__)
 			return None
 
 	def run(self):

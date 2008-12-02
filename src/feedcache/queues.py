@@ -95,7 +95,7 @@ class EntityQueue(object):
 			datetime.datetime.now().isoformat(), 
 			message)
 	
-	def inc(self, key, n):
+	def inc(self, key, n=1):
 		"""
 		Helper to increment entries in the 'stats' dict. 
 		We can't use a defaultdict because pp apparently  can't pickle those,
@@ -138,11 +138,11 @@ class EntityQueue(object):
 			store.rollback()
 			if lock_retries>0:
 				time.sleep(lock_retry_delay_in_seconds) # to avoid lock contention
-				self.inc('num_lock_retries', 1)
+				self.inc('num_lock_retries')
 				self.log('%s, retrying...' % str(e).strip())
 				return self._acquire_locks(store, num_items, lock_retries-1, lock_retry_delay_in_seconds*2)
 			else:
-				self.inc('num_lock_failures', 1)
+				self.inc('num_lock_failures')
 				self.log('%s, giving up.' % str(e).strip())
 				return None
 		except storm.exceptions.IntegrityError, e:
