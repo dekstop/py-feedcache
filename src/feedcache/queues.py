@@ -220,7 +220,7 @@ class FeedQueue(EntityQueue):
 		"""
 		return storm.expr.And(
 			# last updated before cutoff_time-update_timeout
-			Feed.date_added < self.cutoff_time - self.update_timeout,
+			Feed.date_last_fetched < self.cutoff_time - self.update_timeout,
 			# AND not marked as inactive
 			Feed.active == True, 
 			# AND last fetch hasn't failed, or due for failure retry
