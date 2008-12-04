@@ -352,7 +352,7 @@ class Entry(object):
 			title = util.transcode(feedparser_entry.title)
 		else:
 			# bradfitz has those...
-			title = util.excerpt(util.strip_html(summary or content), 100)
+			title = util.transcode(util.excerpt(util.strip_html(summary or content), 100))
 
 		date_published = None
 		if feedparser_entry.has_key('published') and len(feedparser_entry.published)>0 and feedparser_entry.has_key('published_parsed'):
