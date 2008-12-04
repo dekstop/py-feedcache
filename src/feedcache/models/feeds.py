@@ -260,11 +260,11 @@ class Feed(object):
 	def _update_properties(self, d):
 		if d.feed.has_key('title') and len(d.feed.title) > 0:
 			self.title = util.transcode(d.feed.title)
-		else
+		else:
 			self.title = self.url
 		if d.feed.has_key('link') and len(d.feed.link) > 0:
 			self.link = util.transcode(d.feed.link)
-		else
+		else:
 			self.link = self.url
 		if d.feed.has_key('subtitle'):
 			self.description = util.transcode(d.feed.subtitle)

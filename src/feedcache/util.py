@@ -37,7 +37,7 @@ def excerpt(str, maxlen):
 	"""
 	Truncates after a max length, appends an ellipsis ("...").
 	"""
-	if (len(str)<=maxlen:)
+	if (len(str)<=maxlen):
 		return str
 	return str[:maxlen-3] + u'...'
 
