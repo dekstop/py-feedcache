@@ -24,14 +24,14 @@ def transcode(str):
 		return None
 	return unicode(str)
 
-strip_html_pattern = re.compile(r'<.*?>')
+strip_html_pattern = re.compile(r'\s*<.+?>\s*')
 
 def strip_html(str):
 	"""
 	Strips all HTML tags. Atm this is just a stupid regex, which will break in all kinds
 	of corner cases; but it's simple enough for a first version.
 	"""
-	return strip_html_pattern.sub('', str)
+	return strip_html_pattern.sub(' ', str)
 
 def excerpt(str, maxlen):
 	"""
