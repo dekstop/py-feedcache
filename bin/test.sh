@@ -11,5 +11,5 @@ MAIN="${TESTS_DIR}/main.py"
 
 # we chdir so the test data can be found
 pushd ${TESTS_DIR} > /dev/null
-python $MAIN $@
+$PYTHON $MAIN $@
 popd > /dev/null

@@ -4,10 +4,9 @@ check out http://sourceforge.net/projects/senews
 
 TODO: 
 
+- timezone bug: update cutoff time doesn't work when not in utc timezone
+
 - delay between requests to same domain
-- disable feeds, batchimports after > n failures
-  - could do it manually for now
-  - might make sense to have batchimports.active column
 
 - assertions for null values if fields aren't provided in a feed
 - tests for semaphores

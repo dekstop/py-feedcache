@@ -8,6 +8,8 @@ bin=`cd $bin; pwd`
 
 export FEEDCACHE_VERSION=0.0-dev
 
+export PYTHON=python
+
 export DBENGINE=postgres
 export DBHOST=localhost
 export DBUSER=postgres
