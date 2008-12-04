@@ -33,12 +33,15 @@ class Worker(object):
 	"""
 	Updates items (batchimports, feeds) until there are no more left to process.
 	Instantiates a BatchimportQueue and FeedQueue to fetch and lock items.
+	
+	Automatically marks items a inactive after multiple failures.
 	"""
 	
 	def __init__(self, dsn, 
 		lock_timeout=datetime.timedelta(hours=6), 
 		update_timeout=datetime.timedelta(minutes=30),
-		retry_timeout=datetime.timedelta(hours=1)):
+		retry_timeout=datetime.timedelta(hours=1),
+		max_failures=3):
 		"""
 		Parameters:
 		dsn: 
@@ -50,11 +53,14 @@ class Worker(object):
 			a datetime.timedelta, minimum delay between feed updates
 		retry_timeout: 
 			a datetime.timedelta, delay before retrying a failed import/update
+		max_failures:
+			number of failures before the item gets marked as inactive
 		"""
 		self.dsn = dsn
 		self.lock_timeout = lock_timeout
 		self.update_timeout = update_timeout
 		self.retry_timeout = retry_timeout
+		self.max_failures = max_failures
 		self.semaphore = None
 		self.stats = dict() #defaultdict(lambda: 0)
 	
@@ -84,6 +90,9 @@ class Worker(object):
 		try:
 			return batchimport.import_feed(store)
 		except:
+			if batchimport.fail_count > self.max_failures:
+				batchimport.active = False
+				store.commit()
 			e = sys.exc_info()[1]
 			self.log(e)
 			self.inc('num_exceptions:%s' % e.__class__.__name__)
@@ -96,6 +105,9 @@ class Worker(object):
 			feed.update(store)
 			return feed
 		except:
+			if feed.fail_count > self.max_failures:
+				feed.active = False
+				store.commit()
 			e = sys.exc_info()[1]
 			self.log(e)
 			self.inc('num_exceptions:%s' % e.__class__.__name__)

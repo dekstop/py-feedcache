@@ -1,0 +1,8 @@
+http://dekstop.de/weblog/index.xml
+http://dekstop.de/weblog/comments.xml
+http://feeds.delicious.com/v2/rss/martind?count=15
+http://blog.last.fm/atom/
+http://pubparisporn.tumblr.com/rss
+http://blog.last.fm/?atom=1&area=comments&limit=50
+http://search.twitter.com/search.atom?q=hadoop
+http://blogsearch.google.com/blogsearch_feeds?hl=en&q=cloudera&ie=utf-8&num=10&output=rss

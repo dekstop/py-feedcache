@@ -43,6 +43,7 @@ class Batchimport(object):
 	semaphore = storm.Reference(semaphore_id, Semaphore.id)
 	date_locked = storm.DateTime()
 
+	active = storm.Bool()
 	url = storm.Unicode()
 	imported = storm.Bool()
 
@@ -93,6 +94,8 @@ class Batchimport(object):
 			self.fail_count = 0
 			store.commit()
 			return feed
+		except KeyboardInterrupt:
+			raise
 		except:
 			store.rollback()
 			self.fail_count += 1
@@ -215,11 +218,13 @@ class Feed(object):
 				self._update_redirect_url(self.url, d)
 				self._apply_feed_document(store, d)
 			store.commit()
+		except KeyboardInterrupt:
+			raise
 		except:
 			store.rollback()
 			self.fail_count += 1
 			self.date_last_fetched = fetch_date
-			e = sys.exc_info()[0]
+			e = sys.exc_info()[1]
 			f = FeedMessage.FromException(store, self, e)
 			store.add(f)
 			store.commit()
@@ -253,9 +258,14 @@ class Feed(object):
 			self.http_etag = util.transcode(d.etag)
 	
 	def _update_properties(self, d):
-		#if d.feed.has_key('title') and len(d.feed.title) > 0:
-		self.title = util.transcode(d.feed.title)
-		self.link = util.transcode(d.feed.link)
+		if d.feed.has_key('title') and len(d.feed.title) > 0:
+			self.title = util.transcode(d.feed.title)
+		else
+			self.title = self.url
+		if d.feed.has_key('link') and len(d.feed.link) > 0:
+			self.link = util.transcode(d.feed.link)
+		else
+			self.link = self.url
 		if d.feed.has_key('subtitle'):
 			self.description = util.transcode(d.feed.subtitle)
 		if d.feed.has_key('id'):
@@ -329,14 +339,21 @@ class Entry(object):
 	
 	def CreateOrUpdate(store, feed, feedparser_entry):
 		# extract fields
-		title = util.transcode(feedparser_entry.title)
-		link = util.transcode(feedparser_entry.link)
+		if feedparser_entry.has_key('link') and len(feedparser_entry.link)>0:
+			link = util.transcode(feedparser_entry.link)
 		content = None
-		if feedparser_entry.has_key('content'):
+		if feedparser_entry.has_key('content') and len(feedparser_entry.content)>0:
 			content = util.transcode(fputil.select_preferred_entry_content(feedparser_entry.content))
 		summary = None
-		if feedparser_entry.has_key('summary'):
+		if feedparser_entry.has_key('summary') and len(feedparser_entry.summary)>0:
 			summary = util.transcode(feedparser_entry.summary)
+		
+		if feedparser_entry.has_key('title') and len(feedparser_entry.title)>0:
+			title = util.transcode(feedparser_entry.title)
+		else:
+			# bradfitz has those...
+			title = util.excerpt(util.strip_html(summary or content), 100)
+
 		date_published = None
 		if feedparser_entry.has_key('published') and len(feedparser_entry.published)>0 and feedparser_entry.has_key('published_parsed'):
 			date_published = util.to_datetime(feedparser_entry.published_parsed)

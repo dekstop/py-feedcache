@@ -25,6 +25,7 @@ CREATE TABLE batchimports (
   semaphore_id  INTEGER DEFAULT NULL,
   date_locked   TIMESTAMP DEFAULT NULL,
 
+  active        BOOLEAN NOT NULL DEFAULT TRUE,
   url           VARCHAR(4096) UNIQUE NOT NULL,
   imported      BOOLEAN NOT NULL DEFAULT FALSE,
 

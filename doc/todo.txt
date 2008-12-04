@@ -3,14 +3,47 @@
 check out http://sourceforge.net/projects/senews
 
 TODO: 
+
+- delay between requests to same domain
+- disable feeds, batchimports after > n failures
+  - could do it manually for now
+  - might make sense to have batchimports.active column
+
+- assertions for null values if fields aren't provided in a feed
 - tests for semaphores
 - tests for worker, queues
 - reorganise information gathering: counters, logging
 	- across components/api layers: feedparser glue, models, workers, main, ...
+	- states: feed imported, feed updated, feed not changed, ...
 - renice processes?, http://www.parallelpython.com/component/option,com_smf/Itemid,29/topic,93.0
+
+- enclosures
 - itunes extensions
 - users, user tags, ...; tests
 - tests for timezones (first need to make sure that feedparser and storm do it correctly...)
+
+features to sustain long-term use:
+- scheduler
+	- limit max. number of updates/imports per worker?
+	- prioritise, adapt fetch frequency
+	- scheduling by domain: e.g. when subscribing to lots of del.icio.us/google feeds: detect when they block/throttle us, fall back
+- less verbose logging by default
+- support for cache-control headers
+
+- package feedcache as a lib for the main app
+  - separate project, with its own ./doc, ./src, ./tests, ./sql
+  - current main scripts and shell scripts are in ./examples?
+- main app contains:
+  - ./lib
+    - feedcache
+  - ./scripts
+    - main scripts, based on feedcache/examples
+  - ./bin
+    - launchers for main scripts
+  - ./admin
+    - scripts to set up/tear down DB
+
+http://www.CheetahTemplate.org/ or http://www.kid-templating.org/ for ui
 
 
  ===========

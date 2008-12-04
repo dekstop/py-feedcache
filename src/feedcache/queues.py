@@ -2,7 +2,7 @@
 #
 # queues.py
 #
-# Queue classes with transparent locking.
+# Queue classes with an implicit locking mechanism (transparent to clients).
 #
 # martind 2008-12-01, 17:42:04
 #
@@ -202,6 +202,8 @@ class BatchimportQueue(EntityQueue):
 		return storm.expr.And(
 			# added before cutoff_time
 			Batchimport.date_added < self.cutoff_time,
+			# AND not marked as inactive
+			Batchimport.active == True, 
 			# AND not imported yet
 			Batchimport.imported == False, 
 			# AND last fetch hasn't failed, or due for failure retry

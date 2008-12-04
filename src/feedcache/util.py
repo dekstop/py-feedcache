@@ -7,6 +7,7 @@
 
 import datetime
 import hashlib
+import re
 import time
 
 __all__ = [
@@ -22,6 +23,23 @@ def transcode(str):
 	if str==None:
 		return None
 	return unicode(str)
+
+strip_html_pattern = re.compile(r'<.*?>')
+
+def strip_html(str):
+	"""
+	Strips all HTML tags. Atm this is just a stupid regex, which will break in all kinds
+	of corner cases; but it's simple enough for a first version.
+	"""
+	return strip_html_pattern.sub('', str)
+
+def excerpt(str, maxlen):
+	"""
+	Truncates after a max length, appends an ellipsis ("...").
+	"""
+	if (len(str)<=maxlen:)
+		return str
+	return str[:maxlen-3] + u'...'
 
 def to_datetime(_9tuple):
 	"""

@@ -1,0 +1,50 @@
+2008-12-03, 00:22:44
+
+
+ ==============================
+ = personalised planet music  =
+ ==============================
+
+- aggregate loads of music blogs
+- filter by last.fm username:
+  - extract top artists
+  - search for those across feed archive
+  - return result as river of news
+
+requirements:
+- huge list of music blogs (get some listings beyond hypem)
+- feed cache set up + stable on paris
+  - either: dedicated crawler, specific to this app (too wasteful)
+  - or: shared crawler, but bundling all feeds we care about for this app
+    - by linking to a feedcache user account (or user tag)
+  - make sure it can ingest all music feeds ^^
+- last.fm integration
+  - web service call
+  - cache response (for how long? 1h? 1 day?)
+  - extract top artists
+- fast feed archive search
+  - for a quick demo postgres keyword search may be enough?
+    - http://www.postgresql.org/docs/8.3/static/textsearch.html
+    - additional column: contains all searchable text columns, stripped off any markup, is used to build index
+      - trigger to keep up to date
+    - postgres even has result highlighing! -> ts_headline(...)
+  - otherwise: look for good search engine
+- web ui
+  - basically a form and a river of news
+  - crucial: sanitise html heavily!
+  - doesn't even need pagination for a demo
+  - if search is fast enough: also publish as feed
+  - if time left: provide item context
+    - which artist does this match? with your playcount, artist image, links
+    - highlight matching keywords
+  - if more time left: export matching blogs/feeds as OPML
+  - if still time left: exploration features
+    - "only results for this artist"
+    - "see also" (based on simartist, ...?)
+    - keyword search
+
+existing implementations
+- http://www.programmableweb.com/mashup/last.fm-favourite-artist-news multi-artist google blog search (fed from last.fm profile), via yahoo pipes, only returns a feed
+- http://www.mashupkeyword.com/news?keyword=hip%20hop (google, technorati for genre/artist search)
+- http://www.musicportl.com/artist/Johnny+Long (technorati artist search)
+- etc (except for matt perdeaux' thing most seem focused on single-artist search)

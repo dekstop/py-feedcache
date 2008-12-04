@@ -5,7 +5,11 @@ py-feedcache, a feed aggregator with DB storage back-end.
 Dependencies:
 - Mark Pilgrim's feedparser, http://feedparser.org/
 - Canonical's Storm ORM, http://storm.canonical.com/
-  - depends on psycopg2 postgres bindings
+- psycopg2 postgres bindings
 - a PostgreSQL database
 - for multi-process support: Parallel Python, http://www.parallelpython.com/
 
+"To support the maximum number of character encodings (and be able to parse 
+the maximum number of feeds), you should install cjkcodecs and iconv_codec. 
+Both are available at http://cjkpython.i18n.org/." -- 
+http://feedparser.org/docs/character-encoding.html
