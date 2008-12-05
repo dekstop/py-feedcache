@@ -86,7 +86,7 @@ class Batchimport(object):
 		Raises a FeedFetchError if the HTTP request fails.
 		Raises a FeedParseError if the returned document is in an unsupported format.
 		"""
-		fetch_date = util.datetime_now()
+		fetch_date = util.now()
 		self.date_last_fetched = fetch_date
 		try:
 			feed = Feed.CreateFromUrl(store, self.url)
@@ -205,7 +205,7 @@ class Feed(object):
 		Raises a FeedFetchError if the HTTP request fails.
 		Raises a FeedParseError if the returned document is in an unsupported format.
 		"""
-		fetch_date = util.datetime_now()
+		fetch_date = util.now()
 		self.date_last_fetched = fetch_date
 		try:
 			d = fputil.fetch_feed(self.url, 

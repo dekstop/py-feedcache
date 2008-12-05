@@ -14,6 +14,7 @@ import psycopg2.extensions
 import storm.locals
 
 from feedcache.models.feeds import Batchimport, Feed
+import feedcache.util as util
 
 __all__ = [
 	'BatchimportQueue', 'FeedQueue'
@@ -40,7 +41,7 @@ def _expr_retry_timeout_expired(entity_type, retry_timeout):
 		# OR last request has failed, but happened before retry_timeout
 		storm.expr.And(
 			entity_type.fail_count > 0,
-			entity_type.date_last_fetched < (datetime.datetime.now() - retry_timeout),
+			entity_type.date_last_fetched < (util.now() - retry_timeout),
 		)
 	)
 
@@ -59,7 +60,7 @@ def _expr_not_locked(entity_type, lock_timeout):
 		# is not locked
 		entity_type.semaphore == None,
 		# OR is locked, but lock has timed out
-		entity_type.date_locked < (datetime.datetime.now() - lock_timeout)
+		entity_type.date_locked < (util.now() - lock_timeout)
 	)
 
 
@@ -92,7 +93,7 @@ class EntityQueue(object):
 		"""
 		print "%s %s %s" % (
 			self.semaphore and self.semaphore.id, # self.semaphore may be None
-			datetime.datetime.now().isoformat(), 
+			util.now().isoformat(), 
 			message)
 	
 	def inc(self, key, n=1):
@@ -116,7 +117,7 @@ class EntityQueue(object):
 			self.log('Acquiring lock on %s...' % self.__class__.entity_type.__name__)
 			store.execute(storm.expr.Update({
 					self.__class__.entity_type.semaphore_id: self.semaphore.id, 
-					self.__class__.entity_type.date_locked: datetime.datetime.now()
+					self.__class__.entity_type.date_locked: util.now()
 				}, 
 				self.__class__.entity_type.id.is_in(
 					storm.expr.Select(
@@ -175,7 +176,7 @@ class EntityQueue(object):
 		"""
 		if self.cutoff_time==None:
 			# ignore entries that get added during this session
-			self.cutoff_time = datetime.datetime.now()
+			self.cutoff_time = util.now()
 		items = self._acquire_locks(store, num_items)
 		if items:
 			for item in items:

@@ -18,6 +18,8 @@ import random
 import sys
 import time
 
+import feedcache.util as util
+
 # ========
 # = conf =
 # ========
@@ -85,7 +87,7 @@ if __name__ == '__main__':
 	# = run =
 	# =======
 		
-	start_time = datetime.datetime.now()	
+	start_time = util.now()
 	result = []
 
 	if num_processes==1:
@@ -107,7 +109,7 @@ if __name__ == '__main__':
 		
 		job_server.print_stats()
 
-	end_time = datetime.datetime.now()
+	end_time = util.now()
 
 	# ==========
 	# = finish =

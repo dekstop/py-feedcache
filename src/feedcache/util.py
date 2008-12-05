@@ -11,7 +11,7 @@ import re
 import time
 
 __all__ = [
-	'transcode', 'to_datetime', 'from_datetime', 'datetime_now',
+	'transcode', 'to_datetime', 'from_datetime', 'now',
 	'generate_entry_uid'
 ]
 
@@ -59,9 +59,9 @@ def from_datetime(datetime):
 		return None
 	return datetime.utctimetuple()
 
-def datetime_now():
+def now():
 	"""
-	Creates a UTC timestamp.
+	Creates a UTC timestamp (as datetime instance.)
 	"""
 	return datetime.datetime.utcnow()
 

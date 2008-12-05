@@ -14,7 +14,7 @@ export DBENGINE=postgres
 export DBHOST=localhost
 export DBUSER=postgres
 export DBPASSWORD=
-export DBNAME=feedcache_dev
+export DBNAME=feedcache
 
 export FEEDCACHE_HOME=`cd $bin; cd ..; pwd`
 export FEEDCACHE_PID_DIR=/tmp

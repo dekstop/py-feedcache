@@ -22,6 +22,7 @@ from feedcache.models.semaphores import Semaphore
 from feedcache.models.feeds import Batchimport, Feed
 from feedcache.models.messages import BatchimportMessage, FeedMessage
 from feedcache.queues import BatchimportQueue, FeedQueue
+import feedcache.util as util
 
 __all__ = [
 	'Worker'
@@ -70,7 +71,7 @@ class Worker(object):
 		"""
 		print "%s %s %s" % (
 			self.semaphore and self.semaphore.id, # self.semaphore may be None
-			datetime.datetime.now().isoformat(), 
+			util.now().isoformat(), 
 			message)
 	
 	def inc(self, key, n=1):
