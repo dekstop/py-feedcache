@@ -19,4 +19,7 @@ export DBNAME=feedcache
 export FEEDCACHE_HOME=`cd $bin; cd ..; pwd`
 export FEEDCACHE_PID_DIR=/tmp
 
+# python
 export PYTHONPATH="${FEEDCACHE_HOME}/src"
+# postgres client timezone
+export PGTZ=UTC
