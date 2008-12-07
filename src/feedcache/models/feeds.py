@@ -412,9 +412,10 @@ class Entry(object):
 		if feedparser_entry.has_key('tags'):
 			for fp_category in feedparser_entry.tags:
 				term, scheme, label = fputil.build_category_tuple(fp_category)
-				category = Category.FindOrCreate(store, self.feed, term, scheme, label)
-				if (category in self.categories)==False:
-					self.categories.add(category)
+				if term!=None:
+					category = Category.FindOrCreate(store, self.feed, term, scheme, label)
+					if (category in self.categories)==False:
+						self.categories.add(category)
 
 	def _update_enclosures(self, store, feedparser_entry):
 		if feedparser_entry.has_key('enclosures'):
