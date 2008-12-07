@@ -76,9 +76,14 @@ CREATE TABLE entries (
   date_published TIMESTAMP,
   date_updated  TIMESTAMP,
   
+  tsv_document  tsvector,
+  
   UNIQUE(feed_id, unique_id)
 );
 CREATE TRIGGER entries_update_datemodified BEFORE UPDATE ON entries FOR EACH ROW EXECUTE PROCEDURE update_datemodified_column();
+
+CREATE TRIGGER entries_tsv_document_update BEFORE INSERT OR UPDATE ON entries FOR EACH ROW EXECUTE PROCEDURE tsvector_update_trigger(tsv_document, 'pg_catalog.english', title, content, summary);
+CREATE INDEX entries_ts_index ON entries USING gin(tsv_document);
 
 -- ============
 -- = messages =

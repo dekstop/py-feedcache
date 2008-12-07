@@ -12,7 +12,7 @@
   - return result as river of news
 
 requirements:
-- huge list of music blogs (get some listings beyond hypem)
+- huge list of music blogs 
 - feed cache set up + stable on paris
   - either: dedicated crawler, specific to this app (too wasteful)
   - or: shared crawler, but bundling all feeds we care about for this app
@@ -42,8 +42,22 @@ requirements:
     - "only results for this artist"
     - "see also" (based on simartist, ...?)
     - keyword search
+  - publish sources (as static page, as opml so people can subscribe) -- title, link
 
-existing implementations
+ ===========
+ = sources =
+ ===========
+
+- hypem; other listings? 
+- check own feeds (pop culture, etc)
+- planets?
+- google reader music bundle: DJMag, NME, AllHipHop, Rapnews, Pitchfork media
+
+
+ ============================
+ = existing implementations =
+ ============================
+
 - http://www.programmableweb.com/mashup/last.fm-favourite-artist-news multi-artist google blog search (fed from last.fm profile), via yahoo pipes, only returns a feed
 - http://www.mashupkeyword.com/news?keyword=hip%20hop (google, technorati for genre/artist search)
 - http://www.musicportl.com/artist/Johnny+Long (technorati artist search)

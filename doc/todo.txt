@@ -4,8 +4,6 @@ check out http://sourceforge.net/projects/senews
 
 TODO: 
 
-- timezone bug: update cutoff time doesn't work when not in utc timezone
-
 - delay between requests to same domain
 
 - assertions for null values if fields aren't provided in a feed
@@ -18,7 +16,7 @@ TODO:
 
 - enclosures
 - itunes extensions
-- users, user tags, ...; tests
+- users, user tags; tests
 - tests for timezones (first need to make sure that feedparser and storm do it correctly...)
 
 features to sustain long-term use:
@@ -26,23 +24,26 @@ features to sustain long-term use:
 	- limit max. number of updates/imports per worker?
 	- prioritise, adapt fetch frequency
 	- scheduling by domain: e.g. when subscribing to lots of del.icio.us/google feeds: detect when they block/throttle us, fall back
+	- keep track of: num_fetches, num_fetches_with_updates -> ratio influences fetch frequency
 - less verbose logging by default
 - support for cache-control headers
 
-- package feedcache as a lib for the main app
+- package feedcache as a dependency for other apps
   - separate project, with its own ./doc, ./src, ./tests, ./sql
-  - current main scripts and shell scripts are in ./examples?
+  - current main scripts and shell scripts are in ./examples
 - main app contains:
-  - ./lib
-    - feedcache
-  - ./scripts
-    - main scripts, based on feedcache/examples
+  - ./admin|db (?)
+    - scripts to set up/tear down DB
   - ./bin
     - launchers for main scripts
-  - ./admin
-    - scripts to set up/tear down DB
+  - ./conf
+  - ./external
+    - feedcache
+    - other dependencies
+  - ./src
+    - main scripts, based on feedcache/examples
 
-http://www.CheetahTemplate.org/ or http://www.kid-templating.org/ for ui
+http://www.CheetahTemplate.org/ or http://www.kid-templating.org/ or http://www.myghty.org/ for ui
 
 
  ===========
