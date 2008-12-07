@@ -73,7 +73,7 @@ CREATE TABLE entries (
   content       TEXT,
   summary       TEXT,
   link          VARCHAR(4096) NOT NULL,
-  date_published TIMESTAMP,
+  date_published TIMESTAMP NOT NULL DEFAULT now(),
   date_updated  TIMESTAMP,
   
   tsv_document  tsvector,
