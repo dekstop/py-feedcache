@@ -53,6 +53,12 @@ requirements:
 - planets?
 - google reader music bundle: DJMag, NME, AllHipHop, Rapnews, Pitchfork media
 
+ =======================
+ = feed implementation =
+ =======================
+
+- publish matching artists as entry topics (with link to last.fm?)
+- 
 
  ============================
  = existing implementations =
