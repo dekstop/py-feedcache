@@ -216,7 +216,7 @@ CREATE TABLE users(
   date_modified TIMESTAMP DEFAULT now(),
   
   name          VARCHAR(100) UNIQUE NOT NULL,
-  password      CHAR(16) NOT NULL,
+  password      VARCHAR(100) NOT NULL,
   email         VARCHAR(320),
   type          usertypes NOT NULL DEFAULT 'user'
 );
