@@ -40,8 +40,9 @@ def load_feeds(store, filename, user):
 	for url in feedurls:
 		try:
 			f = Feed.Load(store, url)
-			user.feeds.add(f)
-			store.commit()
+			if (!user.feeds.contains(f)):
+				user.feeds.add(f)
+				store.commit()
 			i += 1
 		except:
 			store.rollback()
