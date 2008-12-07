@@ -47,13 +47,16 @@ def load_feeds(store, filename, user):
 		try:
 			f = Feed.Load(store, url)
 			user.feeds.add(f)
+			store.flush()
 			i += 1
 			if i % BATCH_TRANSACTION_LENGTH==0:
 				print "%d entries, committing batch..." % i
 				store.commit()
 		except:
+			et = sys.exc_info()[0]
 			e = sys.exc_info()[1]
-			print e
+			print et, e
+			raise
 	store.commit()
 
 # ========
