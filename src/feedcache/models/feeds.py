@@ -339,6 +339,7 @@ class Entry(object):
 	
 	def CreateOrUpdate(store, feed, feedparser_entry):
 		# extract fields
+		link = None
 		if feedparser_entry.has_key('link') and len(feedparser_entry.link)>0:
 			link = util.transcode(feedparser_entry.link)
 		content = None
