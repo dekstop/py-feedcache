@@ -16,6 +16,12 @@ import storm.locals
 from feedcache.models.feeds import Batchimport, Feed
 from feedcache.models.users import User
 
+# ========
+# = conf =
+# ========
+
+BATCH_TRANSACTION_LENGTH=100
+
 # ===========
 # = helpers =
 # ===========
@@ -35,13 +41,20 @@ def load_feeds(store, filename, user):
 	feedurls = filter(lambda fn: len(fn)>0, map(unicode, FILE.read().split("\n")))
 	FILE.close()
 
+	i = 0
+
 	for url in feedurls:
 		try:
 			f = Feed.Load(store, url)
 			user.feeds.add(f)
+			i += 1
+			if i % BATCH_TRANSACTION_LENGTH==0:
+				print "%d entries, committing batch..." % i
+				store.commit()
 		except:
 			e = sys.exc_info()[1]
 			print e
+	store.commit()
 
 # ========
 # = main =
