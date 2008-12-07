@@ -403,9 +403,10 @@ class Entry(object):
 				fp_authors.append(fp_author)
 		for fp_author in fp_authors:
 			name, email, link = fputil.build_author_tuple(fp_author)
-			author = Author.FindOrCreate(store, self.feed, name, email, link)
-			if (author in self.authors)==False:
-				self.authors.add(author)
+			if author!=None:
+				author = Author.FindOrCreate(store, self.feed, name, email, link)
+				if (author in self.authors)==False:
+					self.authors.add(author)
 				
 	def _update_categories(self, store, feedparser_entry):
 		if feedparser_entry.has_key('tags'):
