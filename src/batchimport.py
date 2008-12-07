@@ -40,7 +40,7 @@ def load_feeds(store, filename, user):
 	for url in feedurls:
 		try:
 			f = Feed.Load(store, url)
-			if user.feeds.contains(f)==False:
+			if (f in user.feeds)==False:
 				user.feeds.add(f)
 				store.commit()
 			i += 1
