@@ -14,7 +14,6 @@ TODO:
 	- states: feed imported, feed updated, feed not changed, ...
 - renice processes?, http://www.parallelpython.com/component/option,com_smf/Itemid,29/topic,93.0
 
-- enclosures
 - itunes extensions
 - users, user tags; tests
 - tests for timezones (first need to make sure that feedparser and storm do it correctly...)
