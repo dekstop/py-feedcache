@@ -38,7 +38,7 @@ def load_feeds(store, filename, user):
 	for url in feedurls:
 		try:
 			f = Feed.Load(store, url)
-			user.feeds.append(f)
+			user.feeds.add(f)
 		except:
 			e = sys.exc_info()[1]
 			print e
