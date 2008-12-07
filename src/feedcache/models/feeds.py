@@ -286,17 +286,19 @@ class Feed(object):
 				fp_authors.append(fp_author)
 		for fp_author in fp_authors:
 			name, email, link = fputil.build_author_tuple(fp_author)
-			author = Author.FindOrCreate(store, self, name, email, link)
-			if (author in self.authors)==False:
-				self.authors.add(author)
+			if name!=None:
+				author = Author.FindOrCreate(store, self, name, email, link)
+				if (author in self.authors)==False:
+					self.authors.add(author)
 	
 	def _update_categories(self, store, d):
 		if d.feed.has_key('tags'):
 			for fp_category in d.feed.tags:
 				term, scheme, label = fputil.build_category_tuple(fp_category)
-				category = Category.FindOrCreate(store, self, term, scheme, label)
-				if (category in self.categories)==False:
-					self.categories.add(category)
+				if term!=None:
+					category = Category.FindOrCreate(store, self, term, scheme, label)
+					if (category in self.categories)==False:
+						self.categories.add(category)
 
 	def _update_entries(self, store, feedparser_entries):
 		# process from end to start to maintain entry order in storage
@@ -404,7 +406,7 @@ class Entry(object):
 				fp_authors.append(fp_author)
 		for fp_author in fp_authors:
 			name, email, link = fputil.build_author_tuple(fp_author)
-			if author!=None:
+			if name!=None:
 				author = Author.FindOrCreate(store, self.feed, name, email, link)
 				if (author in self.authors)==False:
 					self.authors.add(author)
