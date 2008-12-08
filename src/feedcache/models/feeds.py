@@ -89,7 +89,7 @@ class Batchimport(object):
 		fetch_date = util.now()
 		self.date_last_fetched = fetch_date
 		try:
-			feed = Feed.CreateFromUrl(store, self.url)
+			feed = Feed.Load(store, self.url)
 			self.imported = True
 			self.fail_count = 0
 			store.commit()
