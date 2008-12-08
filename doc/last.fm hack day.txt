@@ -34,6 +34,8 @@ requirements:
 - web ui
   - basically a form and a river of news
   - crucial: sanitise html heavily!
+    - http://www.feedparser.org/docs/html-sanitization.html
+    - should probably also strip any css
   - doesn't even need pagination for a demo
   - if search is fast enough: also publish as feed
   - if time left: provide item context
@@ -50,11 +52,9 @@ requirements:
  = sources =
  ===========
 
-- hypem; other listings? 
-- check own feeds (pop culture, etc)
-- planets?
-- google reader music bundle: DJMag, NME, AllHipHop, Rapnews, Pitchfork media
 - "the echo nest claims to mine a lot of blogs"
+  - http://developer.echonest.com/docs/method/get_blogs/
+  - others?
 - gossip blogs!
 
  =======================
