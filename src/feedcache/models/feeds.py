@@ -350,7 +350,7 @@ class Entry(object):
 		summary = None
 		if feedparser_entry.has_key('summary') and len(feedparser_entry.summary)>0:
 			summary = util.transcode(feedparser_entry.summary)
-		
+		title = None
 		if feedparser_entry.has_key('title') and len(feedparser_entry.title)>0:
 			title = util.transcode(feedparser_entry.title)
 		else:
@@ -385,14 +385,16 @@ class Entry(object):
 		entry.summary = summary
 		entry.date_published = date_published or util.now()
 		entry.date_updated = date_updated
+
+		# this assumes that storm does proper 'dirty' checking and only writes on changes; 
+		# otherwise it would be wasteful to override every field on every call
+		#store.add(entry)		
+		store.flush()
 		
 		entry._update_authors(store, feedparser_entry)
 		entry._update_categories(store, feedparser_entry)
 		entry._update_enclosures(store, feedparser_entry)
 		
-		# this assumes that storm does proper 'dirty' checking and only writes on changes; 
-		# otherwise it would be wasteful to override every field on every call
-		#store.add(entry)
 		store.flush()
 		
 		return entry
