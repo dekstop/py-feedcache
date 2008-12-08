@@ -383,7 +383,7 @@ class Entry(object):
 		entry.link = link
 		entry.content = content
 		entry.summary = summary
-		entry.date_published = date_published
+		entry.date_published = date_published or util.now()
 		entry.date_updated = date_updated
 		
 		entry._update_authors(store, feedparser_entry)
