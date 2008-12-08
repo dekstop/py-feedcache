@@ -25,6 +25,7 @@ features to sustain long-term use:
 	- scheduling by domain: e.g. when subscribing to lots of del.icio.us/google feeds: detect when they block/throttle us, fall back
 	- keep track of: num_fetches, num_fetches_with_updates -> ratio influences fetch frequency
 	  - OR: keep track of num_fetches_without_update, make it influence fetch frequency (e.g.: 0=>15 mins, 1=>1h, 2:6h, ... come up with a good mapping that models the most popular post frequency habits efficiently)
+	- retry fetching disabled feeds once in a while, re-enable on success
 - less verbose logging by default
 - support for cache-control headers
 

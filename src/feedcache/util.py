@@ -31,12 +31,16 @@ def strip_html(str):
 	Strips all HTML tags. Atm this is just a stupid regex, which will break in all kinds
 	of corner cases; but it's simple enough for a first version.
 	"""
+	if str==None:
+		return None
 	return strip_html_pattern.sub(' ', str)
 
 def excerpt(str, maxlen):
 	"""
 	Truncates after a max length, appends an ellipsis ("...").
 	"""
+	if str==None:
+		return None
 	if (len(str)<=maxlen):
 		return str
 	return str[:maxlen-3] + u'...'
