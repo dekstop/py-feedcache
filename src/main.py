@@ -24,10 +24,10 @@ import feedcache.util as util
 # = conf =
 # ========
 
-LOCK_TIMEOUT = datetime.timedelta(hours=2)
+LOCK_TIMEOUT = datetime.timedelta(minutes=131)
 
-UPDATE_TIMEOUT = datetime.timedelta(minutes=30)
-RETRY_TIMEOUT = datetime.timedelta(hours=1)
+UPDATE_TIMEOUT = datetime.timedelta(minutes=97)
+RETRY_TIMEOUT = datetime.timedelta(minutes=61)
 
 
 # ===========
