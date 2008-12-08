@@ -7,5 +7,5 @@ LOGDIR=`cd $bin; cd ../log/; pwd`
 
 (while [ true ]; do
 	nice -5 ${bin}/feedcache.sh update
-	sleep 7200
+	sleep 1800
 done) 2>&1 | tee -a ${LOGDIR}/feedcache.log
