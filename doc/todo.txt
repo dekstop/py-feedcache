@@ -4,6 +4,8 @@ check out http://sourceforge.net/projects/senews
 
 TODO: 
 
+- install http://chardet.feedparser.org/ -- mention it in requirements (gets used by feedparser if present)
+  - then try to re-import feeds with encoding issues
 - delay between requests to same domain
 
 - assertions for null values if fields aren't provided in a feed
@@ -44,7 +46,7 @@ features to sustain long-term use:
   - ./src
     - main scripts, based on feedcache/examples
 
-http://www.CheetahTemplate.org/ or http://www.kid-templating.org/ or http://www.myghty.org/ for ui
+http://www.CheetahTemplate.org/ or http://www.kid-templating.org/ or http://www.myghty.org/ (mason port) or http://genshi.edgewall.org/ (recommended by jens alfke) for ui
 
 
  ===========

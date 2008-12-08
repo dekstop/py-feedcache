@@ -11,6 +11,7 @@ if [ $# = 0 ]; then
   echo "where COMMAND is one of:"
   echo "  import      load feed URLs into import queue"
   echo "  update      import new feeds, update stale feeds"
+  echo "  search      keyword search"
   echo "  stop        stop all update workers"
   echo "Most commands print help when invoked with --help"
   exit 1
@@ -39,6 +40,8 @@ elif [ "$COMMAND" = "update" ] ; then
 	echo $$ > $pid
 	$PYTHON "${FEEDCACHE_HOME}/src/main.py" $DSN $@
 	rm $pid
+elif [ "$COMMAND" = "search" ] ; then
+	$PYTHON "${FEEDCACHE_HOME}/src/examples/search.py" $DSN $@
 elif [ "$COMMAND" = "stop" ] ; then
 	$PYTHON "${FEEDCACHE_HOME}/src/stop.py" $DSN $@
 else
