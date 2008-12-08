@@ -20,6 +20,11 @@ import feedcache.util as util
 # = helpers =
 # ===========
 
+def encode(str):
+	if str==None:
+		return None
+	return str.encode('utf8')
+
 def search(store, terms):
 	return Searcher.Entries(store, 
 		terms,
@@ -34,6 +39,15 @@ if __name__ == '__main__':
 	usage = 'usage: %prog driver://user:password@host/database <term1> <term2> ...'
 	parser = OptionParser(usage)
 	
+	parser.add_option('-l', '--limit', 
+		dest='limit', 
+		action='store', 
+		help='limit number of results')
+	parser.add_option('-s', '--log-sql', 
+		dest='log_sql', 
+		action='store_true', 
+		help='enable logging of SQL statements')
+
 	(options, args) = parser.parse_args()
 
 	if len(args) <= 1:
@@ -44,11 +58,19 @@ if __name__ == '__main__':
 	db = storm.database.create_database(dsn)
 	store = storm.store.Store(db)
 	
-	for entry in search(store, terms):
-		print entry.link, entry.date_published
-		print util.excerpt(entry.title, 100)
-		print util.excerpt(entry.content or entry.summary, 100)
-		print
+	limit = None
+	if options.limit:
+		limit = int(options.limit)
+	
+	if options.log_sql:
+		from storm.tracer import debug
+		debug(True, stream=sys.stdout)
+	
+	for entry in search(store, terms)[:limit]:
+		print encode(entry.link), entry.date_published
+		print encode(entry.title)
+		print encode(util.excerpt(entry.content or entry.summary, 2000))
+		print '==============='
 
 	store.close()
 

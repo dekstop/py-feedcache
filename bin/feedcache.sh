@@ -41,7 +41,7 @@ elif [ "$COMMAND" = "update" ] ; then
 	$PYTHON "${FEEDCACHE_HOME}/src/main.py" $DSN $@
 	rm $pid
 elif [ "$COMMAND" = "search" ] ; then
-	$PYTHON "${FEEDCACHE_HOME}/src/examples/search.py" $DSN $@
+	$PYTHON "${FEEDCACHE_HOME}/src/examples/search.py" $DSN "$@"
 elif [ "$COMMAND" = "stop" ] ; then
 	$PYTHON "${FEEDCACHE_HOME}/src/stop.py" $DSN $@
 else
