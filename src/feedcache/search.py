@@ -20,7 +20,7 @@ class Searcher(Exception):
 	
 	def _pg_wrap_multiword_term(term):
 		if term.find(' ') >= 0:
-			return "'%s'" % term
+			return u"'%s'" % term
 		return term
 	
 	def _pg_escape_term(term):

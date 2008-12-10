@@ -25,7 +25,8 @@ COMMAND=$1
 shift
 
 if [ "$COMMAND" = "import" ] ; then	
-	$PYTHON "${FEEDCACHE_HOME}/src/batchimport.py" $DSN $@
+	$PYTHON "${FEEDCACHE_HOME}/src/examples/batchimport.py" $DSN $@
+
 elif [ "$COMMAND" = "update" ] ; then
 	pid="${FEEDCACHE_PID_DIR}/feedcache-${FEEDCACHE_VERSION}-${COMMAND}.pid"
 	mkdir -p "${FEEDCACHE_PID_DIR}"
@@ -38,12 +39,18 @@ elif [ "$COMMAND" = "update" ] ; then
 	fi
 	
 	echo $$ > $pid
-	$PYTHON "${FEEDCACHE_HOME}/src/main.py" $DSN $@
+	$PYTHON "${FEEDCACHE_HOME}/src/examples/main.py" $DSN $@
 	rm $pid
+
+elif [ "$COMMAND" = "stop" ] ; then
+	$PYTHON "${FEEDCACHE_HOME}/src/examples/stop.py" $DSN $@
+
 elif [ "$COMMAND" = "search" ] ; then
 	$PYTHON "${FEEDCACHE_HOME}/src/examples/search.py" $DSN "$@"
-elif [ "$COMMAND" = "stop" ] ; then
-	$PYTHON "${FEEDCACHE_HOME}/src/stop.py" $DSN $@
+
+elif [ "$COMMAND" = "lastfm" ] ; then
+	$PYTHON "${FEEDCACHE_HOME}/src/lastfm-api.py" $DSN "$@"
+
 else
 	echo "Unknown command: ${COMMAND}"
 fi
