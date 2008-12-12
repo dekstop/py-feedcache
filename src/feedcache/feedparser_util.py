@@ -127,7 +127,10 @@ def build_enclosure_tuple(fp_enclosure):
 	if fp_enclosure.has_key('href') and fp_enclosure.href!='':
 		url = util.transcode(fp_enclosure.href)
 	if fp_enclosure.has_key('length') and fp_enclosure.length!='':
-		length = int(fp_enclosure.length)
+		try:
+			length = int(fp_enclosure.length)
+		except ValueError, e:
+			pass
 	if fp_enclosure.has_key('type') and fp_enclosure.type!='':
 		type = util.transcode(fp_enclosure.type)
 	if url==None:
