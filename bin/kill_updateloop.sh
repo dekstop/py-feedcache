@@ -1,8 +1,18 @@
 #!/bin/sh
-#
-# Stupid pp processes keep hanging. Run this script frequently to kill the app.
-# (This is not nice.)
-#
 
+bin=`dirname $0`
+bin=`cd $bin; pwd`
+
+# First ask to exit politely.
+${bin}/feedcache.sh stop
+
+# Wait.
+sleep 20
+
+# Stupid pp processes keep hanging. This kills the app. (This is not nice.)
 pid=`pgrep -f "bin/updateloop.sh" | head -n 1`
-kill -- -${pid}
+if [ -n $pid ]
+then
+	kill -- -${pid}
+fi
+
