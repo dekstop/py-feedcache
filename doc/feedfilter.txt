@@ -3,14 +3,14 @@
 REST(?)-style feed aggregation query and presentation system.
 
  ==============================
- = feed selection: /id/<hash> =
+ = feed selection: /id/<token> =
  ==============================
 
 prerequisites:
-- each feed has a generated hash as unique ID (a hash?)
+- each feed has a short token as unique ID (a hash? or maybe better: the base36-encoded id, converted from base10)
 
 mechanism:
-- load a single feed by UID
+- load a single feed by token
 
  ==============================
  = feed selection: /url/<url> =
@@ -23,7 +23,7 @@ prerequisites:
 mechanism:
 - decode requested url
 - load feed by url (fetch it if it's not cached)
-- (optionally: redirect to /id/<hash>)
+- (optionally: redirect to /id/<token>)
 
  ===================================
  = feed selection: /search/<query> =

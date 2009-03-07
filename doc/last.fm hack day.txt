@@ -5,10 +5,11 @@
  = personalised planet music  =
  ==============================
 
-- A personal memetracker that keeps you informed about stuff you care about. 
-- Your taste changes, so your memetracker should adapt. 
+- A personalised music news ticker service that keeps you informed about stuff you care about. 
+- aggregated from hundreds of music blogs
+- Your taste changes, so your ticker service should adapt. 
   - Don't subscribe to specific blogs, or even specific topics (keyword searches, ...); 
-  - instead use Last.fm to keep track of your current habits, and then pipe that into a memetracker.
+  - instead use Last.fm to keep track of your current habits
   -> no work, always up to date.
 
 - aggregate loads of music blogs
@@ -54,6 +55,7 @@ requirements:
 
 - "the echo nest claims to mine a lot of blogs"
   - http://developer.echonest.com/docs/method/get_blogs/
+  - crawl http://www.twingly.com/ searches ("mp3", last.fm top 1000 artists, ...)
   - others?
 - gossip blogs!
 

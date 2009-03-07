@@ -276,3 +276,5 @@ tests:
 
 - provide URL aliases, e.g. for feedburner feed/entry links
   - determined by keeping track of redirects while fetching a feed
+
+http://nick.typepad.com/blog/2008/12/coming-in-feedd.html has a list of tinyurl services
