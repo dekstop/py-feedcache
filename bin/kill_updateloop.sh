@@ -14,5 +14,7 @@ pid=`pgrep -f "bin/updateloop.sh" | head -n 1`
 
 if [ -n "$pid" ]
 then
+	echo "updateloop.sh process found, killing it and its children..."
 	kill -- -${pid}
+	echo "Done."
 fi
