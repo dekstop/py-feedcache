@@ -6,6 +6,12 @@ bin=`cd $bin; pwd`
 # First ask to exit politely.
 ${bin}/feedcache.sh stop
 
+if [ $? != 0 ]
+then
+	# no processes running
+	exit 1
+fi
+
 # Wait.
 sleep 20
 
