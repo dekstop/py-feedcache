@@ -11,5 +11,5 @@ Dependencies:
 
 "To support the maximum number of character encodings (and be able to parse 
 the maximum number of feeds), you should install cjkcodecs and iconv_codec. 
-Both are available at http://cjkpython.i18n.org/." -- 
+Both are available at http://cjkpython.i18n.org/." (and part of python 2.4) -- 
 http://feedparser.org/docs/character-encoding.html
