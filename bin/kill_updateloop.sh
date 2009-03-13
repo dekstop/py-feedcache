@@ -13,6 +13,7 @@ then
 fi
 
 # Wait.
+echo "Giving processes a grace period to shut down..."
 sleep 20
 
 # Stupid pp processes keep hanging. This kills the app. (This is not nice.)

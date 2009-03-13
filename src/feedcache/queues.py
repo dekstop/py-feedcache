@@ -2,7 +2,9 @@
 #
 # queues.py
 #
-# Queue classes with an implicit locking mechanism (transparent to clients).
+# Queue classes with an implicit locking mechanism (transparent to clients):
+# they act as generators of Feed or Batchimport instances, but lock each
+# item before yielding it, and unlock it when the yield returns.
 #
 # martind 2008-12-01, 17:42:04
 #
@@ -70,7 +72,7 @@ def _expr_not_locked(entity_type, lock_timeout):
 
 class EntityQueue(object):
 	"""
-	...
+	Base class for all queues.
 	"""
 	
 	entity_type = None # class variable, contains a reference to either Batchimport or Feed
