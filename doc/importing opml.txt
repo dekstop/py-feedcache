@@ -1,0 +1,16 @@
+2009-03-13, 23:30:09
+
+convert to text file:
+
+#!/bin/env ruby
+require 'rexml/document'
+
+opmldoc = File.read('MySubscriptions.opml')
+opml = REXML::Document.new(opmldoc)
+
+body = opml.elements['opml/body']
+
+f = File.open('feeds.txt', 'w')
+body.elements.each('outline') do |el| f <<  el.attributes['xmlUrl']; f<<"\n"; end
+f.close
+

@@ -1,0 +1,43 @@
+2009-03-13, 22:29:42
+
+ ==================
+ = administration =
+ ==================
+
+Number of running processes:
+> select count(*) from semaphores where shutdown_requested=false;
+
+Number of processes that had to be killed and couldn't clean up:
+> select count(*) from semaphores where shutdown_requested=true;
+
+ ===============
+ = data volume =
+ ===============
+
+Number of entries, by date added:
+> select to_char(date_added, 'YYYY-MM-DD') as date, count(*) from entries where date_added>'2009-02-20' group by date order by date;
+
+Number of items by feed, for all feeds -- load into stats package of choice for analysis:
+$ psql -U feedcache -d feedcache -W -A -t -c "select count(*) from entries group by feed_id" > ~/2009-03-13_feed_entry_count.txt
+
+10 most recently updated feeds with new entries:
+> select substring(f.title for 40) as feed_title, substring(f.url for 60) as url, count(e.id) as entries, f.date_last_fetched, max(e.date_added) as "max(date_added)" from feeds f inner join entries e on f.id=e.feed_id group by f.id, f.title, f.url, f.date_last_fetched, f.http_last_modified, f.date_updated order by max(e.date_added) desc limit 10;
+
+ ============
+ = messages =
+ ============
+
+Log entries (excerpts):
+> select m.id, mt.name, m.date_modified, bm.batchimport_id, fm.feed_id, m.message, substring(m.payload for 100)  from messages m inner join message_types mt on m.message_type_id=mt.id left outer join batchimports_messages bm on bm.message_id=m.id left outer join feeds_messages fm on m.id=fm.message_id where m.id>4059 order by m.id;
+
+
+ =====================
+ = application stats =
+ =====================
+
+Number of entries in archive, by date published:
+> select to_char(date_published, 'YYYY-MM-DD') as date, count(*) from entries group by date order by date;
+
+Number of items in batchimport queue:
+> select count(*) from batchimports where imported=false and active;
+
