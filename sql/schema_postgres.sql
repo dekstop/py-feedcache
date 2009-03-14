@@ -82,7 +82,7 @@ CREATE TABLE entries (
 );
 CREATE TRIGGER entries_update_datemodified BEFORE UPDATE ON entries FOR EACH ROW EXECUTE PROCEDURE update_datemodified_column();
 
-CREATE TRIGGER entries_tsv_document_update BEFORE INSERT OR UPDATE ON entries FOR EACH ROW EXECUTE PROCEDURE tsvector_update_trigger(tsv_document, 'pg_catalog.english', title, content, summary);
+CREATE TRIGGER entries_tsv_document_update AFTER INSERT OR UPDATE ON entries FOR EACH ROW EXECUTE PROCEDURE tsvector_update_trigger(tsv_document, 'pg_catalog.english', title, content, summary);
 CREATE INDEX entries_ts_index ON entries USING gin(tsv_document);
 
 -- ============
