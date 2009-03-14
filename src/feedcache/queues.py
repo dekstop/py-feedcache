@@ -116,7 +116,7 @@ class EntityQueue(object):
 		If this returns an empty list then there are no more items to process.
 		"""
 		try:
-			self.log('Acquiring lock on %s...' % self.__class__.entity_type.__name__)
+			#self.log('Acquiring lock on %s...' % self.__class__.entity_type.__name__)
 			store.execute(storm.expr.Update({
 					self.__class__.entity_type.semaphore_id: self.semaphore.id, 
 					self.__class__.entity_type.date_locked: util.now()
@@ -157,7 +157,7 @@ class EntityQueue(object):
 		"""
 		Releases the lock for a single item.
 		"""
-		self.log('unlocking %s with id %d' % (self.__class__.entity_type.__name__, item.id))
+		#self.log('unlocking %s with id %d' % (self.__class__.entity_type.__name__, item.id))
 		store.execute(storm.expr.Update({
 				self.__class__.entity_type.semaphore_id: None, 
 				self.__class__.entity_type.date_locked: None

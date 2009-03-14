@@ -86,7 +86,7 @@ class Worker(object):
 			self.stats[key] = n
 	
 	def add(self, store, batchimport):
-		self.log('import: %s' % batchimport.url)
+		#self.log('import: %s' % batchimport.url)
 		self.inc('num_batchimport_adds')
 		try:
 			return batchimport.import_feed(store)
@@ -100,7 +100,7 @@ class Worker(object):
 			return None
 
 	def update(self, store, feed):
-		self.log('update: %s' % feed.url)
+		#self.log('update: %s' % feed.url)
 		self.inc('num_feed_updates')
 		try:
 			feed.update(store)
