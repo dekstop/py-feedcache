@@ -1,5 +1,6 @@
 2008-11-01, 16:25:05
 
+check out http://opensource.hyves.org/concurrence/
 check out http://sourceforge.net/projects/senews
 
 TODO: 

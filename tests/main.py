@@ -3,6 +3,7 @@
 import unittest
 
 from test_batchimports import *
+from test_conf import *
 from test_feeds import *
 from test_http import *
 from test_messages import *
@@ -14,6 +15,8 @@ if __name__ == "__main__":
 	unittest.main()
 	
 	# runner = unittest.TextTestRunner()
-	# runner.run(CategoryTest('testFeedCategory'))
-	# runner.run(BasicParserTest('testLoadFeed'))
-	# runner.run(TransactionTest('testTransactionRollback'))
+	# runner.run(ConfTest('testDefaultValueNone'))
+	# runner.run(ConfTest('testStringProperty'))
+	# runner.run(ConfTest('testIntProperty'))
+	# runner.run(ConfTest('testLongProperty'))
+	# runner.run(ConfTest('testDateTimeProperty'))

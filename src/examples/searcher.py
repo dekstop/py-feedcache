@@ -1,6 +1,7 @@
 # search.py
 #
-# ...
+# A search implementation using postgres indexing capabilities.
+# Deprecated in favour of Solr.
 #
 # martind 2008-12-08, 21:28:13
 #

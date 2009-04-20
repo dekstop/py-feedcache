@@ -320,6 +320,7 @@ class Feed(object):
 class Entry(object):
 	__storm_table__ = 'entries'
 	id = storm.Int(primary=True)
+	date_modified = storm.DateTime()
 	
 	feed_id = storm.Int()
 	feed = storm.Reference(feed_id, Feed.id)

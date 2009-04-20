@@ -1,5 +1,10 @@
 2008-11-17, 00:31:00
 
+"news": series of prepared filters/views on the entire archive
+- last week, sorted by date added or number of incoming links, multiple variations filtered with different keywords.
+- etc
+(core idea: analogue to navigating social network items: by most viewed/date added/best score/etc)
+
  =========================
  = simple visualisations =
  =========================
@@ -37,3 +42,11 @@ simple version:
 could be implemented as a web service client:
   - get feed IDs for tag
   - for each feed ID, get last 10+ entries
+
+ =================================
+ = lastfm event recommender feed =
+ =================================
+
+- starting point: pick an interesting event with good attendance
+- subscribe to event feeds of attendees + tag them
+-> aggregate feeds for this tag, or identify popular events

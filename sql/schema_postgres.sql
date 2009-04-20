@@ -6,6 +6,16 @@ CREATE FUNCTION update_datemodified_column() RETURNS TRIGGER AS '
   end;
 ' LANGUAGE plpgsql; 
 
+CREATE TABLE conf (
+  id            SERIAL PRIMARY KEY,
+  date_modified TIMESTAMP DEFAULT now(),
+  
+  key          TEXT UNIQUE NOT NULL,
+  value         TEXT NOT NULL
+);
+
+CREATE TRIGGER conf_update_datemodified BEFORE UPDATE ON conf FOR EACH ROW EXECUTE PROCEDURE update_datemodified_column();
+
 -- =========
 -- = feeds =
 -- =========

@@ -13,7 +13,7 @@ import sys
 import storm.locals
 
 from feedcache.models.feeds import Entry
-from feedcache.search import Searcher
+from examples.searcher import Searcher
 import feedcache.util as util
 
 # ===========

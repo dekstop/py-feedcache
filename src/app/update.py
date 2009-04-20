@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# main.py
+# update.py
 #
 # Batch update runner, imports feeds from the batchimports table and updates
 # stale feeds. Loops until there are no more items to process.
