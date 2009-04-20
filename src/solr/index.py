@@ -77,19 +77,19 @@ def createdoc(entry):
 	}
 
 def get_authors(entry):
-	return map(lambda a: a.name, entry.authors)
+	return [a.name for a in entry.authors]
 
 def get_categories(entry):
-	return map(lambda c: c.term, entry.categories)
+	return [c.term for c in entry.categories]
 
 def get_category_schemes(entry):
-	return map(lambda c: c.scheme, entry.categories)
+	return [c.scheme for c in entry.categories]
 
 def get_enclosure_urls(entry):
-	return map(lambda e: e.url, entry.enclosures)
+	return [e.url for e in entry.enclosures]
 
 def get_enclosure_mimetypes(entry):
-	return map(lambda e: e.type, entry.enclosures)
+	return [e.type for e in entry.enclosures]
 
 # ========
 # = main =
