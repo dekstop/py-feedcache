@@ -9,6 +9,7 @@
 
 import datetime
 from optparse import OptionParser
+import re
 import sys
 import time
 
@@ -26,13 +27,15 @@ import feedcache.util as util
 solrUrl = u'http://127.0.0.1:8080/solr/'
 CONF_SOLR_URL = u'solr.url'
 
-entriesPerPost = 10 # to batch-submit entries
+entriesPerPost = 20 # to batch-submit entries
 CONF_ENTRIES_PER_POST = u'solr.index.entriesPerPost'
 
-transactionSize = 100 # number of entries posted between commits
+transactionSize = 1000 # number of entries posted between commits
 CONF_TRANSACTION_SIZE = u'solr.index.transactionSize'
 
-lastIndexDateTime = datetime.datetime(2009, 01, 01, 12, 00, 0000)
+NEVER = datetime.datetime(2009, 01, 01, 12, 00, 0000)
+
+lastIndexDateTime = NEVER
 CONF_LAST_INDEX_DATETIME = u'solr.index.lastIndexDateTime'
 
 # ===========
@@ -47,23 +50,48 @@ def log(message):
 		util.now().isoformat(), 
 		message)
 
+def build_nonxml_chars_re():
+	"""From http://boodebr.org/main/python/all-about-python-and-unicode"""
+	expr = u'([\u0000-\u0008\u000b-\u000c\u000e-\u001f\ufffe-\uffff])'
+	expr += u"|"
+	expr += u'([%s-%s][^%s-%s])|([^%s-%s][%s-%s])|([%s-%s]$)|(^[%s-%s])' % \
+		(unichr(0xd800),unichr(0xdbff),unichr(0xdc00),unichr(0xdfff),
+		unichr(0xd800),unichr(0xdbff),unichr(0xdc00),unichr(0xdfff),
+		unichr(0xd800),unichr(0xdbff),unichr(0xdc00),unichr(0xdfff))
+	return re.compile(expr)
+
+nonxml_chars_re = build_nonxml_chars_re()
+
+def strip_invalid_chars(string):
+	"""
+	pysolr doesn't seem to remove invalid XML characters, so we have to do it ourselves.
+	This prevents a 'com.ctc.wstx.exc.WstxUnexpectedCharException: Illegal character' on the Solr
+	server. Cf http://www.w3.org/TR/REC-xml/#charsets
+	
+	This also makes sure we're not sending "None" strings -- evidently pysolr sends these for null
+	values, so I found it in the top terms list...
+	"""
+	if string==None:
+		return u''
+	return nonxml_chars_re.sub(u' ', string)
+
 def createdoc(entry):
 	"""Formats a feed entry as Solr document hash"""
 	return {
 		'id' : entry.id,
 		
 		'feed_id' : entry.feed.id,
-		'feed_title' : entry.feed.title,
-		'feed_description' : entry.feed.description,
-		'feed_link' : entry.feed.link,
+		'feed_title' : strip_invalid_chars(entry.feed.title),
+		'feed_description' : strip_invalid_chars(entry.feed.description),
+		'feed_link' : strip_invalid_chars(entry.feed.link),
 		
 		'date_added' : entry.date_added,
 		'date_published' : entry.date_published,
 		
-		'title' : entry.title,
-		'content' : entry.content,
-		'summary' : entry.summary,
-		'link' : entry.link,
+		'title' : strip_invalid_chars(entry.title),
+		'content' : strip_invalid_chars(entry.content),
+		'summary' : strip_invalid_chars(entry.summary),
+		'link' : strip_invalid_chars(entry.link),
 		
 		'author' : get_authors(entry),
 		
@@ -77,19 +105,19 @@ def createdoc(entry):
 	}
 
 def get_authors(entry):
-	return [a.name for a in entry.authors]
+	return [strip_invalid_chars(a.name) for a in entry.authors]
 
 def get_categories(entry):
-	return [c.term for c in entry.categories]
+	return [strip_invalid_chars(c.term) for c in entry.categories]
 
 def get_category_schemes(entry):
-	return [c.scheme for c in entry.categories]
+	return [strip_invalid_chars(c.scheme) for c in entry.categories]
 
 def get_enclosure_urls(entry):
-	return [e.url for e in entry.enclosures]
+	return [strip_invalid_chars(e.url) for e in entry.enclosures]
 
 def get_enclosure_mimetypes(entry):
-	return [e.type for e in entry.enclosures]
+	return [strip_invalid_chars(e.type) for e in entry.enclosures]
 
 # ========
 # = main =
@@ -104,6 +132,14 @@ if __name__ == '__main__':
 		dest='log_sql', 
 		action='store_true', 
 		help='enable logging of SQL statements')
+	parser.add_option('-c', '--clear-index', 
+		dest='clear_index', 
+		action='store_true', 
+		help='clear index before starting')
+	parser.add_option('-o', '--optimize', 
+		dest='optimize', 
+		action='store_true', 
+		help='optimize index after indexing is completed')
 
 	(options, args) = parser.parse_args()
 
@@ -117,31 +153,41 @@ if __name__ == '__main__':
 	if options.log_sql:
 		from storm.tracer import debug
 		debug(True, stream=sys.stdout)
-		
+	
 	solrUrl = Conf.Get(store, CONF_SOLR_URL, solrUrl)
 	entriesPerPost = Conf.GetInt(store, CONF_ENTRIES_PER_POST, entriesPerPost)
 	transactionSize = Conf.GetInt(store, CONF_TRANSACTION_SIZE, transactionSize)
 	lastIndexDateTime = Conf.GetDateTime(store, CONF_LAST_INDEX_DATETIME, lastIndexDateTime)
+	
+	if options.clear_index:
+		lastIndexDateTime = NEVER
 	
 	solr = Solr(str(solrUrl))
 	
 	# =======
 	# = run =
 	# =======
-		
+	
+	if options.clear_index:
+		log("Clearing index...")
+		solr.delete('*')
+	
 	start_time = util.now()
 	
-	entries = store.find(
-		Entry,
-		storm.expr.Or(
-			Entry.date_added >= lastIndexDateTime,
-			Entry.date_modified >= lastIndexDateTime
-		)
-	)
+	log("Loading entry IDs...")
+	entry_ids = store.find(Entry,
+			storm.expr.Or(
+				Entry.date_added >= lastIndexDateTime,
+				Entry.date_modified >= lastIndexDateTime
+			)
+		).order_by(Entry.id).values(Entry.id)
+#	entry_ids = [156805]
 	
 	docs = []
 	num = 0
-	for entry in entries:
+	for entry_id in entry_ids:
+		entry = store.find(Entry, Entry.id==entry_id)[0]
+		
 		log("Adding Entry with id %d" % entry.id)
 		docs.append(createdoc(entry))
 		num += 1
@@ -150,7 +196,11 @@ if __name__ == '__main__':
 			docs = []
 		if num % transactionSize == 0:
 			log("Committing...")
-			solr.commit()
+			try:
+				solr.commit()
+			except pysolr.SolrError, e:
+				log('%s, skipping last batch...' % str(e).strip())
+			
 	
 	if len(docs) > 0:
 		solr.add(docs)
@@ -163,11 +213,20 @@ if __name__ == '__main__':
 	# After a program crash we'd rather index stuff twice than not at all.
 	Conf.SetDateTime(store, CONF_LAST_INDEX_DATETIME, start_time)
 	store.commit()
-
+	
 	# ==========
 	# = finish =
 	# ==========
 	
 	store.close()
 	
-	print 'Done, elapsed time: %s' % (end_time-start_time,)
+	log('Done, elapsed time: %s' % (end_time-start_time,))
+
+	if options.optimize:
+		log("Optimizing...")
+		start_time = util.now()
+
+		solr.optimize()
+
+		end_time = util.now()
+		log('Done, elapsed time: %s' % (end_time-start_time,))
