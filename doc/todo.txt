@@ -127,13 +127,6 @@ log session metrics to file:
  = code structure =
  ==================
 
-separate models and logic
-- goal: feed class (and others) are just models
-- all code that currently resides in these models gets refactored into:
-  - model classes (that internally depend on storm, but that can easily be replaced by other implementations; e.g. mocks)
-  - an application logic module that incorporates models and feedparser and glues them together
-  - library/utility modules
-
 ORM: find nicer way to model shared object relationships ("traits")
 - authors for feeds and entries
 - categories for feeds and entries

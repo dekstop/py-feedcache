@@ -25,6 +25,8 @@ for monitoring:
 
 cf feedfilter.txt
 
+- e.g. make audio/video podcast of elizabeth warren lectures/interviews
+
 
  ================
  = memetrackers =

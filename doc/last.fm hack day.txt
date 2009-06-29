@@ -1,6 +1,70 @@
 2008-12-03, 00:22:44
 
-ui: http://www.georgebrock.com/
+now for music hack day 2009
+
+ ========
+ = todo =
+ ========
+
+make sure everything is in svn
+- check in feedcache-search
+- check in musicfeeds search ui
+- commit py-feedcache changes (incrementally?)
+
+- ui: http://www.georgebrock.com/
+
+- move dekstop.de to hetzner -> musicfeeds.dekstop.de
+
+- limit search results to music-specific feeds
+  - in Solr? disadvantages: 
+    - gets assigned at index time, so adding existing feeds to a new user will require re-indexing those feeds
+    - when indexing: need to load all linked usernames for each individual entry
+  - in DB? disadvantages: 
+    - need to get more rows from Solr so we can filter (-> how much is Solr search performance affected by really long resultset limits?) 
+    - will become more and more inefficient as the amount of aggregated non-music feeds grows
+  -> this is a scalability problem. very similar: how do we make user tags searchable/browsable? (probably: separate lucene index)
+
+- ensure constructed queries don't violate solr query syntax/result in solr errors
+  - empty query strings
+  - malformed expressions, e.g. dangling brackets: "Sunn O)))", incomplete expressions: "OR"
+      - can we escape these? (seems doublequotes work, but then don't forget to escape doublequote characters within query strings.) 
+      - or use a more basic query parser?
+
+- http://www.feedparser.org/docs/html-sanitization.html
+
+- last.fm API call, request caching
+
+- when 0 results: "know great music blogs that we don't have? send us a link!"
+
+- good artist search
+  - don't index HTML/XML tags! -> check what HTMLStripStandardTokenizer does. maybe write custom tokenizer. we want to:
+    - strip html/xml tags to convert to plaintext
+    - ignore link URLs, but include image alt/title attributes
+  - specialised lucene index fields for artist name matching
+  - get artist name synonyms from musicbrainz
+  - check out freebase too for spellings/searchable data (they have MBIDs)
+  - better scoring
+    - +2 when in title
+    - +1 when in content/summary
+    - normal score for any other fields (e.g. link URL)
+
+- don't show too many entries from the same source if we have enough search results for one page
+  - can solr group/facet by feed?
+  - only show top n entries from same feed
+
+- ensure we never show php warnings/errors, instead log them (+ URL/state) and display a friendly error page
+
+- can we optimise to a degree where 500+ artists get matched in sub-second response times?
+
+- test data sets
+  - artist name stemming: 100 popular names, 100 obscure, then use to evaluate. keep adding edge cases.
+  - 
+
+good links:
+- http://192.168.56.101/musicfeeds/?q=Damu+The+Fudgemunk
+
+add:
+- http://www.thevinylfactory.com/
 
  ==============================
  = personalised planet music  =
@@ -12,12 +76,7 @@ ui: http://www.georgebrock.com/
   - Don't subscribe to specific blogs, or even specific topics (keyword searches, ...); 
   - instead use Last.fm to keep track of your current habits
   -> no work, always up to date.
-
-- aggregate loads of music blogs
-- filter by last.fm username:
-  - extract top artists
-  - search for those across feed archive
-  - return result as river of news
+- initially this will be a simple artist name search; in the future it might employ more complex kinds of filtering techniques (which may also means none of your top artists may need to be mentioned in a blog post for it to be considered worthy to include)
 
 requirements:
 - huge list of music blogs 
@@ -27,19 +86,10 @@ requirements:
   - cache response (for how long? 1h? 1 day?)
   - extract top artists
 - fast feed archive search
-  - for a quick demo postgres keyword search may be enough?
-    - http://www.postgresql.org/docs/8.3/static/textsearch.html
-    - additional column: contains all searchable text columns, stripped off any markup, is used to build index
-      - trigger to keep up to date
-    - postgres even has result highlighing! -> ts_headline(...)
-  - otherwise: look for good search engine
 - web ui
-  - basically a form and a river of news
-  - crucial: sanitise html heavily!
-    - http://www.feedparser.org/docs/html-sanitization.html
-    - should probably also strip any css
   - doesn't even need pagination for a demo
   - if search is fast enough: also publish as feed
+    - publish matching artists as entry topics (with link to last.fm?)
   - if time left: provide item context
     - which artist does this match? with your playcount, artist image, links
     - highlight matching keywords
@@ -49,6 +99,7 @@ requirements:
     - "see also" (based on simartist, ...?)
     - keyword search
   - publish sources (as static page, as opml so people can subscribe) -- title, link
+  - "submit your blog" form (-> send email, need to moderate this to avoid malicious content+spam)
 
  ===========
  = sources =
@@ -59,13 +110,6 @@ requirements:
   - crawl http://www.twingly.com/ searches ("mp3", last.fm top 1000 artists, ...)
   - others?
 - gossip blogs!
-
- =======================
- = feed implementation =
- =======================
-
-- publish matching artists as entry topics (with link to last.fm?)
-- 
 
  ============================
  = existing implementations =
