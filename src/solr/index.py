@@ -50,6 +50,22 @@ def log(message):
 		util.now().isoformat(), 
 		message)
 
+def load_int_file(filename):
+	"""
+	Loads a list of integers fron a newline-separated text file.
+	"""
+	result = []
+	file = open(filename)
+	while 1:
+		line = file.readline()
+		if not line:
+			break
+		line = line.strip()
+		if len(line) > 0:
+			result += [int(line)]
+	return result
+
+
 def build_nonxml_chars_re():
 	"""From http://boodebr.org/main/python/all-about-python-and-unicode"""
 	expr = u'([\u0000-\u0008\u000b-\u000c\u000e-\u001f\ufffe-\uffff])'
@@ -85,6 +101,7 @@ def createdoc(entry):
 		'feed_description' : strip_invalid_chars(entry.feed.description),
 		'feed_link' : strip_invalid_chars(entry.feed.link),
 		
+		'date' : entry.date,
 		'date_added' : entry.date_added,
 		'date_published' : entry.date_published,
 		
@@ -128,18 +145,21 @@ if __name__ == '__main__':
 	usage = 'usage: %prog [options] driver://user:password@host/database'
 	parser = OptionParser(usage)
 	
-	parser.add_option('-s', '--log-sql', 
-		dest='log_sql', 
-		action='store_true', 
-		help='enable logging of SQL statements')
 	parser.add_option('-c', '--clear-index', 
 		dest='clear_index', 
 		action='store_true', 
 		help='clear index before starting')
+	parser.add_option('-f', '--file', 
+		dest='input_file', 
+		help='text file with newline-separated list of entries to update')
 	parser.add_option('-o', '--optimize', 
 		dest='optimize', 
 		action='store_true', 
 		help='optimize index after indexing is completed')
+	parser.add_option('-s', '--log-sql', 
+		dest='log_sql', 
+		action='store_true', 
+		help='enable logging of SQL statements')
 
 	(options, args) = parser.parse_args()
 
@@ -175,7 +195,11 @@ if __name__ == '__main__':
 	start_time = util.now()
 	
 	log("Loading entry IDs...")
-	entry_ids = store.find(Entry,
+	entry_ids = ()
+	if options.input_file:
+		entry_ids = load_int_file(options.input_file)
+	else:
+		entry_ids = store.find(Entry,
 			storm.expr.Or(
 				Entry.date_added >= lastIndexDateTime,
 				Entry.date_modified >= lastIndexDateTime
@@ -209,9 +233,11 @@ if __name__ == '__main__':
 
 	end_time = util.now()
 	
-	# Always do this last. 
-	# After a program crash we'd rather index stuff twice than not at all.
-	Conf.SetDateTime(store, CONF_LAST_INDEX_DATETIME, start_time)
+	if not options.input_file:
+		# Always do this last. 
+		# After a program crash we'd rather index stuff twice than not at all.
+		Conf.SetDateTime(store, CONF_LAST_INDEX_DATETIME, start_time)
+	
 	store.commit()
 	
 	# ==========
