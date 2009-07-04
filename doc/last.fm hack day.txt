@@ -2,22 +2,49 @@
 
 now for music hack day 2009
 
+ =====================
+ = DB schema updates =
+ =====================
+
+- new entries.date column: CASE WHEN e.date_added < e.date_published THEN e.date_added ELSE e.date_published END
+  -> computed in py
+
+	1. test updated Entry.CreateOrUpdate
+	2. commit
+	3. deploy
+	4. stop application (otherwise it will probably just lock + wait for ages)
+	5. alter schema: (will take ages)
+	
+		ALTER TABLE entries ADD COLUMN date TIMESTAMP;
+		UPDATE entries e SET date = CASE WHEN e.date_added < e.date_published THEN e.date_added ELSE e.date_published END;
+		ALTER TABLE entries ALTER COLUMN date TYPE TIMESTAMP NOT NULL DEFAULT now();
+		CREATE INDEX idx_entries_date_desc ON entries(date DESC);
+		
+		DROP INDEX entries_ts_index;
+		DROP TRIGGER entries_tsv_document_update
+		ALTER TABLE entries DROP COLUMN tsv_document;
+
+		- index to speed up sorting on entries.date (what kind of index do we need?)
+
+	6. done, start app :)
+
+	
+optimise:	
+	SELECT e.id AS id FROM entries e INNER JOIN feeds f ON e.feed_id=f.id INNER JOIN users_feeds uf ON f.id=uf.feed_id INNER JOIN users u ON uf.user_id=u.id WHERE u.name='musicblogs' ORDER BY CASE WHEN e.date_added < e.date_published THEN e.date_added ELSE e.date_published END DESC LIMIT
+
  ========
  = todo =
  ========
-
-make sure everything is in svn
-- check in feedcache-search
-- check in musicfeeds search ui
-- commit py-feedcache changes (incrementally?)
 
 - ui: http://www.georgebrock.com/
 
 - move dekstop.de to hetzner -> musicfeeds.dekstop.de
 
+	
 - limit search results to music-specific feeds
   - in Solr? disadvantages: 
     - gets assigned at index time, so adding existing feeds to a new user will require re-indexing those feeds
+      -> e.g., queue of feeds/entries that have to be reindexed
     - when indexing: need to load all linked usernames for each individual entry
   - in DB? disadvantages: 
     - need to get more rows from Solr so we can filter (-> how much is Solr search performance affected by really long resultset limits?) 
@@ -47,6 +74,14 @@ make sure everything is in svn
     - +2 when in title
     - +1 when in content/summary
     - normal score for any other fields (e.g. link URL)
+
+performance
+- postgres
+  - read up on postgres EXPLAIN, create some indices
+- solr cache:
+  - read up on queryResultCache, documentCache, filterCache
+  - warm up using top n last.fm artists
+
 
 - don't show too many entries from the same source if we have enough search results for one page
   - can solr group/facet by feed?
