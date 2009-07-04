@@ -8,12 +8,14 @@ bin=`cd $bin; pwd`
 
 export FEEDCACHE_VERSION=0.0-dev
 
-export PYTHON=/usr/bin/python
+export PYTHON=python2.5
 
 export DBENGINE=postgres
 export DBHOST=localhost
-export DBUSER=postgres
-export DBPASSWORD=
+#export DBUSER=postgres
+#export DBPASSWORD=
+export DBUSER=feedcache
+export DBPASSWORD=117826a0
 export DBNAME=feedcache
 
 export FEEDCACHE_HOME=`cd $bin; cd ..; pwd`
