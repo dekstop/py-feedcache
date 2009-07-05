@@ -97,6 +97,7 @@ def createdoc(entry):
 		'id' : entry.id,
 		
 		'feed_id' : entry.feed.id,
+		'feed_id_facet' : entry.feed.id,
 		'feed_title' : strip_invalid_chars(entry.feed.title),
 		'feed_description' : strip_invalid_chars(entry.feed.description),
 		'feed_link' : strip_invalid_chars(entry.feed.link),
