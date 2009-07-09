@@ -93,7 +93,7 @@ def strip_invalid_chars(string):
 
 def createdoc(entry):
 	"""Formats a feed entry as Solr document hash"""
-	return {
+	e = {
 		'id' : entry.id,
 		
 		'feed_id' : entry.feed.id,
@@ -104,7 +104,7 @@ def createdoc(entry):
 		
 		'date' : entry.date,
 		'date_added' : entry.date_added,
-		'date_published' : entry.date_published,
+	#	'date_published' : strip_invalid_chars(entry.date_published), # quick hack to catch null values
 		
 		'title' : strip_invalid_chars(entry.title),
 		'content' : strip_invalid_chars(entry.content),
@@ -121,6 +121,11 @@ def createdoc(entry):
 		
 		#'tag' : get_tags(entry)
 	}
+	
+	if entry.date_published:
+		e['date_published'] = entry.date_published
+
+	return e
 
 def get_authors(entry):
 	return [strip_invalid_chars(a.name) for a in entry.authors]
