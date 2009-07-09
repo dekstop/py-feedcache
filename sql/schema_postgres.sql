@@ -84,7 +84,7 @@ CREATE TABLE entries (
   summary       TEXT,
   link          VARCHAR(4096) NOT NULL,
   date          TIMESTAMP NOT NULL DEFAULT now(),
-  date_published TIMESTAMP NOT NULL DEFAULT now(),
+  date_published TIMESTAMP,
   date_updated  TIMESTAMP,
   
   UNIQUE(feed_id, unique_id)

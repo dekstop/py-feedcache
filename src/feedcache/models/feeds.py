@@ -386,9 +386,16 @@ class Entry(object):
 		entry.link = link
 		entry.content = content
 		entry.summary = summary
-		entry.date_published = date_published or util.now()
+		
+		entry.date_published = date_published
 		entry.date_updated = date_updated
-		entry.date = min(util.now(), entry.date_published)
+		
+		dates = [util.now()]
+		if date_published:
+			dates += [date_published]
+		if date_updated:
+			dates += [date_updated]
+		entry.date = min(dates)
 
 		# this assumes that storm does proper 'dirty' checking and only writes on changes; 
 		# otherwise it would be wasteful to override every field on every call
