@@ -391,10 +391,10 @@ class Entry(object):
 		entry.date_updated = date_updated
 		
 		dates = [util.now()]
-		if date_published:
-			dates += [date_published]
-		if date_updated:
-			dates += [date_updated]
+		if entry.date_published:
+			dates += [entry.date_published]
+		if entry.date_updated:
+			dates += [entry.date_updated]
 		entry.date = min(dates)
 
 		# this assumes that storm does proper 'dirty' checking and only writes on changes; 
