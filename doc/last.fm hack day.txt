@@ -2,45 +2,92 @@
 
 now for music hack day 2009
 
- =====================
- = DB schema updates =
- =====================
+ =============
+ = blog post =
+ =============
 
-- new entries.date column: CASE WHEN e.date_added < e.date_published THEN e.date_added ELSE e.date_published END
-  -> computed in py
+- personalised planet music: A personalised music news ticker service that keeps you informed about stuff you care about. 
+- aggregated from thousands of music blogs
+- Your taste changes, so your ticker service should adapt. 
+  - Don't subscribe to specific blogs, or even specific topics (keyword searches, ...); 
+  - instead use Last.fm to keep track of your current habits
+  -> no work, always up to date.
+- initially this will be a simple artist name search; in the future it might employ more complex kinds of filtering techniques (which may also means none of your top artists may need to be mentioned in a blog post for it to be considered worthy to include)
 
-	1. test updated Entry.CreateOrUpdate
-	2. commit
-	3. deploy
-	4. stop application (otherwise it will probably just lock + wait for ages)
-	5. alter schema: (will take ages)
-	
-		ALTER TABLE entries ADD COLUMN date TIMESTAMP;
-		UPDATE entries e SET date = CASE WHEN e.date_added < e.date_published THEN e.date_added ELSE e.date_published END;
-		ALTER TABLE entries ALTER COLUMN date TYPE TIMESTAMP NOT NULL DEFAULT now();
-		CREATE INDEX idx_entries_date_desc ON entries(date DESC);
-		
-		DROP INDEX entries_ts_index;
-		DROP TRIGGER entries_tsv_document_update
-		ALTER TABLE entries DROP COLUMN tsv_document;
+good links:
+- http://musicfeeds.screamorap.org/?q=Damu+The+Fudgemunk
+- http://musicfeeds.screamorap.org/?q=%22Mr+Hudson%22
 
-		- index to speed up sorting on entries.date (what kind of index do we need?)
 
-	6. done, start app :)
+ =========================
+ = post-hackday cleanups =
+ =========================
 
-	
-optimise:	
-	SELECT e.id AS id FROM entries e INNER JOIN feeds f ON e.feed_id=f.id INNER JOIN users_feeds uf ON f.id=uf.feed_id INNER JOIN users u ON uf.user_id=u.id WHERE u.name='musicblogs' ORDER BY CASE WHEN e.date_added < e.date_published THEN e.date_added ELSE e.date_published END DESC LIMIT
+- delete borked svn repos 
+  old: http://martind-svn@mardoen.textdriven.com/svn/code/feedcache-apps/musicfeeds/trunk 
+  new: svn+ssh://martind@mardoen.textdriven.com/users/home/martind/svn/code/feedcache-apps/musicfeeds/trunk
+-> migrate to git
+
+ =======
+ = now =
+ =======
+ 
+
+- /contact/: 
+  - send email?
+    -> on submit:
+    - email self, with submission details + form for /admin/submit/:
+      - blog url in editable input field, with 'submit' button -> queue in batchimports
+      - all other fields as text
+  - spam detection? check dekstop.de contact form
+- /admin/
+  - /admin/usercomments/
+    - list last 500 (?) comments
+  - /admin/submit/
+    - simple form to add URLs (alternatively: do proper admin ui for feedcache)
+
+- export matching blogs/feeds as OPML
+- publish sources (as static page, as opml so people can subscribe) -- title, link
+
+- facets:
+  - how to build faceted search queries?
+  - set up category, feed id, maybe others, as facets
+    -> search result will include facet breakdown of result
+  - enable faceting, add facet field names to solr query
+  - result UI includes links to filters (e.g. as text below search form)
+  - later: allow multiple facet values per search
+  
+Potential features:
+- faceting on author-provided categories
+- display facet document count as background colour (heatmap-style)
+
+- lots of html markup/microfotmats!
+  - "canonical URL" and other quoting techniques -> to annotate that we're just a republisher
+  - hatom
+  - enclosure/media links microformats? (use the mimetypes!)
+  - search/query microformats?
+  
+  check out acts_as_solr: dynamic field types
+
+
+ ===========
+ = sources =
+ ===========
+
+more music feeds:
+- wiretapped links!
+- artist feeds! (myspace, ...? -> check musicbrainz for lastfm top 10k artists)
+- thor!
+- "the echo nest claims to mine a lot of blogs"
+  - http://developer.echonest.com/docs/method/get_blogs/
+- crawl http://www.twingly.com/ searches ("mp3", last.fm top 1000 artists, ...)
+- others?
+
 
  ========
  = todo =
  ========
 
-- ui: http://www.georgebrock.com/
-
-- move dekstop.de to hetzner -> musicfeeds.dekstop.de
-
-	
 - limit search results to music-specific feeds
   - in Solr? disadvantages: 
     - gets assigned at index time, so adding existing feeds to a new user will require re-indexing those feeds
@@ -59,10 +106,6 @@ optimise:
 
 - http://www.feedparser.org/docs/html-sanitization.html
 
-- last.fm API call, request caching
-
-- when 0 results: "know great music blogs that we don't have? send us a link!"
-
 - good artist search
   - don't index HTML/XML tags! -> check what HTMLStripStandardTokenizer does. maybe write custom tokenizer. we want to:
     - strip html/xml tags to convert to plaintext
@@ -76,81 +119,44 @@ optimise:
     - normal score for any other fields (e.g. link URL)
 
 performance
+- write simple profiling toolkit, show in footer (only with dev cookie)
 - postgres
   - read up on postgres EXPLAIN, create some indices
 - solr cache:
   - read up on queryResultCache, documentCache, filterCache
   - warm up using top n last.fm artists
 
-
 - don't show too many entries from the same source if we have enough search results for one page
   - can solr group/facet by feed?
-  - only show top n entries from same feed
+  - atm: only show n entries from same feed in a row
 
 - ensure we never show php warnings/errors, instead log them (+ URL/state) and display a friendly error page
 
 - can we optimise to a degree where 500+ artists get matched in sub-second response times?
 
-- test data sets
-  - artist name stemming: 100 popular names, 100 obscure, then use to evaluate. keep adding edge cases.
-  - 
 
-good links:
-- http://192.168.56.101/musicfeeds/?q=Damu+The+Fudgemunk
+ ========
+ = bugs =
+ ========
 
-add:
-- http://www.thevinylfactory.com/
+why does this post:
+ http://musicfeeds.screamorap.org/?q=category%3A%22Fallen+angles%22
 
- ==============================
- = personalised planet music  =
- ==============================
+show up here:
+ http://musicfeeds.screamorap.org/?q=category%3A%22Fallen+angles%22
+ http://musicfeeds.screamorap.org/?q=category%3A%22DJ+Limpdick%22
+ http://musicfeeds.screamorap.org/?q=category%3A%22Risen+apes%22
 
-- A personalised music news ticker service that keeps you informed about stuff you care about. 
-- aggregated from hundreds of music blogs
-- Your taste changes, so your ticker service should adapt. 
-  - Don't subscribe to specific blogs, or even specific topics (keyword searches, ...); 
-  - instead use Last.fm to keep track of your current habits
-  -> no work, always up to date.
-- initially this will be a simple artist name search; in the future it might employ more complex kinds of filtering techniques (which may also means none of your top artists may need to be mentioned in a blog post for it to be considered worthy to include)
+but not here:
+ http://musicfeeds.screamorap.org/?q=category%3A%22Beware+the+cougar%22
+ http://musicfeeds.screamorap.org/?q=category%3A%22Older+women+are+the+pits%22
 
-requirements:
-- huge list of music blogs 
-  - almost done. missing: big magazines, gossip blogs
-- last.fm integration
-  - web service call to http://www.last.fm/api/show?service=300 (last 3 months)
-  - cache response (for how long? 1h? 1 day?)
-  - extract top artists
-- fast feed archive search
-- web ui
-  - doesn't even need pagination for a demo
-  - if search is fast enough: also publish as feed
-    - publish matching artists as entry topics (with link to last.fm?)
-  - if time left: provide item context
-    - which artist does this match? with your playcount, artist image, links
-    - highlight matching keywords
-  - if more time left: export matching blogs/feeds as OPML
-  - if still time left: exploration features
-    - "only results for this artist"
-    - "see also" (based on simartist, ...?)
-    - keyword search
-  - publish sources (as static page, as opml so people can subscribe) -- title, link
-  - "submit your blog" form (-> send email, need to moderate this to avoid malicious content+spam)
+-> all are 3-word category names
 
- ===========
- = sources =
- ===========
+- solr query length limit
+- limit lastfm top artists (avoid really long queries)
+- can we control/increase solr query length limit? how high is it?
+- car0lus: empty results?!
+- we can't really query during indexing/compacting -> ??
+- times out: http://musicfeeds.screamorap.org/?q=feed_id%3A2267 (all/most feed links), http://192.168.55.56/musicfeeds/ (homepage!)
 
-- "the echo nest claims to mine a lot of blogs"
-  - http://developer.echonest.com/docs/method/get_blogs/
-  - crawl http://www.twingly.com/ searches ("mp3", last.fm top 1000 artists, ...)
-  - others?
-- gossip blogs!
-
- ============================
- = existing implementations =
- ============================
-
-- http://www.programmableweb.com/mashup/last.fm-favourite-artist-news multi-artist google blog search (fed from last.fm profile), via yahoo pipes, only returns a feed
-- http://www.mashupkeyword.com/news?keyword=hip%20hop (google, technorati for genre/artist search)
-- http://www.musicportl.com/artist/Johnny+Long (technorati artist search)
-- etc (except for matt perdeaux' thing most seem focused on single-artist search)

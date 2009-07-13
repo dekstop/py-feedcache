@@ -9,6 +9,10 @@ Dependencies:
 - a PostgreSQL database
 - for multi-process support: Parallel Python, http://www.parallelpython.com/
 - for search: pysolr, http://code.google.com/p/pysolr/
+- which requires simplejson
+
+feedcache-search dependencies:
+- java 6 (configure in bin/env.sh)
 
 "To support the maximum number of character encodings (and be able to parse 
 the maximum number of feeds), you should install cjkcodecs and iconv_codec. 
