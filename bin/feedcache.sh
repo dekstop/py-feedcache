@@ -13,7 +13,7 @@ if [ $# = 0 ]; then
   echo "  update      import new feeds, update stale feeds"
   echo "  stop        stop all update workers"
   echo "  index       index new posts for search"
-  echo "  search      keyword search"
+  echo "  uniq        prune a user's duplicate feeds"
   echo "Most commands print help when invoked with --help"
   exit 1
 fi
@@ -61,8 +61,8 @@ elif [ "$COMMAND" = "index" ] ; then
 	$PYTHON "${FEEDCACHE_HOME}/src/solr/index.py" $DSN $@ || exit 1
 	rm $pid
 
-elif [ "$COMMAND" = "search" ] ; then
-	$PYTHON "${FEEDCACHE_HOME}/src/examples/search.py" $DSN "$@" || exit 1
+elif [ "$COMMAND" = "uniq" ] ; then
+	$PYTHON "${FEEDCACHE_HOME}/src/app/uniq.py" $DSN "$@" || exit 1
 
 elif [ "$COMMAND" = "lastfm" ] ; then
 	$PYTHON "${FEEDCACHE_HOME}/src/lastfm-api.py" $DSN "$@" || exit 1
