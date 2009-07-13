@@ -122,7 +122,9 @@ performance
 - write simple profiling toolkit, show in footer (only with dev cookie)
 - postgres
   - read up on postgres EXPLAIN, create some indices
-- solr cache:
+- solr:
+  - limit memory usage (atm: 500MB) http://www.nabble.com/Debugging-Solr-memory-usage-heap-problems-to8832794.html#a8832794
+  - find good tradeoffs for solr commit/optimise frequency, cf. http://drupal.org/node/292662
   - read up on queryResultCache, documentCache, filterCache
   - warm up using top n last.fm artists
 
