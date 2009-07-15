@@ -9,6 +9,7 @@
 #
 
 from optparse import OptionParser
+import os.path
 import sys
 
 import storm.locals
@@ -20,23 +21,19 @@ from feedcache.models.users import User
 # = helpers =
 # ===========
 
-def load_batchimports(store, filename):
-	
+def load_urls_from_file(filename):
 	FILE = open(filename, 'r')
 	feedurls = filter(lambda fn: len(fn)>0, map(unicode, FILE.read().split("\n")))
 	FILE.close()
 
+	return feedurls
+
+def load_batchimports(store, feedurls):
 	for url in feedurls:
 		Batchimport.CreateIfMissing(store, url)
 
-def load_feeds(store, filename, user):
-	
-	FILE = open(filename, 'r')
-	feedurls = filter(lambda fn: len(fn)>0, map(unicode, FILE.read().split("\n")))
-	FILE.close()
-
+def load_feeds(store, feedurls, user):
 	i = 0
-
 	for url in feedurls:
 		try:
 			f = Feed.Load(store, url)
@@ -57,7 +54,7 @@ def load_feeds(store, filename, user):
 
 if __name__ == '__main__':
 	
-	usage = 'usage: %prog driver://user:password@host/database <feed_urls.txt>'
+	usage = 'usage: %prog driver://user:password@host/database <feed_urls.txt> | <feed URL>'
 	parser = OptionParser(usage)
 	
 	parser.add_option('-u', '--user', 
@@ -75,15 +72,23 @@ if __name__ == '__main__':
 	db = storm.database.create_database(dsn)
 	store = storm.store.Store(db)
 	
+	feedurls = []
+	
+	for n in args[1:]:
+		if os.path.exists(n) and os.path.isfile(n):
+			feedurls += load_urls_from_file(n)
+		else:
+			feedurls += [unicode(n)]
+	
 	user = None
 	if username!=None:
 		user = User.FindByName(store, unicode(username))
 		if user==None:
 			parser.error('Unknown username %s' % (username))
 		for filename in args[1:]:
-			load_feeds(store, filename, user)
+			load_feeds(store, feedurls, user)
 	else:
 		for filename in args[1:]:
-			load_batchimports(store, filename)
+			load_batchimports(store, feedurls)
 
 	store.close()
