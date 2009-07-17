@@ -37,6 +37,7 @@ CREATE TABLE batchimports (
 
   active        BOOLEAN NOT NULL DEFAULT TRUE,
   url           VARCHAR(4096) UNIQUE NOT NULL,
+  user_id       INTEGER,
   imported      BOOLEAN NOT NULL DEFAULT FALSE,
 
   date_added    TIMESTAMP NOT NULL DEFAULT now(),

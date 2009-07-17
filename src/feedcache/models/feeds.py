@@ -45,6 +45,7 @@ class Batchimport(object):
 
 	active = storm.Bool()
 	url = storm.Unicode()
+	user_id = storm.Int()
 	imported = storm.Bool()
 
 	date_added = storm.DateTime()
@@ -62,7 +63,7 @@ class Batchimport(object):
 		"""
 		return store.find(Batchimport, Batchimport.url==url).any()
 	
-	def CreateIfMissing(store, url):
+	def CreateIfMissing(store, url, user=None):
 		"""
 		Returns a Batchimport instance.
 		Creates a new Batchimport entry if FindByUrl for this URL comes up empty,
@@ -70,8 +71,12 @@ class Batchimport(object):
 		"""
 		b = Batchimport.FindByUrl(store, url)
 		if b:
+			# FIXME: this ignores the user provided. 
+			# (and current DB schema only allows one user per batchimport)
 			return b
 		b = Batchimport(url)
+		if user:
+			b.user_id = user.id
 		store.add(b)
 		store.commit()
 		return b
@@ -92,6 +97,13 @@ class Batchimport(object):
 			feed = Feed.Load(store, self.url)
 			self.imported = True
 			self.fail_count = 0
+
+			if self.user_id:
+				from feedcache.models.users import User
+				user = store.find(User, User.id==self.user_id).any()
+				if not (feed in user.feeds):
+					user.feeds.add(feed)
+
 			store.commit()
 			return feed
 		except KeyboardInterrupt:

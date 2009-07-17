@@ -28,25 +28,9 @@ def load_urls_from_file(filename):
 
 	return feedurls
 
-def load_batchimports(store, feedurls):
+def load_batchimports(store, feedurls, user):
 	for url in feedurls:
-		Batchimport.CreateIfMissing(store, url)
-
-def load_feeds(store, feedurls, user):
-	i = 0
-	for url in feedurls:
-		try:
-			f = Feed.Load(store, url)
-			if (f in user.feeds)==False:
-				user.feeds.add(f)
-				store.commit()
-			i += 1
-		except:
-			store.rollback()
-			et = sys.exc_info()[0]
-			e = sys.exc_info()[1]
-			print et, e
-	print "Imported %d feeds" % i
+		Batchimport.CreateIfMissing(store, url, user)
 
 # ========
 # = main =
@@ -85,10 +69,8 @@ if __name__ == '__main__':
 		user = User.FindByName(store, unicode(username))
 		if user==None:
 			parser.error('Unknown username %s' % (username))
-		for filename in args[1:]:
-			load_feeds(store, feedurls, user)
-	else:
-		for filename in args[1:]:
-			load_batchimports(store, feedurls)
+	
+	for filename in args[1:]:
+		load_batchimports(store, feedurls, user)
 
 	store.close()

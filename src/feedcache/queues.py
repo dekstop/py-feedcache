@@ -204,7 +204,7 @@ class BatchimportQueue(EntityQueue):
 		"""
 		return storm.expr.And(
 			# added before cutoff_time
-			Batchimport.date_added < self.cutoff_time,
+			#Batchimport.date_added < self.cutoff_time,
 			# AND not marked as inactive
 			Batchimport.active == True, 
 			# AND not imported yet
