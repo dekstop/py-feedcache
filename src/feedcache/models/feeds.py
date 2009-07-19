@@ -68,14 +68,17 @@ class Batchimport(object):
 		Returns a Batchimport instance.
 		Creates a new Batchimport entry if FindByUrl for this URL comes up empty,
 		then commits.
+		If the URL already exists in the Batchimport queue the entry will be activated
+		(if it had been deactivated), and fail_count will be set to 0.
 		"""
 		b = Batchimport.FindByUrl(store, url)
 		if b:
-			# FIXME: this ignores the user provided. 
-			# (and current DB schema only allows one user per batchimport)
-			return b
-		b = Batchimport(url)
+			b.active = true
+			b.fail_count = 0
+		else:
+			b = Batchimport(url)
 		if user:
+			# FIXME: current DB schema only allows one user per batchimport
 			b.user_id = user.id
 		store.add(b)
 		store.commit()
