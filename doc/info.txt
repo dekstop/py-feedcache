@@ -10,7 +10,20 @@ multiple components:
 - admin UI to add/remove/edit feed subscriptions
 - client UI to browse + organise feeds (tagging, bookmarking, ...)
 
-"To support the maximum number of character encodings (and be able to parse the maximum number of feeds), you should install cjkcodecs and iconv_codec. Both are available at http://cjkpython.i18n.org/." -- file:///Users/mongo/data/doc/python/feedparser-4.1/character-encoding.html
+The database schema is modelled after the Atom 1.0 spec, with the exception 
+of the following omissions:
+- language attributes
+- feed.contributor
+- feed.generator
+- feed.icon
+- feed.link (we only extract exactly one URL, as implemented by UFP's feed.link)
+- feed.logo
+- feed.rights
+- entry.contributor
+- entry.link (we only extract exactly one URL)
+- entry.rights
+- entry.source
+- any atom extensions
 
  ========================
  = initial feed fetcher =
@@ -20,7 +33,6 @@ multiple components:
   - if not provided: 
     - use hash(title, content, link) (may still break for some feeds)
 - storage layout
-  - document missing Atom features
   - TODO: check if we want to additionally support features from other specs
   - with fields for custom transformations
     - title with all HTML stripped + whitespace collapsed

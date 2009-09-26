@@ -5,8 +5,6 @@ check out http://sourceforge.net/projects/senews
 
 TODO: 
 
-- install http://chardet.feedparser.org/ -- mention it in requirements (gets used by feedparser if present)
-  - then try to re-import feeds with encoding issues
 - delay between requests to same domain
 
 - assertions for null values if fields aren't provided in a feed

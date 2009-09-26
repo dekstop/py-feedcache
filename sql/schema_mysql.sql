@@ -1,4 +1,6 @@
 
+-- this is completely out of date, but could serve as a basis for a MySQL port.
+
 -- =========
 -- = feeds =
 -- =========

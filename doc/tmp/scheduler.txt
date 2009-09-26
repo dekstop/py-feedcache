@@ -1,0 +1,15 @@
+2009-09-26 15:52:33
+
+ =============
+ = scheduler =
+ =============
+
+goals: optimal use of resources
+- smallest possible amount of fetches for shortest possible update latency
+- gracefully handle missing/broken feeds
+
+
+ =================
+ = initial stats =
+ =================
+

@@ -18,20 +18,9 @@ good links:
 - http://musicfeeds.screamorap.org/?q=Damu+The+Fudgemunk
 - http://musicfeeds.screamorap.org/?q=%22Mr+Hudson%22
 
-
- =========================
- = post-hackday cleanups =
- =========================
-
-- delete borked svn repos 
-  old: http://martind-svn@mardoen.textdriven.com/svn/code/feedcache-apps/musicfeeds/trunk 
-  new: svn+ssh://martind@mardoen.textdriven.com/users/home/martind/svn/code/feedcache-apps/musicfeeds/trunk
--> migrate to git
-
  =======
  = now =
- =======
- 
+ ======= 
 
 - /contact/: 
   - send email?
@@ -43,8 +32,6 @@ good links:
 - /admin/
   - /admin/usercomments/
     - list last 500 (?) comments
-  - /admin/submit/
-    - simple form to add URLs (alternatively: do proper admin ui for feedcache)
 
 - export matching blogs/feeds as OPML
 - publish sources (as static page, as opml so people can subscribe) -- title, link

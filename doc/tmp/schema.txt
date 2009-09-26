@@ -1,20 +1,6 @@
 
 2008-10-18, 16:49:22
 
-unsupported atom 1.0 content elements:
-- language attributes
-- feed.contributor
-- feed.generator
-- feed.icon
-- feed.link (we only extract exactly one URL, as implemented by UFP's feed.link)
-- feed.logo
-- feed.rights
-- entry.contributor
-- entry.link (we only extract exactly one URL)
-- entry.rights
-- entry.source
-- any atom extensions
-
  ====================
  = location aliases =
  ====================

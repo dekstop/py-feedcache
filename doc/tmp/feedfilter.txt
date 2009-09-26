@@ -7,7 +7,7 @@ REST(?)-style feed aggregation query and presentation system.
  ==============================
 
 prerequisites:
-- each feed has a short token as unique ID (a hash? or maybe better: the base36-encoded id, converted from base10)
+- each feed has a short token as unique ID (a hash? or maybe better: the base58-encoded id, converted from base10, optionally XORed to prevent enumeration)
 
 mechanism:
 - load a single feed by token
